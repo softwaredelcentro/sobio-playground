@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  endpoint: 'https://sobio-b76a.sdc.com.ar',
+  endpoint: 'http://127.0.0.1:3000',
   version: 'v1'
 };
 
