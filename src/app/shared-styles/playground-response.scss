@@ -1,45 +1,73 @@
-code {
-    display: block;
-    margin: 15px;
-    background: #e4f7e4;
-    border: 1px solid #b0d2b0;
-    padding: 10px;
-    position: relative;
-    margin-top: 20px;
-    &:after{
-        content: 'Response Body';
+#response {
+    code {
         display: block;
-        position: absolute;
-        top: -20px;
-        left: 3px;
-        font-family: helvetica;
-        font-size: 10px;
+        margin: 15px;
+        background: #e4f7e4;
         border: 1px solid #b0d2b0;
-        border-bottom: 0px;
-        padding: 3px;
-        background-color: #fbfbfb;
+        padding: 10px;
+        position: relative;
+        margin-top: 20px;
+        &:after{
+            content: 'Response Body';
+            display: block;
+            position: absolute;
+            top: -20px;
+            left: 3px;
+            font-family: helvetica;
+            font-size: 10px;
+            border: 1px solid #b0d2b0;
+            border-bottom: 0px;
+            padding: 3px;
+            background-color: #fbfbfb;
+        }
+        &.error {
+            background: #f7e4e4;
+            border: 1px solid #d2b0b0;
+            &:after{
+                border: 1px solid #d2b0b0;
+            }
+        }
+       
     }
-}
 
-.responseProcessed {
-    display: block;
-    margin: 15px;
-    background: #f3f3f3;
-    border: 1px solid #cecece;
-    padding: 10px;
-    position: relative;
-    margin-top: 40px;
-    &:after{
-        content: 'Response Processed';
+    .responseProcessed {
         display: block;
-        position: absolute;
-        top: -20px;
-        left: 3px;
-        font-family: helvetica;
-        font-size: 10px;
+        margin: 15px;
+        background: #f3f3f3;
         border: 1px solid #cecece;
-        border-bottom: 0px;
-        padding: 3px;
-        background-color: white;
+        padding: 10px;
+        position: relative;
+        margin-top: 40px;
+        &:after{
+            content: 'Response Processed';
+            display: block;
+            position: absolute;
+            top: -20px;
+            left: 3px;
+            font-family: helvetica;
+            font-size: 10px;
+            border: 1px solid #cecece;
+            border-bottom: 0px;
+            padding: 3px;
+            background-color: white;
+        }
+    }
+
+    button {
+        margin: 0 auto;
+        display: block;
+        border: 1px solid #b0d2b0;
+        font-family: helvetica;
+        border-radius: 5px;
+        text-transform: uppercase;
+        color: #b0d2b0;
+        cursor: pointer;
+        font-size: 16px;
+        width: 250px;
+        padding: 10px;
+        &:hover {
+            color: white;
+            background: #b0d2b0;
+        }
     }
 }

@@ -2,7 +2,7 @@
 <app-loader [isLoading]="loading"></app-loader>
 
 <section id="response" *ngIf="step==2">
-    <code>
+    <code [class.error]="error">
         {{jsonResponse}}
     </code>
     <div class="responses" *ngIf="response && response.extractedFaces">

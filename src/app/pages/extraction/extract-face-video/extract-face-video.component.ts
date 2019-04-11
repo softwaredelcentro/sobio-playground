@@ -16,6 +16,7 @@ export class ExtractFaceVideoComponent implements OnInit {
   jsonResponse: string;
   step: number;
   response: FaceVideoResponse;
+  error: boolean;
 
   constructor(private extractionSrv: ExtractionService) {
     this.dto = new FaceVideoDTO();
@@ -39,6 +40,7 @@ export class ExtractFaceVideoComponent implements OnInit {
   }
 
   send() {
+    this.error = false;
     this.loading = true;
     this.extractionSrv.extractFaceVideo(this.dto).subscribe(resp => {
       this.loading = false;
@@ -46,11 +48,11 @@ export class ExtractFaceVideoComponent implements OnInit {
       this.jsonResponse = JSON.stringify(resp);
       console.log(resp);
     }, err => {
+      this.error = true;
       console.log(err);
       this.loading = false;
       this.step = 2;
       this.jsonResponse = JSON.stringify(err);
-      alert('Ocurrió un error con el llamado por favor vea el log');
     });
   }
 
