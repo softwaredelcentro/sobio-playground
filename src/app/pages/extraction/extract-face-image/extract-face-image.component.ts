@@ -62,6 +62,7 @@ export class ExtractFaceImageComponent implements OnInit {
       this.dto.image = reader.result as string;
       this.dto.image = this.dto.image.replace(/data:([a-zA-Z0-9]+)\/([a-zA-Z0-9]+);base64,/gi, '');
       this.loading = false;
+      this.fileInput.nativeElement.value = '';
     };
     if (this.fileInput.nativeElement.files[0]) {
       reader.readAsDataURL(this.fileInput.nativeElement.files[0]);
@@ -74,6 +75,7 @@ export class ExtractFaceImageComponent implements OnInit {
     this.extractionSrv.extractFaceImage(this.dto).subscribe(resp => {
       this.loading = false;
       console.log(resp);
+      this.response = resp;
       this.jsonResponse = JSON.stringify(resp);
       this.step = 2;
     }, err => {

@@ -8,23 +8,23 @@
     <div class="responseProcessed">
       <div class="dataBlock">
         <label>txID:</label>
-        <div>
+        <div class="dataContent">
           {{response.txId}}
         </div>
       </div>
       <div class="dataBlock">
         <label>Status:</label>
-        <div>
+        <div class="dataContent">
           {{response.status}}
         </div>
       </div>
       <div class="dataBlock">
         <label>Face image:</label>
-        <img [src]="response.face.image">
+        <img [src]="'data:image/png;base64,'+response.face.image">
       </div>
       <div class="dataBlock">
         <label>Template:</label>
-        <div>
+        <div class="dataTemplate">
           {{response.face.template}}
         </div>
       </div>

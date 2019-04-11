@@ -1,4 +1,6 @@
 #response {
+    max-height: calc(100% - 140px);
+    overflow: auto;
     code {
         display: block;
         margin: 15px;
@@ -7,6 +9,7 @@
         padding: 10px;
         position: relative;
         margin-top: 20px;
+        overflow: auto;
         &:after{
             content: 'Response Body';
             display: block;
@@ -50,6 +53,29 @@
             border-bottom: 0px;
             padding: 3px;
             background-color: white;
+        }
+        label {
+            font-weight: bolder;
+            display: inline-block;
+            text-align: right;
+            margin-right: 15px;
+            vertical-align: middle;
+        }
+        .dataContent {
+            display: inline-block;
+        }
+        .dataTemplate {
+            width: calc(100% - 16px);
+            height: 200px;
+            overflow: auto;
+            background: white;
+            padding: 8px;
+            word-wrap: break-word;
+        }
+        img {
+            width: 100px;
+            border-radius: 30px;
+            vertical-align: middle;
         }
     }
 
