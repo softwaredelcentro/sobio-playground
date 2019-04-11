@@ -10,6 +10,7 @@ import { ExtractFaceImageComponent } from './pages/extraction/extract-face-image
 import { HomeComponent } from './pages/home/home.component';
 import { ExtractFaceVideoComponent } from './pages/extraction/extract-face-video/extract-face-video.component';
 import { HeaderComponent } from './components/header/header.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { HeaderComponent } from './components/header/header.component';
     ExtractFaceImageComponent,
     HomeComponent,
     ExtractFaceVideoComponent,
-    HeaderComponent
+    HeaderComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

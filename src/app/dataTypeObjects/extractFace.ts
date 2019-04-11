@@ -3,6 +3,14 @@ export class ExtractFace {
     params: Params = new Params();
 }
 
+export class FacePoseSensibility {
+    lookingDownwardsPitchAngle: boolean;
+    lookingFront: boolean;
+    lookingLeftYawAngle: boolean;
+    lookingRightYawAngle: boolean;
+    lookingUpwardsPitchAngle: boolean;
+}
+
 export class Params {
     blinkSensibility: number;
     detectAge: boolean;
@@ -26,10 +34,4 @@ export class Params {
     videoFramesSeq: number;
 }
 
-export class FacePoseSensibility {
-    lookingDownwardsPitchAngle: boolean;
-    lookingFront: boolean;
-    lookingLeftYawAngle: boolean;
-    lookingRightYawAngle: boolean;
-    lookingUpwardsPitchAngle: boolean;
-}
+

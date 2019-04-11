@@ -25,8 +25,8 @@ export class ExtractFaceVideoComponent implements OnInit {
     this.loading = true;
     const reader  = new FileReader();
     reader.onload = () => {
-      this.dto.image = reader.result as string;
-      this.dto.image = this.dto.image.replace(/data:([a-zA-Z0-9]+)\/([a-zA-Z0-9]+);base64,/gi, '');
+      this.dto.video = reader.result as string;
+      this.dto.video = this.dto.video.replace(/data:([a-zA-Z0-9]+)\/([a-zA-Z0-9]+);base64,/gi, '');
       this.loading = false;
     };
     reader.readAsDataURL(this.fileInput.nativeElement.files[0]);
@@ -36,7 +36,9 @@ export class ExtractFaceVideoComponent implements OnInit {
     this.loading = true;
     this.extractionSrv.extractFaceVideo(this.dto).subscribe(resp => {
       this.loading = false;
+      console.log(resp);
     }, err => {
+      console.log(err);
       alert('Ocurrió un error con el llamado por favor vea el log');
     });
   }
