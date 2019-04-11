@@ -1,0 +1,26 @@
+<div class="logo">
+  <img src="assets/logo.png" />
+</div>
+<nav>
+  <h2>API</h2>
+  <ul>
+    <li class="disabled">Audit rest ap iv 1</li>
+    <li class="disabled">BIO rest ap iv 1</li>
+    <li class="disabled">Extract Document Information AP iv 1</li>
+    <li class="disabled">AUDIT</li>
+    <li>
+      <a class="deployable" (click)="deployar(5)" [class.opened]="deployados[5]">EXTRACTION</a>
+      <ul *ngIf="deployados[5]">
+        <li class="disabled"><a href="">concat audio stream</a></li>
+        <li><a href="/extraction/extract-face-image">extract face image</a></li>
+        <li><a href="/extraction/extract-face-video">extract face video</a></li>
+        <li class="disabled"><a href="">extract fingerprint image</a></li>
+        <li class="disabled"><a href="">extract text dependent voice</a></li>
+        <li class="disabled"><a href="">extract text independent voice</a></li>
+      </ul>
+    </li>
+    <li class="disabled">DATABASE</li>
+    <li class="disabled">MATCHING</li>
+    <li class="disabled">DOCUMENT EXTRACTION</li>
+  </ul>
+</nav>
