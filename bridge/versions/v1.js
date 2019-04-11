@@ -10,7 +10,7 @@ app.post('/bio/extract-face-image', function(req,resp) {
     axios.post(endpoint+'/bio/extract-face-image', JSON.stringify(req.body), {headers: {'Content-Type': 'application/json'}}).then(response => {
         console.log(response);
         resp.status(response.status);
-        resp.send(JSON.parse(response.data));
+        resp.send(JSON.stringify(response.data));
     }).catch(err => {
         console.log('ERR', err);
         if(err.response) {
@@ -28,7 +28,7 @@ app.post('/bio/extract-face-video', function(req,resp) {
     axios.post(endpoint+'/bio/extract-face-image', JSON.stringify(req.body), {headers: {'Content-Type': 'application/json'}}).then(response => {
         console.log(response);
         resp.status(response.status);
-        resp.send(JSON.parse(response.data));
+        resp.send(JSON.stringify(response.data));
     }).catch(err => {
         console.log('ERR', err);
         if(err.response) {
