@@ -16,7 +16,7 @@ app.post('/bio/extract-face-image', function(req,resp) {
         if(err.response) {
             console.log(err.response.status, err.data);
             resp.status(err.response.status ? err.response.status : 502);
-            resp.send('Bridged error: '+(err.response.data ? JSON.parse(err.response.data) : 'Void Response'));
+            resp.send('Bridged error: '+(err.response.data ? err.response.data : 'Void Response'));
         } else {
             resp.status(502);
             resp.send('Gateway NodeJS Error please see log.');
@@ -34,7 +34,7 @@ app.post('/bio/extract-face-video', function(req,resp) {
         if(err.response) {
             console.log(err.response.status, err.data);
             resp.status(err.response.status ? err.response.status : 502);
-            resp.send('Bridged error: '+(err.response.data ? JSON.parse(err.response.data) : 'Void Response'));
+            resp.send('Bridged error: '+(err.response.data ? err.response.data : 'Void Response'));
         } else {
             resp.status(502);
             resp.send('Gateway NodeJS Error please see log.');
