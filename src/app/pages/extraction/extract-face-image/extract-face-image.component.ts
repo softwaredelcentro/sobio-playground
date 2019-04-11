@@ -29,7 +29,9 @@ export class ExtractFaceImageComponent implements OnInit {
       this.dto.image = this.dto.image.replace(/data:([a-zA-Z0-9]+)\/([a-zA-Z0-9]+);base64,/gi, '');
       this.loading = false;
     };
-    reader.readAsDataURL(this.fileInput.nativeElement.files[0]);
+    if (this.fileInput.nativeElement.files[0]) {
+      reader.readAsDataURL(this.fileInput.nativeElement.files[0]);
+    }
   }
 
   send() {
