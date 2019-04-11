@@ -1,3 +1,4 @@
+import { FaceVideoResponse } from './../../../dataTypeObjects/faceVideoResponse';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FaceVideoDTO } from 'src/app/dataTypeObjects/faceVideo';
 import { ExtractionService } from 'src/app/providers/extraction.service';
@@ -5,20 +6,23 @@ import { ExtractionService } from 'src/app/providers/extraction.service';
 @Component({
   selector: 'app-extract-face-video',
   templateUrl: './extract-face-video.component.html',
-  styleUrls: ['./extract-face-video.component.sass', '../../../shared-styles/forms.scss']
+  styleUrls: ['./extract-face-video.component.sass', '../../../shared-styles/forms.scss', '../../../shared-styles/playground-response.scss']
 })
 export class ExtractFaceVideoComponent implements OnInit {
 
   dto: FaceVideoDTO;
   @ViewChild('fileInput') fileInput: ElementRef;
   loading: boolean;
+  jsonResponse: string;
+  step: number;
+  response: FaceVideoResponse;
 
   constructor(private extractionSrv: ExtractionService) {
     this.dto = new FaceVideoDTO();
   }
 
   ngOnInit() {
-
+    this.step = 1;
   }
 
   fileChange() {
@@ -38,6 +42,8 @@ export class ExtractFaceVideoComponent implements OnInit {
     this.loading = true;
     this.extractionSrv.extractFaceVideo(this.dto).subscribe(resp => {
       this.loading = false;
+      this.step = 2;
+      this.jsonResponse = JSON.stringify(resp);
       console.log(resp);
     }, err => {
       console.log(err);

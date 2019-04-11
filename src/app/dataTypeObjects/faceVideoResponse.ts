@@ -2,7 +2,7 @@ import { Face } from './faceImageResponse';
 export class FaceVideoResponse {
     public detectedActions: DetectedActions[];
     public exception: boolean;
-    public faces: Face;
+    public face: Face;
     public status: string;
     public txId: string;
 }

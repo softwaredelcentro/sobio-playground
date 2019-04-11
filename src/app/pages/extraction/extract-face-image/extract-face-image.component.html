@@ -1,6 +1,41 @@
 <app-header title="Extraction" subtitle="Face image"></app-header>
 <app-loader [isLoading]="loading"></app-loader>
-<form>
+
+<section id="response" *ngIf="step==2">
+    <code>
+        {{jsonResponse}}
+    </code>
+    <div class="responses" *ngIf="response && response.extractedFaces">
+        <div class="responseProcessed">
+            <div class="dataBlock">
+                <label>TxId:</label>
+                <div>
+                    {{response.txId}}
+                </div>
+            </div>
+        </div>
+        <div class="responseProcessed" *ngFor="let face of response.extractedFaces">
+            <div class="dataBlock">
+                <label>Status:</label>
+                <div>
+                    {{face.status}}
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>Image:</label>
+                <img [src]="face.face.image">
+            </div>
+            <div class="dataBlock">
+                <label>Template:</label>
+                <div>
+                    {{face.face.template}}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<form *ngIf="step==1">
     <section>
         <div class="inputRow">
             <label>

@@ -1,6 +1,37 @@
 <app-header title="Extraction" subtitle="Face video"></app-header>
 <app-loader [isLoading]="loading"></app-loader>
-<form>
+<section id="response" *ngIf="step==2">
+  <code>
+    {{jsonResponse}}
+  </code>
+  <div class="responses" *ngIf="response">
+    <div class="responseProcessed">
+      <div class="dataBlock">
+        <label>txID:</label>
+        <div>
+          {{response.txId}}
+        </div>
+      </div>
+      <div class="dataBlock">
+        <label>Status:</label>
+        <div>
+          {{response.status}}
+        </div>
+      </div>
+      <div class="dataBlock">
+        <label>Face image:</label>
+        <img [src]="response.face.image">
+      </div>
+      <div class="dataBlock">
+        <label>Template:</label>
+        <div>
+          {{response.face.template}}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<form *ngIf="step==1">
   <section>
     <div class="inputRow">
       <label>
@@ -53,7 +84,8 @@
       <label>
         Detect Traits And Actions
       </label>
-      <input type="checkbox" name="detectTraitsAndActions" checked="checked" [(ngModel)]="dto.params.detectTraitsAndActions">
+      <input type="checkbox" name="detectTraitsAndActions" checked="checked"
+        [(ngModel)]="dto.params.detectTraitsAndActions">
     </div>
     <section>
       <header>
@@ -63,7 +95,8 @@
         <label>
           Looking Downwards Pitch Angle
         </label>
-        <input type="number" name="lookingDownwardsPitchAngle" [(ngModel)]="dto.params.facePoseSensibility.lookingDownwardsPitchAngle">
+        <input type="number" name="lookingDownwardsPitchAngle"
+          [(ngModel)]="dto.params.facePoseSensibility.lookingDownwardsPitchAngle">
       </div>
       <div class="inputRow">
         <label>
@@ -75,19 +108,22 @@
         <label>
           Looking Left Yaw Angle
         </label>
-        <input type="number" name="lookingLeftYawAngle" [(ngModel)]="dto.params.facePoseSensibility.lookingLeftYawAngle">
+        <input type="number" name="lookingLeftYawAngle"
+          [(ngModel)]="dto.params.facePoseSensibility.lookingLeftYawAngle">
       </div>
       <div class="inputRow">
         <label>
           Looking Right Yaw Angle
         </label>
-        <input type="number" name="lookingRightYawAngle" [(ngModel)]="dto.params.facePoseSensibility.lookingRightYawAngle">
+        <input type="number" name="lookingRightYawAngle"
+          [(ngModel)]="dto.params.facePoseSensibility.lookingRightYawAngle">
       </div>
       <div class="inputRow">
         <label>
           Looking Upwards Pitch Angle
         </label>
-        <input type="number" name="lookingUpwardsPitchAngle" [(ngModel)]="dto.params.facePoseSensibility.lookingUpwardsPitchAngle">
+        <input type="number" name="lookingUpwardsPitchAngle"
+          [(ngModel)]="dto.params.facePoseSensibility.lookingUpwardsPitchAngle">
       </div>
     </section>
     <div class="inputRow">
