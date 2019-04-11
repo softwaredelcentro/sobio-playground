@@ -19,6 +19,33 @@ export class ExtractFaceImageComponent implements OnInit {
 
   constructor(private extractionSrv: ExtractionService) {
     this.dto = new FaceImageDTO();
+
+    // mock inicial
+    this.dto.auditToken = 'tok123';
+    this.dto.params.detectGender = true;
+    this.dto.params.detectAge = true;
+    this.dto.params.detectEmotion = true;
+    this.dto.params.detectOnlyMajorFace = true;
+    this.dto.params.detectExpression = true;
+    this.dto.params.detectTraitsAndActions = true;
+    // this.dto.params.maxCLAHE
+    // this.dto.params.maxYaw
+    // this.dto.params.maxRoll
+    // this.dto.params.minConfidence
+    // this.dto.params.minIOD
+    // this.dto.params.minQuality
+    // this.dto.params.scaleH
+    // this.dto.params.thumbnailWidth
+    this.dto.params.useCLAHE = true;
+    this.dto.params.useCache = true;
+    // this.dto.params.videoFramesSeq = ;
+
+    // face pose sensibility
+    // this.dto.params.facePoseSensibility.lookingDownwardsPitchAngle
+    // this.dto.params.facePoseSensibility.lookingFront
+    // this.dto.params.facePoseSensibility.lookingLeftYawAngle
+    // this.dto.params.facePoseSensibility.lookingRightYawAngle
+    // this.dto.params.facePoseSensibility.lookingUpwardsPitchAngle
   }
 
   ngOnInit() {
@@ -51,7 +78,13 @@ export class ExtractFaceImageComponent implements OnInit {
       console.log(err);
       alert('Ocurrió un error con el llamado por favor vea el log');
       this.jsonResponse = JSON.stringify(err);
+      this.step = 2;
+      this.loading = false;
     });
+  }
+
+  retry() {
+    this.step = 1;
   }
 
 }

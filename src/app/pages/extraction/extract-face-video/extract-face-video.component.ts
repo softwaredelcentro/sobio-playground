@@ -47,8 +47,15 @@ export class ExtractFaceVideoComponent implements OnInit {
       console.log(resp);
     }, err => {
       console.log(err);
+      this.loading = false;
+      this.step = 2;
+      this.jsonResponse = JSON.stringify(err);
       alert('Ocurrió un error con el llamado por favor vea el log');
     });
+  }
+
+  retry() {
+    this.step = 1;
   }
 
 }

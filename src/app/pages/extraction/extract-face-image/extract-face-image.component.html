@@ -33,6 +33,7 @@
             </div>
         </div>
     </div>
+    <button type="button" class="send" (click)="retry()">Retry</button>
 </section>
 
 <form *ngIf="step==1">
@@ -41,7 +42,7 @@
             <label>
                 Audit Token
             </label>
-            <input type="text" name="auditToken" value="" [(ngModel)]="dto.auditToken">
+            <input type="text" name="auditToken" [(ngModel)]="dto.auditToken">
         </div>
     </section>
     <section>
@@ -52,44 +53,44 @@
             <label>
                 Blink Sensibility
             </label>
-            <input type="number" name="blinkSensibility" value="" [(ngModel)]="dto.params.blinkSensibility">
+            <input type="number" name="blinkSensibility" [(ngModel)]="dto.params.blinkSensibility">
         </div>
         <div class="inputRow">
             <label>
                 Detect Age
             </label>
-            <input type="checkbox" name="detectAge" checked="checked" [(ngModel)]="dto.params.detectAge">
+            <input type="checkbox" name="detectAge" [(ngModel)]="dto.params.detectAge">
         </div>
         <div class="inputRow">
             <label>
                 Detect Emotion
             </label>
-            <input type="checkbox" name="detectEmotion" checked="checked" [(ngModel)]="dto.params.detectEmotion">
+            <input type="checkbox" name="detectEmotion" [(ngModel)]="dto.params.detectEmotion">
         </div>
         <div class="inputRow">
             <label>
                 Detect Expression
             </label>
-            <input type="checkbox" name="detectExpression" checked="checked" [(ngModel)]="dto.params.detectExpression">
+            <input type="checkbox" name="detectExpression" [(ngModel)]="dto.params.detectExpression">
         </div>
         <div class="inputRow">
             <label>
                 Detect Gender
             </label>
-            <input type="checkbox" name="detectGender" checked="checked" [(ngModel)]="dto.params.detectGender">
+            <input type="checkbox" name="detectGender" [(ngModel)]="dto.params.detectGender">
         </div>
         <div class="inputRow">
             <label>
                 Detect Only Major Face
             </label>
-            <input type="checkbox" name="detectOnlyMajorFace" checked="checked"
+            <input type="checkbox" name="detectOnlyMajorFace" 
                 [(ngModel)]="dto.params.detectOnlyMajorFace">
         </div>
         <div class="inputRow">
             <label>
                 Detect Traits And Actions
             </label>
-            <input type="checkbox" name="detectTraitsAndActions" checked="checked"
+            <input type="checkbox" name="detectTraitsAndActions"
                 [(ngModel)]="dto.params.detectTraitsAndActions">
         </div>
         <section>
@@ -135,55 +136,55 @@
             <label>
                 Max Clahe
             </label>
-            <input type="number" name="maxCLAHE" value="" [(ngModel)]="dto.params.maxCLAHE">
+            <input type="number" name="maxCLAHE" [(ngModel)]="dto.params.maxCLAHE">
         </div>
         <div class="inputRow">
             <label>
                 Max Roll
             </label>
-            <input type="number" name="maxRoll" value="" [(ngModel)]="dto.params.maxRoll">
+            <input type="number" name="maxRoll" [(ngModel)]="dto.params.maxRoll">
         </div>
         <div class="inputRow">
             <label>
                 Max Yaw
             </label>
-            <input type="number" name="maxYaw" value="" [(ngModel)]="dto.params.maxYaw">
+            <input type="number" name="maxYaw" [(ngModel)]="dto.params.maxYaw">
         </div>
         <div class="inputRow">
             <label>
                 Min Clahe
             </label>
-            <input type="number" name="minCLAHE" value="" [(ngModel)]="dto.params.minCLAHE">
+            <input type="number" name="minCLAHE" [(ngModel)]="dto.params.minCLAHE">
         </div>
         <div class="inputRow">
             <label>
                 Min Confidence
             </label>
-            <input type="number" name="minConfidence" value="" [(ngModel)]="dto.params.minConfidence">
+            <input type="number" name="minConfidence" [(ngModel)]="dto.params.minConfidence">
         </div>
         <div class="inputRow">
             <label>
                 Min IOD
             </label>
-            <input type="number" name="minIOD" value="" [(ngModel)]="dto.params.minIOD">
+            <input type="number" name="minIOD" [(ngModel)]="dto.params.minIOD">
         </div>
         <div class="inputRow">
             <label>
                 Min Quality
             </label>
-            <input type="number" name="minQuality" value="" [(ngModel)]="dto.params.minQuality">
+            <input type="number" name="minQuality" [(ngModel)]="dto.params.minQuality">
         </div>
         <div class="inputRow">
             <label>
                 Scale H
             </label>
-            <input type="number" name="scaleH" value="" [(ngModel)]="dto.params.scaleH">
+            <input type="number" name="scaleH" [(ngModel)]="dto.params.scaleH">
         </div>
         <div class="inputRow">
             <label>
                 Thumbnail Width
             </label>
-            <input type="number" name="thumbnailWidth" value="" [(ngModel)]="dto.params.thumbnailWidth">
+            <input type="number" name="thumbnailWidth" [(ngModel)]="dto.params.thumbnailWidth">
         </div>
         <div class="inputRow">
             <label>
@@ -201,7 +202,7 @@
             <label>
                 Video Frames Seq
             </label>
-            <input type="number" value="" name="videoFramesSeq" [(ngModel)]="dto.params.videoFramesSeq">
+            <input type="number" name="videoFramesSeq" [(ngModel)]="dto.params.videoFramesSeq">
         </div>
     </section>
     <section>
@@ -212,7 +213,7 @@
             <label>
                 Select image file
             </label>
-            <input type="file" value="" accept="image/*" (change)="fileChange()" #fileInput>
+            <input type="file" accept="image/*" (change)="fileChange()" #fileInput>
         </div>
     </section>
     <section>
