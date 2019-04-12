@@ -85,7 +85,7 @@
         <h4>Finger Prints</h4>
         <button class="rightButton" (click)="addFPrint()">+</button>
       </header>
-      <div class="composedBlock" *ngFor="let item of dto.bioInfo1.faces; let idx = index;">
+      <div class="composedBlock" *ngFor="let item of dto.bioInfo1.fingerPrints; let idx = index;">
         <div class="inputRow">
           <button class="rightButton red" (click)="removeFPrint(idx)">-</button>
           <label>
