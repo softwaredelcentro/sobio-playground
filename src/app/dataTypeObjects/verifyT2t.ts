@@ -46,7 +46,7 @@ export class BioInfo {
     faces: Faces[] = [new Faces()];
     fingerPrints: FingerPrints[] = [new FingerPrints()];
     textDependentVoices: TextDependentVoices[] = [new TextDependentVoices()];
-    textIndependentVoice: TextIndependentVoice[] = [new TextIndependentVoice()];
+    textIndependentVoice: TextIndependentVoice = new TextIndependentVoice();
 }
 
 export class VerifyT2t {

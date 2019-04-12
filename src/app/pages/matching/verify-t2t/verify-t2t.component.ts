@@ -76,14 +76,6 @@ export class VerifyT2tComponent implements OnInit {
     this.dto.bioInfo1.textDependentVoices.splice(idx, 1);
   }
 
-  addTIV() {
-    this.dto.bioInfo1.textIndependentVoice.push(new TextIndependentVoice());
-  }
-
-  removeTIV(idx: number) {
-    this.dto.bioInfo1.textIndependentVoice.splice(idx, 1);
-  }
-
   addCompositeFinger2() {
     this.dto.bioInfo2.compositeFingerPrints.push(new CompositeFingerPrints());
   }
@@ -116,16 +108,9 @@ export class VerifyT2tComponent implements OnInit {
     this.dto.bioInfo2.textDependentVoices.splice(idx, 1);
   }
 
-  addTIV2() {
-    this.dto.bioInfo2.textIndependentVoice.push(new TextIndependentVoice());
-  }
-
-  removeTIV2(idx: number) {
-    this.dto.bioInfo2.textIndependentVoice.splice(idx, 1);
-  }
-
   bi1_image_faces_change(idx) {
     // bi1_image_faces
+    
   }
 
   bi1_image_fprints_change(idx) {

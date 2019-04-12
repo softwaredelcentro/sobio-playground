@@ -173,22 +173,18 @@
     <section>
       <header>
         <h4>Text Independent Voices</h4>
-        <button class="rightButton" (click)="addTIV()">+</button>
       </header>
-      <div class="composedBlock" *ngFor="let item of dto.bioInfo1.textIndependentVoice; let idx = index;">
-        <button class="rightButton red" (click)="removeTIV(idx)">-</button>
-        <div class="inputRow">
-          <label>
-            Select audio file
-          </label>
-          <input type="file" value="" accept="audio/*" (change)="bi1_audio_tiv_change(idx)" #bi1_audio_tiv>
-        </div>
-        <div class="inputRow">
-          <label>
-            Template
-          </label>
-          <textarea name="bi1_template_tiv" [(ngModel)]="dto.bioInfo1.textDependentVoices.template"></textarea>
-        </div>
+      <div class="inputRow">
+        <label>
+          Select audio file
+        </label>
+        <input type="file" value="" accept="audio/*" (change)="bi1_audio_tiv_change(idx)" #bi1_audio_tiv>
+      </div>
+      <div class="inputRow">
+        <label>
+          Template
+        </label>
+        <textarea name="bi1_template_tiv" [(ngModel)]="dto.bioInfo1.textDependentVoices.template"></textarea>
       </div>
     </section>
   </section>
@@ -324,22 +320,18 @@
     <section>
       <header>
         <h4>Text Independent Voices</h4>
-        <button class="rightButton" (click)="addTIV2()">+</button>
       </header>
-      <div class="composedBlock" *ngFor="let item of dto.bioInfo2.textIndependentVoice; let idx = index;">
-        <button class="rightButton red" (click)="removeTIV2(idx)">-</button>
-        <div class="inputRow">
-          <label>
-            Select audio file
-          </label>
-          <input type="file" value="" accept="audio/*" (change)="bi2_audio_tiv_change(idx)" #bi2_audio_tiv>
-        </div>
-        <div class="inputRow">
-          <label>
-            Template
-          </label>
-          <textarea name="bi2_template_tiv" [(ngModel)]="dto.bioInfo2.textDependentVoices.template"></textarea>
-        </div>
+      <div class="inputRow">
+        <label>
+          Select audio file
+        </label>
+        <input type="file" value="" accept="audio/*" (change)="bi2_audio_tiv_change(idx)" #bi2_audio_tiv>
+      </div>
+      <div class="inputRow">
+        <label>
+          Template
+        </label>
+        <textarea name="bi2_template_tiv" [(ngModel)]="dto.bioInfo2.textDependentVoices.template"></textarea>
       </div>
     </section>
   </section>

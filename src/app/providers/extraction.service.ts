@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FaceVideoDTO } from '../dataTypeObjects/faceVideo';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { FaceVideoResponse } from '../dataTypeObjects/faceVideoResponse';
 import { FaceImageResponse } from '../dataTypeObjects/faceImageResponse';
