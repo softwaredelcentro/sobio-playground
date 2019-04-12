@@ -109,36 +109,115 @@ export class VerifyT2tComponent implements OnInit {
   }
 
   bi1_image_faces_change(idx) {
-    // bi1_image_faces
-    
+    this.loading = true;
+    const reader  = new FileReader();
+    const item = this.bi1ImageFaces.toArray()[idx];
+    reader.onload = () => {
+      const image = reader.result as string;
+      this.dto.bioInfo1.faces[idx].image = image.replace(/data:([a-zA-Z0-9]+)\/([a-zA-Z0-9]+);base64,/gi, '');
+      this.loading = false;
+    };
+    if (item.nativeElement.files[0]) {
+      reader.readAsDataURL(item.nativeElement.files[0]);
+    }
   }
 
   bi1_image_fprints_change(idx) {
-
+    this.loading = true;
+    const reader  = new FileReader();
+    const item = this.bi1ImageFPrints.toArray()[idx];
+    reader.onload = () => {
+      const image = reader.result as string;
+      this.dto.bioInfo1.fingerPrints[idx].image = image.replace(/data:([a-zA-Z0-9]+)\/([a-zA-Z0-9]+);base64,/gi, '');
+      this.loading = false;
+    };
+    if (item.nativeElement.files[0]) {
+      reader.readAsDataURL(item.nativeElement.files[0]);
+    }
   }
 
   bi1_audio_tdv_change(idx) {
-
+    this.loading = true;
+    const reader  = new FileReader();
+    const item = this.bi1AudioTdv.toArray()[idx];
+    reader.onload = () => {
+      const audio = reader.result as string;
+      this.dto.bioInfo1.textDependentVoices[idx].audio = audio.replace(/data:([a-zA-Z0-9]+)\/([a-zA-Z0-9]+);base64,/gi, '');
+      this.loading = false;
+    };
+    if (item.nativeElement.files[0]) {
+      reader.readAsDataURL(item.nativeElement.files[0]);
+    }
   }
 
   bi1_audio_tiv_change(idx) {
-
+    this.loading = true;
+    const reader  = new FileReader();
+    const item = this.bi1AudioTiv.toArray()[idx];
+    reader.onload = () => {
+      const audio = reader.result as string;
+      this.dto.bioInfo1.textIndependentVoice[idx].audio = audio.replace(/data:([a-zA-Z0-9]+)\/([a-zA-Z0-9]+);base64,/gi, '');
+      this.loading = false;
+    };
+    if (item.nativeElement.files[0]) {
+      reader.readAsDataURL(item.nativeElement.files[0]);
+    }
   }
 
   bi2_image_faces_change(idx) {
-    // bi1_image_faces
+    this.loading = true;
+    const reader  = new FileReader();
+    const item = this.bi2ImageFaces.toArray()[idx];
+    reader.onload = () => {
+      const image = reader.result as string;
+      this.dto.bioInfo2.faces[idx].image = image.replace(/data:([a-zA-Z0-9]+)\/([a-zA-Z0-9]+);base64,/gi, '');
+      this.loading = false;
+    };
+    if (item.nativeElement.files[0]) {
+      reader.readAsDataURL(item.nativeElement.files[0]);
+    }
   }
 
   bi2_image_fprints_change(idx) {
-
+    this.loading = true;
+    const reader  = new FileReader();
+    const item = this.bi2ImageFPrints.toArray()[idx];
+    reader.onload = () => {
+      const image = reader.result as string;
+      this.dto.bioInfo2.fingerPrints[idx].image = image.replace(/data:([a-zA-Z0-9]+)\/([a-zA-Z0-9]+);base64,/gi, '');
+      this.loading = false;
+    };
+    if (item.nativeElement.files[0]) {
+      reader.readAsDataURL(item.nativeElement.files[0]);
+    }
   }
 
   bi2_audio_tdv_change(idx) {
-
+    this.loading = true;
+    const reader  = new FileReader();
+    const item = this.bi2AudioTdv.toArray()[idx];
+    reader.onload = () => {
+      const audio = reader.result as string;
+      this.dto.bioInfo2.textDependentVoices[idx].audio = audio.replace(/data:([a-zA-Z0-9]+)\/([a-zA-Z0-9]+);base64,/gi, '');
+      this.loading = false;
+    };
+    if (item.nativeElement.files[0]) {
+      reader.readAsDataURL(item.nativeElement.files[0]);
+    }
   }
 
   bi2_audio_tiv_change(idx) {
-
+    this.loading = true;
+    const reader  = new FileReader();
+    const item = this.bi2AudioTiv.toArray()[idx];
+    reader.onload = () => {
+      const audio = reader.result as string;
+      this.dto.bioInfo2.textIndependentVoice[idx].audio = audio.replace(/data:([a-zA-Z0-9]+)\/([a-zA-Z0-9]+);base64,/gi, '');
+      this.loading = false;
+    };
+    if (item.nativeElement.files[0]) {
+      reader.readAsDataURL(item.nativeElement.files[0]);
+    }
   }
 
   send() {
