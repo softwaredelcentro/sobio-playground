@@ -4,34 +4,32 @@ export class ExtractFace {
 }
 
 export class FacePoseSensibility {
-    lookingDownwardsPitchAngle: boolean;
-    lookingFront: boolean;
-    lookingLeftYawAngle: boolean;
-    lookingRightYawAngle: boolean;
-    lookingUpwardsPitchAngle: boolean;
+    lookingDownwardsPitchAngle = -20.0;
+    lookingFront = 8.0;
+    lookingLeftYawAngle = -20.0;
+    lookingRightYawAngle = 20.0;
+    lookingUpwardsPitchAngle = 10.0;
 }
 
 export class Params {
-    blinkSensibility: number;
-    detectAge: boolean;
-    detectEmotion: boolean;
-    detectExpression: boolean;
-    detectGender: boolean;
-    detectOnlyMajorFace: boolean;
-    detectTraitsAndActions: boolean;
+    blinkSensibility = 0.3;
+    detectAge = false;
+    detectEmotion = false;
+    detectExpression = false;
+    detectGender = false;
+    detectOnlyMajorFace = false;
+    detectTraitsAndActions = false;
     facePoseSensibility: FacePoseSensibility = new FacePoseSensibility();
-    maxCLAHE: number;
-    maxRoll: number;
-    maxYaw: number;
-    minCLAHE: number;
-    minConfidence: number;
-    minIOD: number;
-    minQuality: number;
-    scaleH: number;
-    thumbnailWidth: number;
-    useCLAHE: boolean;
-    useCache: boolean;
-    videoFramesSeq: number;
+    maxCLAHE = 10;
+    maxRoll = 90;
+    maxYaw = 90;
+    minCLAHE = 4;
+    minConfidence = 80;
+    minIOD = 30;
+    minQuality = 10;
+    scaleH = 0;
+    thumbnailWidth = 128;
+    useCLAHE = true;
+    useCache = true;
+    videoFramesSeq = 1;
 }
-
-
