@@ -215,6 +215,7 @@
                 Select image file
             </label>
             <input type="file" accept="image/*" (change)="fileChange()" #fileInput>
+            <img *ngIf="dto.image" [src]="'data:image/png;base64,'+dto.image" class="imagefile" (click)="dto.image = undefined"/>
         </div>
     </section>
     <section>
