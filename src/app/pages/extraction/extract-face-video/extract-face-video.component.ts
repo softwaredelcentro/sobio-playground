@@ -21,11 +21,26 @@ export class ExtractFaceVideoComponent implements OnInit {
 
   constructor(private extractionSrv: ExtractionService) {
     this.dto = new FaceVideoDTO();
+
+    this.dto.auditToken = this.create_UUID();
   }
 
   ngOnInit() {
     this.step = 1;
   }
+
+  create_UUID() {
+    let dt = new Date().getTime();
+    const uuid = 'xxxxxxxx'.replace(/[xy]/g, (c) => {
+        // tslint:disable-next-line:no-bitwise
+        const r = (dt + Math.random() * 16) % 16 | 0;
+        dt = Math.floor(dt / 16);
+        // tslint:disable-next-line:no-bitwise
+        return (c === 'x' ? r : (r & 0x3 | 0x8) ).toString(16);
+    });
+    return uuid;
+  }
+
 
   fileChange() {
     this.loading = true;
