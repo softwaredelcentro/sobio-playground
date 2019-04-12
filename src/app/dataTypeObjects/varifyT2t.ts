@@ -1,6 +1,6 @@
 export class FingerPrintMatchingParams {
     maxRotation: number;
-    useOnlyAnsi378: boolean;
+    useOnlyAnsi378 = true;
 }
 
 export class T2tParams {
@@ -11,9 +11,9 @@ export class T2tParams {
 }
 
 export class CompositeFingerPrints {
-    dedo: string;
+    dedo = 'RIGHT_THUMB';
     images: any[];
-    source: string;
+    source = 'LIVE_FINGERPRINT';
     template: string;
 }
 
@@ -23,10 +23,10 @@ export class Faces {
 }
 
 export class FingerPrints {
-    formatoTemplate: string;
+    formatoTemplate = 'ANSI378';
     image: string;
-    imageSource: string;
-    position: string;
+    imageSource = 'LIVE_FINGERPRINT';
+    position = 'RIGHT_THUMB';
     template: string;
 }
 
