@@ -176,5 +176,8 @@ export class VerifyT2tComponent implements OnInit {
     this.urlEndpoint = this.matching.getEndpoints().verifyT2t;
   }
 
+  retry() {
+    this.step = 1;
+  }
 
 }
