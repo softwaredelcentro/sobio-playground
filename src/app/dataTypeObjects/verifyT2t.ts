@@ -42,10 +42,10 @@ export class TextIndependentVoice {
 }
 
 export class BioInfo {
-    compositeFingerPrints: CompositeFingerPrints[] = [new CompositeFingerPrints()];
+    compositeFingerPrints: CompositeFingerPrints[] = [];
     faces: Faces[] = [new Faces()];
-    fingerPrints: FingerPrints[] = [new FingerPrints()];
-    textDependentVoices: TextDependentVoices[] = [new TextDependentVoices()];
+    fingerPrints: FingerPrints[] = [];
+    textDependentVoices: TextDependentVoices[] = [];
     textIndependentVoice: TextIndependentVoice = new TextIndependentVoice();
 }
 
