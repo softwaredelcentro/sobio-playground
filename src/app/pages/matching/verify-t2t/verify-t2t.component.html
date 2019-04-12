@@ -19,6 +19,7 @@
       <input type="text" name="auditToken" [(ngModel)]="dto.auditToken">
     </div>
   </section>
+  <!-- BIO INFO 1 -->
   <section>
     <header>
       <h3>Bio Info 1</h3>
@@ -168,4 +169,155 @@
       </div>
     </section>
   </section>
+
+  <!-- BIO INFO 2 -->
+  <section>
+      <header>
+        <h3>Bio Info 2</h3>
+      </header>
+      <section>
+        <header>
+          <h4>Composite Finger Prints</h4>
+          <button class="rightButton" (click)="addCompositeFinger2()">+</button>
+        </header>
+        <!-- ESTO ES UN ARREGLO -->
+        <div class="composedBlock" *ngFor="let item of dto.bioInfo2.compositeFingerPrints; let idx = index;">
+          <button class="rightButton red" (click)="removeCompositeFinger2(idx)">-</button>
+          <div class="inputRow">
+            <label>
+              Finger
+            </label>
+            <input type="text" name="bi2_dedo_composite" [(ngModel)]="dto.bioInfo2.compositeFingerPrints[idx].dedo">
+            <!-- <select name="bi1_dedo">
+            <option value="RIGHT_THUMB">Right Thumb</option>
+          </select> -->
+          </div>
+          <!-- IMAGES [0] -->
+          <div class="inputRow">
+            <label>
+              Source
+            </label>
+            <input type="text" name="bi2_source_composite" [(ngModel)]="dto.bioInfo2.compositeFingerPrints[idx].source">
+            <!-- <select name="bi1_source">
+            <option value="LIVE_FINGERPRINT">Live Fingerprint</option>
+          </select> -->
+          </div>
+          <div class="inputRow">
+            <label>
+              Template
+            </label>
+            <textarea name="bi2_template_composite"
+              [(ngModel)]="dto.bioInfo2.compositeFingerPrints[idx].template"></textarea>
+          </div>
+        </div>
+      </section>
+      <section>
+        <header>
+          <h4>Faces</h4>
+          <button class="rightButton" (click)="addFace2()">+</button>
+        </header>
+        <div class="composedBlock" *ngFor="let item of dto.bioInfo2.faces; let idx = index;">
+          <button class="rightButton red" (click)="removeFace2(idx)">-</button>
+          <div class="inputRow">
+            <label>
+              Select image file
+            </label>
+            <input type="file" accept="image/*" (change)="bi2_image_faces_change(idx)" #bi2_image_faces>
+          </div>
+          <div class="inputRow">
+            <label>
+              Template
+            </label>
+            <textarea name="bi2_template_faces" [(ngModel)]="dto.bioInfo2.faces[idx].template"></textarea>
+          </div>
+        </div>
+      </section>
+      <section>
+        <header>
+          <h4>Finger Prints</h4>
+          <button class="rightButton" (click)="addFPrint2()">+</button>
+        </header>
+        <div class="composedBlock" *ngFor="let item of dto.bioInfo2.fingerPrints; let idx = index;">
+          <div class="inputRow">
+            <button class="rightButton red" (click)="removeFPrint2(idx)">-</button>
+            <label>
+              Template Format
+            </label>
+            <input type="text" name="bi2_template_format_fp" [(ngModel)]="dto.bioInfo2.fingerPrints[idx].formatoTemplate">
+          </div>
+          <div class="inputRow">
+            <label>
+              Select image file
+            </label>
+            <input type="file" accept="image/*" (change)="bi2_image_fprints_change(idx)" #bi2_image_fprints>
+          </div>
+          <div class="inputRow">
+            <label>
+              Image Source
+            </label>
+            <input type="text" name="bi2_imagesource_fp" [(ngModel)]="dto.bioInfo2.fingerPrints[idx].imageSource">
+          </div>
+          <div class="inputRow">
+            <label>
+              Position
+            </label>
+            <input type="text" name="bi2_position_fp" [(ngModel)]="dto.bioInfo2.fingerPrints[idx].position">
+          </div>
+          <div class="inputRow">
+            <label>
+              Template
+            </label>
+            <textarea name="bi2_template_fp" [(ngModel)]="dto.bioInfo2.fingerPrints[idx].template"></textarea>
+          </div>
+        </div>
+      </section>
+      <section>
+        <header>
+          <h4>Text Dependent Voices</h4>
+          <button class="rightButton" (click)="addTDV2()">+</button>
+        </header>
+        <div class="composedBlock" *ngFor="let item of dto.bioInfo2.textDependentVoices; let idx = index;">
+          <button class="rightButton red" (click)="removeTDV2(idx)">-</button>
+          <div class="inputRow">
+            <label>
+              Select audio file
+            </label>
+            <input type="file" accept="video/*" (change)="bi2_audio_tdv_change(idx)" #bi2_audio_tdv>
+          </div>
+          <div class="inputRow">
+            <label>
+              Phase ID
+            </label>
+            <input type="number" name="bi2_phaseid_tdv" [(ngModel)]="dto.bioInfo2.textDependentVoices[idx].phraseId">
+          </div>
+          <div class="inputRow">
+            <label>
+              Template
+            </label>
+            <textarea name="bi2_template_tdv" [(ngModel)]="dto.bioInfo2.textDependentVoices[idx].template"></textarea>
+          </div>
+        </div>
+      </section>
+      <section>
+        <header>
+          <h4>Text Independent Voices</h4>
+          <button class="rightButton" (click)="addTIV2()">+</button>
+        </header>
+        <div class="composedBlock" *ngFor="let item of dto.bioInfo2.textIndependentVoice; let idx = index;">
+          <button class="rightButton red" (click)="removeTIV2(idx)">-</button>
+          <div class="inputRow">
+            <label>
+              Select audio file
+            </label>
+            <input type="file" value="" accept="video/*" (change)="bi2_audio_tiv_change(idx)" #bi2_audio_tiv>
+          </div>
+          <div class="inputRow">
+            <label>
+              Template
+            </label>
+            <textarea name="bi2_template_tiv" [(ngModel)]="dto.bioInfo2.textDependentVoices.template"></textarea>
+          </div>
+        </div>
+      </section>
+    </section>
 </form>
