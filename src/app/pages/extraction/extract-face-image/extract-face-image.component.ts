@@ -49,6 +49,7 @@ export class ExtractFaceImageComponent implements OnInit {
   send() {
     this.error = false;
     this.loading = true;
+    this.dto.params.blinkSensibility = this.dto.params.blinkSensibility / 10;
     this.extractionSrv.extractFaceImage(this.dto).subscribe(resp => {
       console.log(resp);
       this.loading = false;

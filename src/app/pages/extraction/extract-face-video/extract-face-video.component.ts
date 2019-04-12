@@ -44,6 +44,7 @@ export class ExtractFaceVideoComponent implements OnInit {
   send() {
     this.error = false;
     this.loading = true;
+    this.dto.params.blinkSensibility = this.dto.params.blinkSensibility / 10;
     this.extractionSrv.extractFaceVideo(this.dto).subscribe(resp => {
       console.log(resp);
       this.loading = false;

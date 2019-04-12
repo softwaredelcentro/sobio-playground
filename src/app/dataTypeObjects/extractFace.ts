@@ -12,7 +12,7 @@ export class FacePoseSensibility {
 }
 
 export class Params {
-    blinkSensibility = 0.3;
+    blinkSensibility = 3;
     detectAge = false;
     detectEmotion = false;
     detectExpression = false;
