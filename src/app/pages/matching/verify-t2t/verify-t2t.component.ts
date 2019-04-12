@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { MatchingService } from './../../../providers/matching.service';
+import { Component, OnInit, QueryList, ViewChildren, ElementRef } from '@angular/core';
 import {
   VerifyT2t,
   CompositeFingerPrints,
@@ -6,7 +7,8 @@ import {
   TextDependentVoices,
   FingerPrints,
   Faces
-} from 'src/app/dataTypeObjects/varifyT2t';
+} from 'src/app/dataTypeObjects/verifyT2t';
+import { VerifyT2tResponse } from 'src/app/dataTypeObjects/verifyT2tResponse';
 
 @Component({
   selector: 'app-verify-t2t',
@@ -18,8 +20,22 @@ export class VerifyT2tComponent implements OnInit {
   loading: boolean;
   step: number;
   dto: VerifyT2t;
+  urlEndpoint: string;
+  jsonResponse: string;
+  error: boolean;
+  response: VerifyT2tResponse;
 
-  constructor() {
+  @ViewChildren('bi1_image_faces') bi1ImageFaces: QueryList<ElementRef>;
+  @ViewChildren('bi1_image_fprints') bi1ImageFPrints: QueryList<ElementRef>;
+  @ViewChildren('bi1_audio_tdv') bi1AudioTdv: QueryList<ElementRef>;
+  @ViewChildren('bi1_audio_tiv') bi1AudioTiv: QueryList<ElementRef>;
+
+  @ViewChildren('bi2_image_faces') bi2ImageFaces: QueryList<ElementRef>;
+  @ViewChildren('bi2_image_fprints') bi2ImageFPrints: QueryList<ElementRef>;
+  @ViewChildren('bi2_audio_tdv') bi2AudioTdv: QueryList<ElementRef>;
+  @ViewChildren('bi2_audio_tiv') bi2AudioTiv: QueryList<ElementRef>;
+
+  constructor(private matching: MatchingService) {
     this.loading = false;
     this.step = 1;
     this.dto = new VerifyT2t();
@@ -107,4 +123,58 @@ export class VerifyT2tComponent implements OnInit {
   removeTIV2(idx: number) {
     this.dto.bioInfo2.textIndependentVoice.splice(idx, 1);
   }
+
+  bi1_image_faces_change(idx) {
+    // bi1_image_faces
+  }
+
+  bi1_image_fprints_change(idx) {
+
+  }
+
+  bi1_audio_tdv_change(idx) {
+
+  }
+
+  bi1_audio_tiv_change(idx) {
+
+  }
+
+  bi2_image_faces_change(idx) {
+    // bi1_image_faces
+  }
+
+  bi2_image_fprints_change(idx) {
+
+  }
+
+  bi2_audio_tdv_change(idx) {
+
+  }
+
+  bi2_audio_tiv_change(idx) {
+
+  }
+
+  send() {
+
+    this.error = false;
+    this.loading = true;
+    this.matching.verifyT2T(this.dto).subscribe(resp => {
+      console.log(resp);
+      this.loading = false;
+      this.step = 2;
+      this.response = resp;
+      this.jsonResponse = JSON.stringify(resp);
+    }, err => {
+      console.log(err);
+      this.error = true;
+      this.loading = false;
+      this.step = 2;
+      this.jsonResponse = JSON.stringify(err);
+    });
+    this.urlEndpoint = this.matching.getEndpoints().verifyT2t;
+  }
+
+
 }
