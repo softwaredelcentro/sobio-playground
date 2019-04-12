@@ -1,1 +1,171 @@
 <app-header title="MATCHING" subtitle="Verify (1:1) of two supplied biometric subjects"></app-header>
+<app-loader [isLoading]="loading"></app-loader>
+<section id="response" *ngIf="step==2">
+  <div class="url"><span class="method">POST</span> {{urlEndpoint}}</div>
+  <code [class.error]="error">
+      {{jsonResponse}}
+    </code>
+  <div class="responses" *ngIf="response">
+    <div class="responseProcessed">
+    </div>
+  </div>
+</section>
+<form *ngIf="step==1">
+  <section>
+    <div class="inputRow">
+      <label>
+        Audit Token
+      </label>
+      <input type="text" name="auditToken" [(ngModel)]="dto.auditToken">
+    </div>
+  </section>
+  <section>
+    <header>
+      <h3>Bio Info 1</h3>
+    </header>
+    <section>
+      <header>
+        <h4>Composite Finger Prints</h4>
+        <button class="rightButton" (click)="addCompositeFinger()">+</button>
+      </header>
+      <!-- ESTO ES UN ARREGLO -->
+      <div class="composedBlock" *ngFor="let item of dto.bioInfo1.compositeFingerPrints; let idx = index;">
+        <button class="rightButton red" (click)="removeCompositeFinger(idx)">-</button>
+        <div class="inputRow">
+          <label>
+            Finger
+          </label>
+          <input type="text" name="bi1_dedo_composite" [(ngModel)]="dto.bioInfo1.compositeFingerPrints[idx].dedo">
+          <!-- <select name="bi1_dedo">
+          <option value="RIGHT_THUMB">Right Thumb</option>
+        </select> -->
+        </div>
+        <!-- IMAGES [0] -->
+        <div class="inputRow">
+          <label>
+            Source
+          </label>
+          <input type="text" name="bi1_source_composite" [(ngModel)]="dto.bioInfo1.compositeFingerPrints[idx].source">
+          <!-- <select name="bi1_source">
+          <option value="LIVE_FINGERPRINT">Live Fingerprint</option>
+        </select> -->
+        </div>
+        <div class="inputRow">
+          <label>
+            Template
+          </label>
+          <textarea name="bi1_template_composite"
+            [(ngModel)]="dto.bioInfo1.compositeFingerPrints[idx].template"></textarea>
+        </div>
+      </div>
+    </section>
+    <section>
+      <header>
+        <h4>Faces</h4>
+        <button class="rightButton" (click)="addFace()">+</button>
+      </header>
+      <div class="composedBlock" *ngFor="let item of dto.bioInfo1.faces; let idx = index;">
+        <button class="rightButton red" (click)="removeFace(idx)">-</button>
+        <div class="inputRow">
+          <label>
+            Select image file
+          </label>
+          <input type="file" accept="image/*" (change)="bi1_image_faces_change(idx)" #bi1_image_faces>
+        </div>
+        <div class="inputRow">
+          <label>
+            Template
+          </label>
+          <textarea name="bi1_template_faces" [(ngModel)]="dto.bioInfo1.faces[idx].template"></textarea>
+        </div>
+      </div>
+    </section>
+    <section>
+      <header>
+        <h4>Finger Prints</h4>
+        <button class="rightButton" (click)="addFPrint()">+</button>
+      </header>
+      <div class="composedBlock" *ngFor="let item of dto.bioInfo1.faces; let idx = index;">
+        <div class="inputRow">
+          <button class="rightButton red" (click)="removeFPrint(idx)">-</button>
+          <label>
+            Template Format
+          </label>
+          <input type="text" name="bi1_template_format_fp" [(ngModel)]="dto.bioInfo1.fingerPrints[idx].formatoTemplate">
+        </div>
+        <div class="inputRow">
+          <label>
+            Select image file
+          </label>
+          <input type="file" accept="image/*" (change)="bi1_image_fprints_change(idx)" #bi1_image_fprints>
+        </div>
+        <div class="inputRow">
+          <label>
+            Image Source
+          </label>
+          <input type="text" name="bi1_imagesource_fp" [(ngModel)]="dto.bioInfo1.fingerPrints[idx].imageSource">
+        </div>
+        <div class="inputRow">
+          <label>
+            Position
+          </label>
+          <input type="text" name="bi1_position_fp" [(ngModel)]="dto.bioInfo1.fingerPrints[idx].position">
+        </div>
+        <div class="inputRow">
+          <label>
+            Template
+          </label>
+          <textarea name="bi1_template_fp" [(ngModel)]="dto.bioInfo1.fingerPrints[idx].template"></textarea>
+        </div>
+      </div>
+    </section>
+    <section>
+      <header>
+        <h4>Text Dependent Voices</h4>
+        <button class="rightButton" (click)="addTDV()">+</button>
+      </header>
+      <div class="composedBlock" *ngFor="let item of dto.bioInfo1.textDependentVoices; let idx = index;">
+        <button class="rightButton red" (click)="removeTDV(idx)">-</button>
+        <div class="inputRow">
+          <label>
+            Select audio file
+          </label>
+          <input type="file" accept="video/*" (change)="bi1_audio_tdv_change(idx)" #bi1_audio_tdv>
+        </div>
+        <div class="inputRow">
+          <label>
+            Phase ID
+          </label>
+          <input type="number" name="bi1_phaseid_tdv" [(ngModel)]="dto.bioInfo1.textDependentVoices[idx].phraseId">
+        </div>
+        <div class="inputRow">
+          <label>
+            Template
+          </label>
+          <textarea name="bi1_template_tdv" [(ngModel)]="dto.bioInfo1.textDependentVoices[idx].template"></textarea>
+        </div>
+      </div>
+    </section>
+    <section>
+      <header>
+        <h4>Text Independent Voices</h4>
+        <button class="rightButton" (click)="addTIV()">+</button>
+      </header>
+      <div class="composedBlock" *ngFor="let item of dto.bioInfo1.textIndependentVoice; let idx = index;">
+        <button class="rightButton red" (click)="removeTIV(idx)">-</button>
+        <div class="inputRow">
+          <label>
+            Select audio file
+          </label>
+          <input type="file" value="" accept="video/*" (change)="bi1_audio_tiv_change(idx)" #bi1_audio_tiv>
+        </div>
+        <div class="inputRow">
+          <label>
+            Template
+          </label>
+          <textarea name="bi1_template_tiv" [(ngModel)]="dto.bioInfo1.textDependentVoices.template"></textarea>
+        </div>
+      </div>
+    </section>
+  </section>
+</form>

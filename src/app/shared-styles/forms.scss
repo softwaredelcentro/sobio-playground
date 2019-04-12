@@ -15,6 +15,9 @@ form {
             h4 {
                 padding-left: 10px;
             }
+            header {
+                position: relative;
+            }
             border-bottom: 0px;
             border: 1px solid #e6ecf0;
             border-left: 5px solid #e6ecf0;
@@ -30,19 +33,27 @@ form {
                 text-transform: uppercase;
                 font-size: 13px;
                 color: gray;
+                vertical-align: middle;
             }
         }
         &:last-child {
             border-bottom: 0px;
         }
+        .composedBlock {
+            background: #f9fafc;
+            margin: 5px;
+            padding: 5px 0px;
+            position: relative;
+        }
     }
     height: calc(100% - 160px);
     overflow-y: scroll;
-    input[type=text], input[type=number]{
+    input[type=text], input[type=number], textarea{
         width: 200px;
         padding: 5px;
         border-radius: 5px;
         border: 1px solid #ebeff3;
+        vertical-align: middle;
         &:hover, &:focus{
             outline: none;
             border: 1px solid #aae3ff;
@@ -63,9 +74,27 @@ form {
         background-color: white;
         cursor: pointer;
         transition: color 0.2s, background-color 0.2s;
-        &:hover {
+        &.rightButton{
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            right: 7px;
+            margin: 0px;
+            top: 6px;
+            padding: 0px;
+        }
+        &:hover, &:active, &:focus {
             color: white;
             background-color: #7bd3ff;
+            outline: none;
+        }
+        &.red{
+            border: 1px solid #ff7b7b;
+            color: #ff7b7b;
+            &:hover, &:active, &:focus {
+                color: white;
+                background-color: #ff7b7b;
+            }
         }
     }
 }
