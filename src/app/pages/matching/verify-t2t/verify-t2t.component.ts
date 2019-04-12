@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { VerifyT2t, CompositeFingerPrints, TextIndependentVoice, TextDependentVoices, FingerPrints, Faces } from 'src/app/dataTypeObjects/varifyT2t';
+import {
+  VerifyT2t,
+  CompositeFingerPrints,
+  TextIndependentVoice,
+  TextDependentVoices,
+  FingerPrints,
+  Faces
+} from 'src/app/dataTypeObjects/varifyT2t';
 
 @Component({
   selector: 'app-verify-t2t',
@@ -8,12 +15,12 @@ import { VerifyT2t, CompositeFingerPrints, TextIndependentVoice, TextDependentVo
 })
 export class VerifyT2tComponent implements OnInit {
 
-  isLoading: boolean;
+  loading: boolean;
   step: number;
   dto: VerifyT2t;
 
   constructor() {
-    this.isLoading = false;
+    this.loading = false;
     this.step = 1;
     this.dto = new VerifyT2t();
   }

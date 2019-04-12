@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  endpoint: 'http://127.0.0.1:3000',
+  endpoint: 'https://sobio-b76a.sdc.com.ar',
   version: 'v1'
 };
