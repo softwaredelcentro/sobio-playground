@@ -11,6 +11,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ExtractFaceVideoComponent } from './pages/extraction/extract-face-video/extract-face-video.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { VerifyT2tComponent } from './pages/matching/verify-t2t/verify-t2t.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { LoaderComponent } from './components/loader/loader.component';
     HomeComponent,
     ExtractFaceVideoComponent,
     HeaderComponent,
-    LoaderComponent
+    LoaderComponent,
+    VerifyT2tComponent
   ],
   imports: [
     BrowserModule,

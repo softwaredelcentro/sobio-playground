@@ -20,7 +20,7 @@ export class MenuComponent implements OnInit {
 
   deployar(id) {
     this.deployados.forEach((value, idx) => {
-      this.deployados[idx] = !value;
+      this.deployados[idx] = false;
     });
     this.deployados[id] = true;
   }
