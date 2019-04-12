@@ -17,6 +17,7 @@ export class ExtractFaceVideoComponent implements OnInit {
   step: number;
   response: FaceVideoResponse;
   error: boolean;
+  urlEndpoint: string;
 
   constructor(private extractionSrv: ExtractionService) {
     this.dto = new FaceVideoDTO();
@@ -44,18 +45,19 @@ export class ExtractFaceVideoComponent implements OnInit {
     this.error = false;
     this.loading = true;
     this.extractionSrv.extractFaceVideo(this.dto).subscribe(resp => {
+      console.log(resp);
       this.loading = false;
       this.step = 2;
       this.response = resp;
       this.jsonResponse = JSON.stringify(resp);
-      console.log(resp);
     }, err => {
-      this.error = true;
       console.log(err);
+      this.error = true;
       this.loading = false;
       this.step = 2;
       this.jsonResponse = JSON.stringify(err);
     });
+    this.urlEndpoint = this.extractionSrv.getEndpoints().faceVideo;
   }
 
   retry() {

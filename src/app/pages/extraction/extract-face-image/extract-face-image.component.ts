@@ -17,6 +17,7 @@ export class ExtractFaceImageComponent implements OnInit {
   step: number;
   response: FaceImageResponse;
   error: boolean;
+  urlEndpoint: string;
 
   constructor(private extractionSrv: ExtractionService) {
     this.dto = new FaceImageDTO();
@@ -73,8 +74,8 @@ export class ExtractFaceImageComponent implements OnInit {
     this.error = false;
     this.loading = true;
     this.extractionSrv.extractFaceImage(this.dto).subscribe(resp => {
-      this.loading = false;
       console.log(resp);
+      this.loading = false;
       this.response = resp;
       this.jsonResponse = JSON.stringify(resp);
       this.step = 2;
@@ -85,6 +86,7 @@ export class ExtractFaceImageComponent implements OnInit {
       this.step = 2;
       this.loading = false;
     });
+    this.urlEndpoint = this.extractionSrv.getEndpoints().faceImage;
   }
 
   retry() {

@@ -1,5 +1,9 @@
 <header>
   <app-menu></app-menu>
+  <section id="endpoint">
+    <label>Api Endpoint</label>
+    <input type="text" placeholder="API ENDPOINT" [(ngModel)]="apiEndpoint" (change)="apiChange()"/>
+  </section>
 </header>
 <main>
   <router-outlet></router-outlet>

@@ -3,6 +3,29 @@ header {
     float: left;
     height: 100%;
     background-color: #f9fafc;
+    section {
+        bottom: 30px;
+        width: 100%;
+        text-align: center;
+        border-top: 1px dotted gray;
+        margin-top: 10px;
+        padding-top: 10px;
+        label {
+            font-family: helvetica;
+            color: #bbbbbb;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+        input {
+            width: 80%;
+            border-radius: 3px;
+            border: 1px solid #d4d4d4;
+            padding: 5px;
+            &:after{
+                content: 'Api Endpoint';
+            }
+        }
+    }
 }
 main {
     width: 80%;

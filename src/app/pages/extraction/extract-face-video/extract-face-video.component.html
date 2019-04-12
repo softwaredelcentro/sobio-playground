@@ -1,6 +1,7 @@
 <app-header title="Extraction" subtitle="Face video"></app-header>
 <app-loader [isLoading]="loading"></app-loader>
 <section id="response" *ngIf="step==2">
+  <div class="url"><span class="method">POST</span> {{urlEndpoint}}</div>
   <code [class.error]="error">
     {{jsonResponse}}
   </code>
