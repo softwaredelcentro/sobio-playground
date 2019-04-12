@@ -1,11 +1,11 @@
 export class FingerPrintMatchingParams {
-    maxRotation: number;
+    maxRotation = 45;
     useOnlyAnsi378 = true;
 }
 
 export class T2tParams {
     faceMatchingParams: any;
-    far: number;
+    far = 1;
     fingerPrintMatchingParams: FingerPrintMatchingParams = new FingerPrintMatchingParams();
     voiceMatchingParams: any;
 }

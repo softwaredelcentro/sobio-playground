@@ -342,9 +342,15 @@
     </header>
     <div class="inputRow">
       <label>
+        Confidence
+      </label>
+      {{(1000 - dto.params.far) / 1000}}
+    </div>
+    <div class="inputRow">
+      <label>
         Far
       </label>
-      <input name="far" [(ngModel)]="dto.params.far" type="number" />
+      <input name="far" [(ngModel)]="dto.params.far" type="range" min="1" max="999" /> {{dto.params.far / 1000}}
     </div>
     <section>
       <header>
@@ -354,7 +360,9 @@
         <label>
           Max Rotation
         </label>
-        <input name="maxRotation" [(ngModel)]="dto.params.fingerPrintMatchingParams.maxRotation" type="number" />
+        <input name="maxRotation" type="range" min="0" max="180"
+          [(ngModel)]="dto.params.fingerPrintMatchingParams.maxRotation" />
+        {{dto.params.fingerPrintMatchingParams.maxRotation}}
       </div>
       <div class="inputRow">
         <label>

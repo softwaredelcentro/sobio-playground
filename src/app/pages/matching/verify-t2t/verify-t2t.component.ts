@@ -237,6 +237,7 @@ export class VerifyT2tComponent implements OnInit {
 
     this.error = false;
     this.loading = true;
+    this.dto.params.far = this.dto.params.far / 1000;
     this.matching.verifyT2T(this.dto).subscribe(resp => {
       console.log(resp);
       this.loading = false;
