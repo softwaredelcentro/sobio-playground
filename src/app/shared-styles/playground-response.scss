@@ -1,6 +1,21 @@
 #response {
     max-height: calc(100% - 140px);
     overflow: auto;
+
+    .url {
+        display: block;
+        margin: 15px;
+        padding: 5px;
+        background: #f9fafc;
+        border: 1px solid gray;
+        font-family: helvetica;
+        font-weight: 100;
+        color: gray;
+        span {
+            font-weight: bold;
+        }
+    }
+
     code {
         display: block;
         margin: 15px;
