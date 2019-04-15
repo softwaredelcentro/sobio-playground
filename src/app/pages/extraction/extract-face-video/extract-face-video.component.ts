@@ -18,6 +18,7 @@ export class ExtractFaceVideoComponent implements OnInit {
   response: FaceVideoResponse;
   error: boolean;
   urlEndpoint: string;
+  dataType: string;
 
   constructor(private extractionSrv: ExtractionService) {
     this.dto = new FaceVideoDTO();
@@ -47,6 +48,10 @@ export class ExtractFaceVideoComponent implements OnInit {
     const reader  = new FileReader();
     reader.onload = () => {
       this.dto.video = reader.result as string;
+      const dataInfo = /data:([a-zA-Z0-9\/]+);/gi.exec(this.dto.video);
+      if (dataInfo) {
+        this.dataType = dataInfo[1];
+      }
       this.dto.video = this.dto.video.replace(/data:([a-zA-Z0-9]+)\/([a-zA-Z0-9]+);base64,/gi, '');
       this.loading = false;
       this.fileInput.nativeElement.value = '';

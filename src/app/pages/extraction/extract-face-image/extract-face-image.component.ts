@@ -18,6 +18,7 @@ export class ExtractFaceImageComponent implements OnInit {
   response: FaceImageResponse;
   error: boolean;
   urlEndpoint: string;
+  dataType: string;
 
   constructor(private extractionSrv: ExtractionService) {
     this.dto = new FaceImageDTO();
@@ -49,6 +50,11 @@ export class ExtractFaceImageComponent implements OnInit {
     const reader  = new FileReader();
     reader.onload = () => {
       this.dto.image = reader.result as string;
+      // extracting data
+      const dataInfo = /data:([a-zA-Z0-9\/]+);/gi.exec(this.dto.image);
+      if (dataInfo) {
+        this.dataType = dataInfo[1];
+      }
       this.dto.image = this.dto.image.replace(/data:([a-zA-Z0-9]+)\/([a-zA-Z0-9]+);base64,/gi, '');
       this.loading = false;
       this.fileInput.nativeElement.value = '';

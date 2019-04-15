@@ -50,7 +50,8 @@
       <label>
         Blink Sensibility
       </label>
-      <input type="range" min="1" max="7" name="blinkSensibility" value="" [(ngModel)]="dto.params.blinkSensibility"> {{dto.params.blinkSensibility/10}}
+      <input type="range" min="1" max="7" name="blinkSensibility" value="" [(ngModel)]="dto.params.blinkSensibility">
+      {{dto.params.blinkSensibility/10}}
     </div>
     <div class="inputRow">
       <label>
@@ -98,34 +99,39 @@
           Looking Downwards Pitch Angle
         </label>
         <input type="range" min="-30" max="-5" name="lookingDownwardsPitchAngle"
-          [(ngModel)]="dto.params.facePoseSensibility.lookingDownwardsPitchAngle"> {{dto.params.facePoseSensibility.lookingDownwardsPitchAngle}}
+          [(ngModel)]="dto.params.facePoseSensibility.lookingDownwardsPitchAngle">
+        {{dto.params.facePoseSensibility.lookingDownwardsPitchAngle}}
       </div>
       <div class="inputRow">
         <label>
           Looking Front
         </label>
-        <input type="range" min="1" max="20" name="lookingFront" [(ngModel)]="dto.params.facePoseSensibility.lookingFront"> {{dto.params.facePoseSensibility.lookingFront}}
+        <input type="range" min="1" max="20" name="lookingFront"
+          [(ngModel)]="dto.params.facePoseSensibility.lookingFront"> {{dto.params.facePoseSensibility.lookingFront}}
       </div>
       <div class="inputRow">
         <label>
           Looking Left Yaw Angle
         </label>
         <input type="range" min="-60" max="-10" name="lookingLeftYawAngle"
-          [(ngModel)]="dto.params.facePoseSensibility.lookingLeftYawAngle"> {{dto.params.facePoseSensibility.lookingLeftYawAngle}}
+          [(ngModel)]="dto.params.facePoseSensibility.lookingLeftYawAngle">
+        {{dto.params.facePoseSensibility.lookingLeftYawAngle}}
       </div>
       <div class="inputRow">
         <label>
           Looking Right Yaw Angle
         </label>
         <input type="range" min="10" max="60" name="lookingRightYawAngle"
-          [(ngModel)]="dto.params.facePoseSensibility.lookingRightYawAngle"> {{dto.params.facePoseSensibility.lookingRightYawAngle}}
+          [(ngModel)]="dto.params.facePoseSensibility.lookingRightYawAngle">
+        {{dto.params.facePoseSensibility.lookingRightYawAngle}}
       </div>
       <div class="inputRow">
         <label>
           Looking Upwards Pitch Angle
         </label>
         <input type="range" min="5" max="25" name="lookingUpwardsPitchAngle"
-          [(ngModel)]="dto.params.facePoseSensibility.lookingUpwardsPitchAngle"> {{dto.params.facePoseSensibility.lookingUpwardsPitchAngle}}
+          [(ngModel)]="dto.params.facePoseSensibility.lookingUpwardsPitchAngle">
+        {{dto.params.facePoseSensibility.lookingUpwardsPitchAngle}}
       </div>
     </section>
     <div class="inputRow">
@@ -156,7 +162,8 @@
       <label>
         Min Confidence
       </label>
-      <input type="range" min="0" max="100" name="minConfidence" [(ngModel)]="dto.params.minConfidence"> {{dto.params.minConfidence}}
+      <input type="range" min="0" max="100" name="minConfidence" [(ngModel)]="dto.params.minConfidence">
+      {{dto.params.minConfidence}}
     </div>
     <div class="inputRow">
       <label>
@@ -168,7 +175,8 @@
       <label>
         Min Quality
       </label>
-      <input type="range" min="0" max="100" name="minQuality" [(ngModel)]="dto.params.minQuality"> {{dto.params.minQuality}}
+      <input type="range" min="0" max="100" name="minQuality" [(ngModel)]="dto.params.minQuality">
+      {{dto.params.minQuality}}
     </div>
     <div class="inputRow">
       <label>
@@ -180,7 +188,8 @@
       <label>
         Thumbnail Width
       </label>
-      <input type="range" min="24" max="512" name="thumbnailWidth" [(ngModel)]="dto.params.thumbnailWidth"> {{dto.params.thumbnailWidth}}
+      <input type="range" min="24" max="512" name="thumbnailWidth" [(ngModel)]="dto.params.thumbnailWidth">
+      {{dto.params.thumbnailWidth}}
     </div>
     <div class="inputRow">
       <label>
@@ -198,7 +207,8 @@
       <label>
         Video Frames Seq
       </label>
-      <input type="range" min="1" max="5" name="videoFramesSeq" [(ngModel)]="dto.params.videoFramesSeq"> {{dto.params.videoFramesSeq}}
+      <input type="range" min="1" max="5" name="videoFramesSeq" [(ngModel)]="dto.params.videoFramesSeq">
+      {{dto.params.videoFramesSeq}}
     </div>
   </section>
   <section>
@@ -210,6 +220,12 @@
         Select video file
       </label>
       <input type="file" value="" accept="video/*" (change)="fileChange()" #fileInput> <!-- [(ngModel)]="dto.image" -->
+      <div class="videoWrapper" *ngIf="dto.video">
+        <div class="cross" (click)="dto.video = undefined">X</div>
+        <video controls>
+          <source [type]="dataType" [src]="'data:'+dataType+';base64,'+dto.video" />
+        </video>
+      </div>
     </div>
   </section>
   <section>
