@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
 import { ExtractionService } from './providers/extraction.service';
@@ -13,10 +14,20 @@ export class AppComponent implements OnInit {
 
   apiEndpoint: string;
 
-  constructor(private eSrv: ExtractionService, private mSrv: MatchingService) { }
+  constructor(private eSrv: ExtractionService, private mSrv: MatchingService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.apiEndpoint = environment.endpoint;
+    this.route.fragment.subscribe((fragment: string) => {
+      const hash = fragment;
+      if (hash) {
+        const params = /api=([^&]+)/gmi.exec(hash);
+        if (params) {
+          this.apiEndpoint = decodeURIComponent(params[1]);
+          this.apiChange();
+        }
+      }
+    });
   }
 
   apiChange() {
