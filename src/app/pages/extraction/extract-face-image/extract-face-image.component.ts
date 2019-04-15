@@ -88,4 +88,24 @@ export class ExtractFaceImageComponent implements OnInit {
     this.step = 1;
   }
 
+  copy(index) {
+    try {
+      (navigator as any).clipboard.writeText(this.response.extractedFaces[index].face.template).then(() => {
+        // alert('Copied A');
+      });
+    } catch (e) {
+        const selection = document.getSelection();
+        const range = document.createRange();
+        range.selectNode(document.getElementById('templateResponse' + index));
+        selection.removeAllRanges();
+        selection.addRange(range);
+        const result = document.execCommand('copy');
+        if (!result) {
+          alert('Can\'t copy (HTTPS/Chrome +43/Permisos).');
+        } else {
+          // alert('Copied B');
+        }
+    }
+  }
+
 }

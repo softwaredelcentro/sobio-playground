@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-        <div class="responseProcessed" *ngFor="let face of response.extractedFaces">
+        <div class="responseProcessed" *ngFor="let face of response.extractedFaces; let idx = index">
             <div class="dataBlock">
                 <label>Status:</label>
                 <div class="dataContent">
@@ -26,9 +26,10 @@
                 <label>Image:</label>
                 <img [src]="'data:image/png;base64,'+face.face.image">
             </div>
+            <div class="copy" (click)="copy(idx)"><img src="assets/copy.png" /></div>
             <div class="dataBlock">
                 <label>Template:</label>
-                <div class="dataTemplate">
+                <div class="dataTemplate" [id]="'templateResponse'+idx">
                     {{face.face.template}}
                 </div>
             </div>

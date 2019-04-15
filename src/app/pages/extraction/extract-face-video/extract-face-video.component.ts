@@ -85,4 +85,27 @@ export class ExtractFaceVideoComponent implements OnInit {
     this.step = 1;
   }
 
+  copy() {
+    try {
+      (navigator as any).clipboard.writeText(this.response.face.template).then(() => {
+        // alert('Copied A');
+      });
+    } catch (e) {
+        // no tiene ssl
+        // $(this).find('.copyRealText').select();
+        const selection = document.getSelection();
+        const range = document.createRange();
+        range.selectNode(document.getElementById('templateResponse'));
+        selection.removeAllRanges();
+        selection.addRange(range);
+        const result = document.execCommand('copy');
+        // tampoco funcionó:
+        if (!result) {
+          alert('Can\'t copy (HTTPS/Chrome +43/Permisos).');
+        } else {
+          // alert('Copied B');
+        }
+    }
+  }
+
 }

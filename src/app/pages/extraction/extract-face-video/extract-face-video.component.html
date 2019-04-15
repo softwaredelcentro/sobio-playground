@@ -25,7 +25,8 @@
       </div>
       <div class="dataBlock">
         <label>Template:</label>
-        <div class="dataTemplate">
+        <div class="copy" (click)="copy()"><img src="assets/copy.png" /></div>
+        <div class="dataTemplate" id="templateResponse">
           {{response.face.template}}
         </div>
       </div>
