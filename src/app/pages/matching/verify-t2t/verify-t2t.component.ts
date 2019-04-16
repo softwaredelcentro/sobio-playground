@@ -25,6 +25,8 @@ export class VerifyT2tComponent implements OnInit {
   error: boolean;
   response: VerifyT2tResponse;
 
+  farCalculated: number;
+
   @ViewChildren('bi1_image_faces') bi1ImageFaces: QueryList<ElementRef>;
   @ViewChildren('bi1_image_fprints') bi1ImageFPrints: QueryList<ElementRef>;
   @ViewChildren('bi1_audio_tdv') bi1AudioTdv: QueryList<ElementRef>;
@@ -43,6 +45,7 @@ export class VerifyT2tComponent implements OnInit {
 
   ngOnInit() {
     this.dto.auditToken = this.create_UUID();
+    this.farCalculated = this.dto.params.far;
   }
 
   create_UUID() {
@@ -237,7 +240,7 @@ export class VerifyT2tComponent implements OnInit {
 
     this.error = false;
     this.loading = true;
-    this.dto.params.far = this.dto.params.far / 1000;
+    this.dto.params.far = this.farCalculated / 1000;
     this.matching.verifyT2T(this.dto).subscribe(resp => {
       console.log(resp);
       this.loading = false;
