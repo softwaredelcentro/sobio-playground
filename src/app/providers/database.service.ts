@@ -1,3 +1,4 @@
+import { DeleteResponse } from './../dataTypeObjects/deleteResponse';
 import { SubjectInfoResponse } from './../dataTypeObjects/subjectInfoResponse';
 import { SubjectDataResponse } from './../dataTypeObjects/subjectDataResponse';
 import { DownZipBiodataResponse } from './../dataTypeObjects/downZipBiodataResponse';
@@ -39,10 +40,10 @@ export class DatabaseService {
     return this.httpClient.post<BioListResponse>(this.endpoints.list, dataSTR, options);
   }
 
-  public delete(data: DBData) {
+  public delete(data: DBData): Observable<DeleteResponse> {
     const options = { headers: {'Content-Type': 'application/json'} };
     const dataSTR = JSON.stringify(data);
-    return this.httpClient.post<BioListResponse>(this.endpoints.delete, dataSTR, options);
+    return this.httpClient.post<DeleteResponse>(this.endpoints.delete, dataSTR, options);
   }
 
   public downZip(subjectId: string): Observable<DownZipBiodataResponse> {
