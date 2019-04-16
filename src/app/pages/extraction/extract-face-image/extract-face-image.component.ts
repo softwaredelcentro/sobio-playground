@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FaceImageDTO } from 'src/app/dataTypeObjects/faceImage';
 import { ExtractionService } from 'src/app/providers/extraction.service';
 import { FaceImageResponse } from 'src/app/dataTypeObjects/faceImageResponse';
+import { UUID } from 'src/app/Utils/UUID';
 
 @Component({
   selector: 'app-extract-face-image',
@@ -24,19 +25,7 @@ export class ExtractFaceImageComponent implements OnInit {
     this.dto = new FaceImageDTO();
 
     // mock inicial
-    this.dto.auditToken = this.create_UUID();
-  }
-
-  create_UUID() {
-    let dt = new Date().getTime();
-    const uuid = 'xxxxxxxx'.replace(/[xy]/g, (c) => {
-        // tslint:disable-next-line:no-bitwise
-        const r = (dt + Math.random() * 16) % 16 | 0;
-        dt = Math.floor(dt / 16);
-        // tslint:disable-next-line:no-bitwise
-        return (c === 'x' ? r : (r & 0x3 | 0x8) ).toString(16);
-    });
-    return uuid;
+    this.dto.auditToken = UUID.create();
   }
 
   ngOnInit() {

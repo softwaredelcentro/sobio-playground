@@ -9,6 +9,7 @@ import {
   Faces
 } from 'src/app/dataTypeObjects/verifyT2t';
 import { VerifyT2tResponse } from 'src/app/dataTypeObjects/verifyT2tResponse';
+import { UUID } from 'src/app/Utils/UUID';
 
 @Component({
   selector: 'app-verify-t2t',
@@ -44,20 +45,8 @@ export class VerifyT2tComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dto.auditToken = this.create_UUID();
+    this.dto.auditToken = UUID.create();
     this.farCalculated = this.dto.params.far;
-  }
-
-  create_UUID() {
-    let dt = new Date().getTime();
-    const uuid = 'xxxxxxxx'.replace(/[xy]/g, (c) => {
-        // tslint:disable-next-line:no-bitwise
-        const r = (dt + Math.random() * 16) % 16 | 0;
-        dt = Math.floor(dt / 16);
-        // tslint:disable-next-line:no-bitwise
-        return (c === 'x' ? r : (r & 0x3 | 0x8) ).toString(16);
-    });
-    return uuid;
   }
 
   addCompositeFinger() {
