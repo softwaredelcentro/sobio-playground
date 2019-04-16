@@ -4,7 +4,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## DEMO URL
 
-[https://softwaredelcentro.github.io/sobio-playground#api=http://xxxx.yyy/zzzz](https://softwaredelcentro.github.io/sobio-playground)
+[http://softwaredelcentro.github.io/sobio-playground/#/](https://softwaredelcentro.github.io/sobio-playground)
+
+[http://softwaredelcentro.github.io/sobio-playground/#/#api=http://xxxxx.yyyyy/zzzzz](http://softwaredelcentro.github.io/sobio-playground/#/#api=http://xxxxx.yyyyy/zzzzz)
+
 
 ## Development server
 
