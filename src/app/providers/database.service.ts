@@ -1,3 +1,7 @@
+import { SubjectInfoResponse } from './../dataTypeObjects/subjectInfoResponse';
+import { SubjectDataResponse } from './../dataTypeObjects/subjectDataResponse';
+import { DownZipBiodataResponse } from './../dataTypeObjects/downZipBiodataResponse';
+import { DBData } from './../dataTypeObjects/DBData';
 import { BioList } from './../dataTypeObjects/bioList';
 import { Injectable } from '@angular/core';
 import { EndpointsDatabaseService } from './endpointsDatabaseService';
@@ -23,6 +27,10 @@ export class DatabaseService {
 
   public reSetEndpoints(endpoint: string) {
     this.endpoints.list = endpoint + '/' + environment.version + '/bio/list';
+    this.endpoints.delete = endpoint + '/' + environment.version + '/bio/delete';
+    this.endpoints.zip = endpoint + '/' + environment.version + '/bio/download-zipped-biodata/';
+    this.endpoints.data = endpoint + '/' + environment.version + '/bio/subject-data';
+    this.endpoints.info = endpoint + '/' + environment.version + '/bio/subject-info';
   }
 
   public getList(dto: BioList): Observable<BioListResponse> {
@@ -30,4 +38,27 @@ export class DatabaseService {
     const dataSTR = JSON.stringify(dto);
     return this.httpClient.post<BioListResponse>(this.endpoints.list, dataSTR, options);
   }
+
+  public delete(data: DBData) {
+    const options = { headers: {'Content-Type': 'application/json'} };
+    const dataSTR = JSON.stringify(data);
+    return this.httpClient.post<BioListResponse>(this.endpoints.delete, dataSTR, options);
+  }
+
+  public downZip(subjectId: string): Observable<DownZipBiodataResponse> {
+    return this.httpClient.get<DownZipBiodataResponse>(this.endpoints.zip + subjectId);
+  }
+
+  public getData(data: DBData): Observable<SubjectDataResponse> {
+    const options = { headers: {'Content-Type': 'application/json'} };
+    const dataSTR = JSON.stringify(data);
+    return this.httpClient.post<SubjectDataResponse>(this.endpoints.data, dataSTR, options);
+  }
+
+  public getInfo(data: DBData): Observable<SubjectInfoResponse> {
+    const options = { headers: {'Content-Type': 'application/json'} };
+    const dataSTR = JSON.stringify(data);
+    return this.httpClient.post<SubjectInfoResponse>(this.endpoints.info, dataSTR, options);
+  }
+
 }
