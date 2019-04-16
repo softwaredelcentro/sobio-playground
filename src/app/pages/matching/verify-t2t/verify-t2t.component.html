@@ -77,7 +77,7 @@
           <label>
             Finger
           </label>
-          <input type="text" name="bi1_dedo_composite" [(ngModel)]="dto.bioInfo1.compositeFingerPrints[idx].dedo">
+          <input type="text" name="bi1_dedo_composite{{idx}}" [(ngModel)]="dto.bioInfo1.compositeFingerPrints[idx].dedo">
           <!-- <select name="bi1_dedo">
           <option value="RIGHT_THUMB">Right Thumb</option>
         </select> -->
@@ -87,7 +87,7 @@
           <label>
             Source
           </label>
-          <input type="text" name="bi1_source_composite" [(ngModel)]="dto.bioInfo1.compositeFingerPrints[idx].source">
+          <input type="text" name="bi1_source_composite{{idx}}" [(ngModel)]="dto.bioInfo1.compositeFingerPrints[idx].source">
           <!-- <select name="bi1_source">
           <option value="LIVE_FINGERPRINT">Live Fingerprint</option>
         </select> -->
@@ -96,7 +96,7 @@
           <label>
             Template
           </label>
-          <textarea name="bi1_template_composite"
+          <textarea name="bi1_template_composite{{idx}}"
             [(ngModel)]="dto.bioInfo1.compositeFingerPrints[idx].template"></textarea>
         </div>
       </div>
@@ -118,7 +118,7 @@
           <label>
             Template
           </label>
-          <textarea name="bi1_template_faces" [(ngModel)]="dto.bioInfo1.faces[idx].template"></textarea>
+          <textarea name="bi1_template_faces{{idx}}" [(ngModel)]="dto.bioInfo1.faces[idx].template"></textarea>
         </div>
       </div>
     </section>
@@ -133,7 +133,7 @@
           <label>
             Template Format
           </label>
-          <input type="text" name="bi1_template_format_fp" [(ngModel)]="dto.bioInfo1.fingerPrints[idx].formatoTemplate">
+          <input type="text" name="bi1_template_format_fp{{idx}}" [(ngModel)]="dto.bioInfo1.fingerPrints[idx].formatoTemplate">
         </div>
         <div class="inputRow">
           <label>
@@ -145,19 +145,19 @@
           <label>
             Image Source
           </label>
-          <input type="text" name="bi1_imagesource_fp" [(ngModel)]="dto.bioInfo1.fingerPrints[idx].imageSource">
+          <input type="text" name="bi1_imagesource_fp{{idx}}" [(ngModel)]="dto.bioInfo1.fingerPrints[idx].imageSource">
         </div>
         <div class="inputRow">
           <label>
             Position
           </label>
-          <input type="text" name="bi1_position_fp" [(ngModel)]="dto.bioInfo1.fingerPrints[idx].position">
+          <input type="text" name="bi1_position_fp{{idx}}" [(ngModel)]="dto.bioInfo1.fingerPrints[idx].position">
         </div>
         <div class="inputRow">
           <label>
             Template
           </label>
-          <textarea name="bi1_template_fp" [(ngModel)]="dto.bioInfo1.fingerPrints[idx].template"></textarea>
+          <textarea name="bi1_template_fp{{idx}}" [(ngModel)]="dto.bioInfo1.fingerPrints[idx].template"></textarea>
         </div>
       </div>
     </section>
@@ -224,7 +224,7 @@
           <label>
             Finger
           </label>
-          <input type="text" name="bi2_dedo_composite" [(ngModel)]="dto.bioInfo2.compositeFingerPrints[idx].dedo">
+          <input type="text" name="bi2_dedo_composite{{idx}}" [(ngModel)]="dto.bioInfo2.compositeFingerPrints[idx].dedo">
           <!-- <select name="bi1_dedo">
             <option value="RIGHT_THUMB">Right Thumb</option>
           </select> -->
@@ -234,7 +234,7 @@
           <label>
             Source
           </label>
-          <input type="text" name="bi2_source_composite" [(ngModel)]="dto.bioInfo2.compositeFingerPrints[idx].source">
+          <input type="text" name="bi2_source_composite{{idx}}" [(ngModel)]="dto.bioInfo2.compositeFingerPrints[idx].source">
           <!-- <select name="bi1_source">
             <option value="LIVE_FINGERPRINT">Live Fingerprint</option>
           </select> -->
@@ -243,7 +243,7 @@
           <label>
             Template
           </label>
-          <textarea name="bi2_template_composite"
+          <textarea name="bi2_template_composite{{idx}}"
             [(ngModel)]="dto.bioInfo2.compositeFingerPrints[idx].template"></textarea>
         </div>
       </div>
@@ -265,7 +265,7 @@
           <label>
             Template
           </label>
-          <textarea name="bi2_template_faces" [(ngModel)]="dto.bioInfo2.faces[idx].template"></textarea>
+          <textarea name="bi2_template_faces{{idx}}" [(ngModel)]="dto.bioInfo2.faces[idx].template"></textarea>
         </div>
       </div>
     </section>
@@ -280,7 +280,7 @@
           <label>
             Template Format
           </label>
-          <input type="text" name="bi2_template_format_fp" [(ngModel)]="dto.bioInfo2.fingerPrints[idx].formatoTemplate">
+          <input type="text" name="bi2_template_format_fp{{idx}}" [(ngModel)]="dto.bioInfo2.fingerPrints[idx].formatoTemplate">
         </div>
         <div class="inputRow">
           <label>
@@ -292,19 +292,19 @@
           <label>
             Image Source
           </label>
-          <input type="text" name="bi2_imagesource_fp" [(ngModel)]="dto.bioInfo2.fingerPrints[idx].imageSource">
+          <input type="text" name="bi2_imagesource_fp{{idx}}" [(ngModel)]="dto.bioInfo2.fingerPrints[idx].imageSource">
         </div>
         <div class="inputRow">
           <label>
             Position
           </label>
-          <input type="text" name="bi2_position_fp" [(ngModel)]="dto.bioInfo2.fingerPrints[idx].position">
+          <input type="text" name="bi2_position_fp{{idx}}" [(ngModel)]="dto.bioInfo2.fingerPrints[idx].position">
         </div>
         <div class="inputRow">
           <label>
             Template
           </label>
-          <textarea name="bi2_template_fp" [(ngModel)]="dto.bioInfo2.fingerPrints[idx].template"></textarea>
+          <textarea name="bi2_template_fp{{idx}}" [(ngModel)]="dto.bioInfo2.fingerPrints[idx].template"></textarea>
         </div>
       </div>
     </section>
@@ -325,13 +325,13 @@
           <label>
             Phase ID
           </label>
-          <input type="number" name="bi2_phaseid_tdv" [(ngModel)]="dto.bioInfo2.textDependentVoices[idx].phraseId">
+          <input type="number" name="bi2_phaseid_tdv{{idx}}" [(ngModel)]="dto.bioInfo2.textDependentVoices[idx].phraseId">
         </div>
         <div class="inputRow">
           <label>
             Template
           </label>
-          <textarea name="bi2_template_tdv" [(ngModel)]="dto.bioInfo2.textDependentVoices[idx].template"></textarea>
+          <textarea name="bi2_template_tdv{{idx}}" [(ngModel)]="dto.bioInfo2.textDependentVoices[idx].template"></textarea>
         </div>
       </div>
     </section>

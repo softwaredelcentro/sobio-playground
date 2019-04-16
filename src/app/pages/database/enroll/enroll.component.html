@@ -63,7 +63,7 @@
                     <label>
                         Finger
                     </label>
-                    <input type="text" name="bi1_dedo_composite"
+                    <input type="text" name="bi1_dedo_composite{{idx}}"
                         [(ngModel)]="dto.bioInfo.compositeFingerPrints[idx].dedo">
                     <!-- <select name="bi1_dedo">
             <option value="RIGHT_THUMB">Right Thumb</option>
@@ -74,7 +74,7 @@
                     <label>
                         Source
                     </label>
-                    <input type="text" name="bi1_source_composite"
+                    <input type="text" name="bi1_source_composite{{idx}}"
                         [(ngModel)]="dto.bioInfo.compositeFingerPrints[idx].source">
                     <!-- <select name="bi1_source">
             <option value="LIVE_FINGERPRINT">Live Fingerprint</option>
@@ -84,7 +84,7 @@
                     <label>
                         Template
                     </label>
-                    <textarea name="bi1_template_composite"
+                    <textarea name="bi1_template_composite{{idx}}"
                         [(ngModel)]="dto.bioInfo.compositeFingerPrints[idx].template"></textarea>
                 </div>
             </div>
@@ -100,7 +100,7 @@
                     <label>
                         Select image file
                     </label>
-                    <input type="file" accept="image/*" name="bi1_image_faces" (change)="bi1_image_faces_change(idx)" #bi1_image_faces>
+                    <input type="file" accept="image/*" name="bi1_image_faces{{idx}}" (change)="bi1_image_faces_change(idx)" #bi1_image_faces>
                 </div>
                 <div class="inputRow">
                     <label>
@@ -121,7 +121,7 @@
                     <label>
                         Template Format
                     </label>
-                    <input type="text" name="bi1_template_format_fp"
+                    <input type="text" name="bi1_template_format_fp{{idx}}"
                         [(ngModel)]="dto.bioInfo.fingerPrints[idx].formatoTemplate">
                 </div>
                 <div class="inputRow">
@@ -134,20 +134,20 @@
                     <label>
                         Image Source
                     </label>
-                    <input type="text" name="bi1_imagesource_fp"
+                    <input type="text" name="bi1_imagesource_fp{{idx}}"
                         [(ngModel)]="dto.bioInfo.fingerPrints[idx].imageSource">
                 </div>
                 <div class="inputRow">
                     <label>
                         Position
                     </label>
-                    <input type="text" name="bi1_position_fp" [(ngModel)]="dto.bioInfo.fingerPrints[idx].position">
+                    <input type="text" name="bi1_position_fp{{idx}}" [(ngModel)]="dto.bioInfo.fingerPrints[idx].position">
                 </div>
                 <div class="inputRow">
                     <label>
                         Template
                     </label>
-                    <textarea name="bi1_template_fp" [(ngModel)]="dto.bioInfo.fingerPrints[idx].template"></textarea>
+                    <textarea name="bi1_template_fp{{idx}}" [(ngModel)]="dto.bioInfo.fingerPrints[idx].template"></textarea>
                 </div>
             </div>
         </section>
@@ -168,14 +168,14 @@
                     <label>
                         Phase ID
                     </label>
-                    <input type="number" name="bi1_phaseid_tdv"
+                    <input type="number" name="bi1_phaseid_tdv{{idx}}"
                         [(ngModel)]="dto.bioInfo.textDependentVoices[idx].phraseId">
                 </div>
                 <div class="inputRow">
                     <label>
                         Template
                     </label>
-                    <textarea name="bi1_template_tdv"
+                    <textarea name="bi1_template_tdv{{idx}}"
                         [(ngModel)]="dto.bioInfo.textDependentVoices[idx].template"></textarea>
                 </div>
             </div>
