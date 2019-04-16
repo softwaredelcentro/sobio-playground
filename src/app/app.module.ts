@@ -15,6 +15,10 @@ import { VerifyT2tComponent } from './pages/matching/verify-t2t/verify-t2t.compo
 import { DniArComponent } from './pages/document-extraction/dni-ar/dni-ar.component';
 import { GaugeComponent } from './components/gauge/gauge.component';
 import { HtmlSecurePipe } from './components/gauge/pipes/html-secure.pipe';
+import { EnrollComponent } from './pages/database/enroll/enroll.component';
+import { ListComponent } from './pages/database/list/list.component';
+import { BySubjectComponent } from './pages/database/by-subject/by-subject.component';
+import { UpdateComponent } from './pages/database/update/update.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +32,10 @@ import { HtmlSecurePipe } from './components/gauge/pipes/html-secure.pipe';
     DniArComponent,
     GaugeComponent,
     HtmlSecurePipe,
+    EnrollComponent,
+    ListComponent,
+    BySubjectComponent,
+    UpdateComponent,
   ],
   imports: [
     BrowserModule,

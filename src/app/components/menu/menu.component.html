@@ -19,7 +19,15 @@
         <li class="disabled"><a href="">extract text independent voice</a></li>
       </ul>
     </li>
-    <li class="disabled">DATABASE</li>
+    <li>
+        <a class="deployable" (click)="deployar(6)" [class.opened]="deployados[6]">DATABASE</a>
+      <ul *ngIf="deployados[6]">
+        <li><a routerLink="database/by-subject" routerLinkActive="active">By Subject</a></li>
+        <li><a routerLink="database/enroll" routerLinkActive="active">Enroll</a></li>
+        <li><a routerLink="database/list" routerLinkActive="active">List</a></li>
+        <li><a routerLink="database/update" routerLinkActive="active">Update</a></li>
+      </ul>
+    </li>
     <li>
       <a class="deployable" (click)="deployar(7)" [class.opened]="deployados[7]">MATCHING</a>
       <ul *ngIf="deployados[7]">

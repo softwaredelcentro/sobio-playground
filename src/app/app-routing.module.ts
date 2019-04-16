@@ -1,3 +1,6 @@
+import { UpdateComponent } from './pages/database/update/update.component';
+import { ListComponent } from './pages/database/list/list.component';
+import { BySubjectComponent } from './pages/database/by-subject/by-subject.component';
 import { DniArComponent } from './pages/document-extraction/dni-ar/dni-ar.component';
 import { ExtractFaceVideoComponent } from './pages/extraction/extract-face-video/extract-face-video.component';
 import { ExtractFaceImageComponent } from './pages/extraction/extract-face-image/extract-face-image.component';
@@ -5,6 +8,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { VerifyT2tComponent } from './pages/matching/verify-t2t/verify-t2t.component';
+import { EnrollComponent } from './pages/database/enroll/enroll.component';
 
 const routes: Routes = [
   { path: '',
@@ -30,6 +34,26 @@ const routes: Routes = [
     path: 'document-extraction/dni-ar',
     component: DniArComponent,
     data: { title: 'Extracts Argentinean ID Card document information' }
+  },
+  {
+    path: 'database/enroll',
+    component: EnrollComponent,
+    data: { title: 'Performs a biometric enrollment supplied biometric data which is associated with supplied enrolled subject id' }
+  },
+  {
+    path: 'database/by-subject',
+    component: BySubjectComponent,
+    data: { title: 'Operations using subjectID' }
+  },
+  {
+    path: 'database/list',
+    component: ListComponent,
+    data: { title: 'List enrolled Subject ID\'s' }
+  },
+  {
+    path: 'database/update',
+    component: UpdateComponent,
+    data: { title: 'Updates biometric data of an already enrolled subject' }
   }
 ];
 
