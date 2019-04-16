@@ -1,3 +1,4 @@
+import { DniArComponent } from './pages/document-extraction/dni-ar/dni-ar.component';
 import { ExtractFaceVideoComponent } from './pages/extraction/extract-face-video/extract-face-video.component';
 import { ExtractFaceImageComponent } from './pages/extraction/extract-face-image/extract-face-image.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -24,6 +25,11 @@ const routes: Routes = [
     path: 'matching/verify-t2t',
     component: VerifyT2tComponent,
     data: { title: 'Verification (1:1) of two supplied biometric subjects' }
+  },
+  {
+    path: 'document-extraction/dni-ar',
+    component: DniArComponent,
+    data: { title: 'Extracts Argentinean ID Card document information' }
   }
 ];
 

@@ -1,0 +1,195 @@
+<app-header title="Document extraction" subtitle="DNI Ar"></app-header>
+<app-loader [isLoading]="loading"></app-loader>
+<section id="response" *ngIf="step==2">
+  <div class="url"><span class="method">POST</span> {{urlEndpoint}}</div>
+  <code [class.error]="error">
+        {{jsonResponse}}
+  </code>
+
+  <div class="responseProcessed" *ngIf="response">
+    <div class="dataBlock">
+      <label>Exception:</label>
+      <div class="dataContent">
+        <b *ngIf="response.exception">Yes</b>
+        <b *ngIf="!response.exception">No</b>
+      </div>
+    </div>
+
+    <div class="dataBlock">
+      <label>MRZ Detected:</label>
+      <div class="dataContent">
+        <b *ngIf="response.mrzDetected">Yes</b>
+        <b *ngIf="!response.mrzDetected">No</b>
+      </div>
+    </div>
+
+    <div class="dataBlock">
+      <label>PDF417 Detected:</label>
+      <div class="dataContent">
+        <b *ngIf="response.pdf417Detected">Yes</b>
+        <b *ngIf="!response.pdf417Detected">No</b>
+      </div>
+    </div>
+
+    <div class="dataBlock">
+      <label>status:</label>
+      <div class="dataContent">
+        {{response.status}}
+      </div>
+    </div>
+
+    <div class="dataBlock">
+      <label>suggestedAction:</label>
+      <div class="dataContent">
+        {{response.suggestedAction}}
+      </div>
+    </div>
+
+    <div class="dataBlock">
+      <label>txId:</label>
+      <div class="dataContent">
+        {{response.txId}}
+      </div>
+    </div>
+  </div>
+  <div class="responses" *ngIf="response && response.documentInfo">
+    <div class="responseProcessed">
+      <div class="dataBlock">
+        <label>Additional Info:</label>
+        <div class="dataContent">
+          {{response.additionalInfo}}
+        </div>
+      </div>
+      <div class="dataBlock">
+        <label>Document Info:</label>
+        <div class="dataContent">
+          Address: {{response.documentInfo.address}}
+        </div>
+        <div class="dataContent">
+          Address Confidence: {{response.documentInfo.addressConfidence}}
+        </div>
+        <div class="dataContent">
+          Code 1: {{response.documentInfo.code1}}
+        </div>
+        <div class="dataContent">
+          Code 2: {{response.documentInfo.code2}}
+        </div>
+        <div class="dataContent">
+          Date of Birth: {{response.documentInfo.dateOfBirth.day}} / {{response.documentInfo.dateOfBirth.month}} /
+          {{response.documentInfo.dateOfBirth.year}}
+        </div>
+        <div class="dataContent">
+          Document Number: {{response.documentInfo.documentNumber}}
+        </div>
+        <div class="dataContent">
+          Document Type: {{response.documentInfo.documentType}}
+        </div>
+        <div class="dataContent">
+          Document Version: {{response.documentInfo.documentVersion}}
+        </div>
+        <div class="dataContent">
+          Expiration date: {{response.documentInfo.expirationDate.day}} / {{response.documentInfo.expirationDate.month}}
+          /
+          {{response.documentInfo.expirationDate.year}}
+        </div>
+        <div class="dataContent">
+          Given Names: {{response.documentInfo.givenNames}}
+        </div>
+        <div class="dataContent">
+          Issuing Country: {{response.documentInfo.issuingCountry}}
+        </div>
+        <div class="dataContent">
+          Issuing Date: {{response.documentInfo.issuingDate.day}} / {{response.documentInfo.issuingDate.month}} /
+          {{response.documentInfo.issuingDate.year}}
+        </div>
+        <div class="dataContent">
+          Nationality: {{response.documentInfo.nationality}}
+        </div>
+        <div class="dataContent">
+          Order: {{response.documentInfo.order}}
+        </div>
+        <div class="dataContent">
+          Sequence: {{response.documentInfo.sequence}}
+        </div>
+        <div class="dataContent">
+          Sex: {{response.documentInfo.sex}}
+        </div>
+        <div class="dataContent">
+          Surname: {{response.documentInfo.surname}}
+        </div>
+      </div>
+
+      <div class="dataBlock">
+        <label>Face:</label>
+        <img [src]="'data:image/png;base64,'+response.documentInfo.face.image">
+      </div>
+      <div class="copy" (click)="copy()"><img src="assets/copy.png" /></div>
+      <div class="dataBlock">
+        <label>Face template:</label>
+        <div class="dataTemplate" id="templateResponse">
+          {{response.documentInfo.face.template}}
+        </div>
+      </div>
+
+      <div class="dataBlock">
+        <label>Valids:</label>
+        <div class="dataContent">
+          Composite:
+          <b *ngIf="response.documentInfo.validComposite">Yes</b>
+          <b *ngIf="!response.documentInfo.validComposite">No</b>
+        </div>
+        <div class="dataContent">
+          Date of birth:
+          <b *ngIf="response.documentInfo.validComposite">Yes</b>
+          <b *ngIf="!response.documentInfo.validDateOfBirth">No</b>
+        </div>
+        <div class="dataContent">
+          Document number:
+          <b *ngIf="response.documentInfo.validComposite">Yes</b>
+          <b *ngIf="!response.documentInfo.validDocumentNumber">No</b>
+        </div>
+        <div class="dataContent">
+          Expiration date:
+          <b *ngIf="response.documentInfo.validComposite">Yes</b>
+          <b *ngIf="!response.documentInfo.validExpirationDate">No</b>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <button type="button" class="send" (click)="retry()">Retry</button>
+</section>
+<form *ngIf="step==1">
+  <section>
+    <div class="inputRow">
+      <label>
+        Audit Token
+      </label>
+      <input type="text" name="auditToken" [(ngModel)]="dto.auditToken">
+    </div>
+  </section>
+  <section>
+    <header>
+      <h3>Images</h3>
+    </header>
+    <div class="inputRow">
+      <label>
+        Select back image file
+      </label>
+      <input type="file" accept="image/*" (change)="fileBackChange()" #fileBackInput>
+      <img *ngIf="dto.backImage" [src]="'data:'+backDataType+';base64,'+dto.backImage" class="imagefile"
+        (click)="dto.backImage = undefined" />
+    </div>
+    <div class="inputRow">
+      <label>
+        Select front image file
+      </label>
+      <input type="file" accept="image/*" (change)="fileFrontChange()" #fileFrontInput>
+      <img *ngIf="dto.frontImage" [src]="'data:'+frontDataType+';base64,'+dto.frontImage" class="imagefile"
+        (click)="dto.frontImage = undefined" />
+    </div>
+  </section>
+  <section>
+    <button type="button" class="send" (click)="send()">Send Data</button>
+  </section>
+</form>

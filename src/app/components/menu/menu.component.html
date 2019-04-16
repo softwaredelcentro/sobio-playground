@@ -28,6 +28,11 @@
         <li><a routerLink="/matching/verify-t2t" routerLinkActive="active">Verify t2t</a></li>
       </ul>
     </li>
-    <li class="disabled">DOCUMENT EXTRACTION</li>
+    <li>
+      <a class="deployable" (click)="deployar(8)" [class.opened]="deployados[8]">DOCUMENT EXTRACTION</a>
+      <ul *ngIf="deployados[8]">
+        <li><a routerLink="/document-extraction/dni-ar" routerLinkActive="active">DNI Ar</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>

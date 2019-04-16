@@ -12,6 +12,7 @@ import { ExtractFaceVideoComponent } from './pages/extraction/extract-face-video
 import { HeaderComponent } from './components/header/header.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { VerifyT2tComponent } from './pages/matching/verify-t2t/verify-t2t.component';
+import { DniArComponent } from './pages/document-extraction/dni-ar/dni-ar.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { VerifyT2tComponent } from './pages/matching/verify-t2t/verify-t2t.compo
     ExtractFaceVideoComponent,
     HeaderComponent,
     LoaderComponent,
-    VerifyT2tComponent
+    VerifyT2tComponent,
+    DniArComponent
   ],
   imports: [
     BrowserModule,
