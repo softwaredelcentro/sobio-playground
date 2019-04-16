@@ -1,0 +1,103 @@
+<app-header title="Database" subtitle="List"></app-header>
+<app-loader [isLoading]="loading"></app-loader>
+
+<form *ngIf="step==1">
+    <section>
+        <div class="inputRow">
+            <label>
+                Audit Token
+            </label>
+            <input type="text" name="auditToken" [(ngModel)]="dto.auditToken">
+        </div>
+    </section>
+    <section>
+        <header>
+            <h3>Conditions</h3>
+        </header>
+        <div class="inputRow">
+            <label>
+                i1
+            </label>
+            <input type="number" name="i1" [(ngModel)]="dto.conditions.i1">
+        </div>
+        <div class="inputRow">
+            <label>
+                i2
+            </label>
+            <input type="number" name="i2" [(ngModel)]="dto.conditions.i2">
+        </div>
+        <div class="inputRow">
+            <label>
+                i3
+            </label>
+            <input type="number" name="i3" [(ngModel)]="dto.conditions.i3">
+        </div>
+        <div class="inputRow">
+            <label>
+                i4
+            </label>
+            <input type="number" name="i4" [(ngModel)]="dto.conditions.i4">
+        </div>
+        <div class="inputRow">
+            <label>
+                i5
+            </label>
+            <input type="number" name="i5" [(ngModel)]="dto.conditions.i5">
+        </div>
+
+        <div class="inputRow">
+            <label>
+                id
+            </label>
+            <input type="text" name="id" [(ngModel)]="dto.conditions.id">
+        </div>
+        <div class="inputRow">
+            <label>
+                id In
+            </label>
+            <input type="text" name="idIn" [(ngModel)]="dto.conditions.idIn">
+        </div>
+        <div class="inputRow">
+            <label>
+                id Like
+            </label>
+            <input type="text" name="idLike" [(ngModel)]="dto.conditions.idLike">
+        </div>
+        <div class="inputRow">
+            <label>
+                id No
+            </label>
+            <input type="text" name="idNo" [(ngModel)]="dto.conditions.idNo">
+        </div>
+        <div class="inputRow">
+            <label>
+                s1
+            </label>
+            <input type="text" name="s1" [(ngModel)]="dto.conditions.s1">
+        </div>
+        <div class="inputRow">
+            <label>
+                s2
+            </label>
+            <input type="text" name="s2" [(ngModel)]="dto.conditions.s2">
+        </div>
+        <div class="inputRow">
+            <label>
+                s3
+            </label>
+            <input type="text" name="s3" [(ngModel)]="dto.conditions.s3">
+        </div>
+        <div class="inputRow">
+            <label>
+                s4
+            </label>
+            <input type="text" name="s4" [(ngModel)]="dto.conditions.s4">
+        </div>
+        <div class="inputRow">
+            <label>
+                s5
+            </label>
+            <input type="text" name="s5" [(ngModel)]="dto.conditions.s5">
+        </div>
+    </section>
+</form>
