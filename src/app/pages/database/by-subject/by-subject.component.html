@@ -1,0 +1,25 @@
+<app-header title="Database" subtitle="By Subject"></app-header>
+<app-loader [isLoading]="loading"></app-loader>
+
+<form *ngIf="step==1">
+    <section>
+        <div class="inputRow">
+            <label>
+                Audit Token
+            </label>
+            <input type="text" name="auditToken" [(ngModel)]="auditToken">
+        </div>
+        <div class="inputRow">
+            <label>
+                Subject ID
+            </label>
+            <input type="text" name="subjectID" [(ngModel)]="subjectID">
+        </div>
+    </section>
+    <section style="text-align: center;">
+        <button type="button" class="red inline" (click)="delete()">Delete</button>
+        <button type="button" class="send inline" (click)="downzip()">Download ZIP</button>
+        <button type="button" class="send inline" (click)="data()">Data</button>
+        <button type="button" class="send inline" (click)="info()">Info</button>
+    </section>
+</form>
