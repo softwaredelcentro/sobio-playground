@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { DniAr } from 'src/app/dataTypeObjects/dniAr';
 import { ExtractionService } from 'src/app/providers/extraction.service';
-import { DniArResponse } from 'src/app/dataTypeObjects/DniArResponse';
+import { DniArResponse } from 'src/app/dataTypeObjects/dniArResponse';
 
 @Component({
   selector: 'app-dni-ar',

@@ -8,7 +8,7 @@ import { FaceVideoResponse } from '../dataTypeObjects/faceVideoResponse';
 import { FaceImageResponse } from '../dataTypeObjects/faceImageResponse';
 import { FaceImageDTO } from '../dataTypeObjects/faceImage';
 import { EndpointsExtractionService } from './endpointsExtractionService';
-import { DniArResponse } from '../dataTypeObjects/DniArResponse';
+import { DniArResponse } from '../dataTypeObjects/dniArResponse';
 
 @Injectable({
   providedIn: 'root'
