@@ -1,6 +1,335 @@
 <app-header title="Database" subtitle="By Subject"></app-header>
 <app-loader [isLoading]="loading"></app-loader>
 
+<section id="response" *ngIf="step==2">
+    <!-- DELETE RESPONSE -->
+    <div class="url"><span class="method">POST</span> {{urlEndpoint}}</div>
+    <code [class.error]="error">
+       {{jsonResponse}}
+    </code>
+    <div class="responses" *ngIf="response">
+        <div class="responseProcessed">
+            <div class="dataBlock">
+                <label>TxId:</label>
+                <div class="dataContent">
+                    {{responseDalete.txId}}
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>Status:</label>
+                <div class="dataContent">
+                    {{responseDalete.status}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="send" (click)="step = 1">Retry</button>
+</section>
+
+<section id="response" *ngIf="step==3">
+    <!-- DOWNZIP RESPONSE -->
+    <div class="url"><span class="method">GET</span> {{urlEndpoint}}</div>
+    <code [class.error]="error">
+       {{jsonResponse}}
+    </code>
+    <div class="responses" *ngIf="response">
+        <div class="responseProcessed">
+            <div class="dataBlock">
+                <label>Description:</label>
+                <div class="dataContent">
+                    {{responseDownzip.description}}
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>File:</label>
+                <div class="dataContent">
+                    <ul>
+                        <li>Absolute
+                            <b *ngIf="responseDownzip.file.absolute">YES</b>
+                            <b *ngIf="!responseDownzip.file.absolute">NO</b>
+                        </li>
+                        <li>Absolute path <b>{{responseDownzip.file.absolutePath}}</b></li>
+                        <li>Canonical path <b>{{responseDownzip.file.canonicalPath}}</b></li>
+                        <li>Directory
+                            <b *ngIf="responseDownzip.file.directory">YES</b>
+                            <b *ngIf="!responseDownzip.file.directory">NO</b>
+                        </li>
+                        <li>File
+                            <b *ngIf="responseDownzip.file.file">YES</b>
+                            <b *ngIf="!responseDownzip.file.file">NO</b>
+                        </li>
+                        <li>Free space <b>{{responseDownzip.file.freeSpace}}</b></li>
+                        <li>Hidden
+                            <b *ngIf="responseDownzip.file.hidden">YES</b>
+                            <b *ngIf="!responseDownzip.file.hidden">NO</b>
+                        </li>
+                        <li>Name <b>{{responseDownzip.file.name}}</b></li>
+                        <li>Parent <b>{{responseDownzip.file.parent}}</b></li>
+                        <li>Path <b>{{responseDownzip.file.path}}</b></li>
+                        <li>Total space <b>{{responseDownzip.file.totalSpace}}</b></li>
+                        <li>Usable Space <b>{{responseDownzip.file.usableSpace}}</b></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>Filename:</label>
+                <div class="dataContent">
+                    {{responseDownzip.filename}}
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>Open:</label>
+                <div class="dataContent">
+                    <b *ngIf="responseDownzip.open">YES</b>
+                    <b *ngIf="!responseDownzip.open">NO</b>
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>Readable:</label>
+                <div class="dataContent">
+                    <b *ngIf="responseDownzip.readable">YES</b>
+                    <b *ngIf="!responseDownzip.readable">NO</b>
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>URI:</label>
+                <div class="dataContent">
+                    <ul *ngIf="responseDownzip.file">
+                        <li>Absolute
+                            <b *ngIf="responseDownzip.file.absolute">YES</b>
+                            <b *ngIf="!responseDownzip.file.absolute">NO</b>
+                        </li>
+                        <li>Authority <b>{{responseDownzip.uri.authority}}</b></li>
+                        <li>Fragment <b>{{responseDownzip.uri.fragment}}</b></li>
+                        <li>Host <b>{{responseDownzip.uri.host}}</b></li>
+                        <li>Opaque
+                            <b *ngIf="responseDownzip.file.opaque">YES</b>
+                            <b *ngIf="!responseDownzip.file.opaque">NO</b>
+                        </li>
+                        <li>Path <b>{{responseDownzip.uri.path}}</b></li>
+                        <li>Port <b>{{responseDownzip.uri.port}}</b></li>
+                        <li>Query <b>{{responseDownzip.uri.query}}</b></li>
+                        <li>Raw authority <b>{{responseDownzip.uri.rawAuthority}}</b></li>
+                        <li>Raw fragment <b>{{responseDownzip.uri.rawFragment}}</b></li>
+                        <li>Raw path <b>{{responseDownzip.uri.rawPath}}</b></li>
+                        <li>Raw query <b>{{responseDownzip.uri.rawQuery}}</b></li>
+                        <li>Raw Scheme Specific Part <b>{{responseDownzip.uri.rawSchemeSpecificPart}}</b></li>
+                        <li>Raw User Info <b>{{responseDownzip.uri.rawUserInfo}}</b></li>
+                        <li>Scheme <b>{{responseDownzip.uri.scheme}}</b></li>
+                        <li>Scheme Specific Part <b>{{responseDownzip.uri.schemeSpecificPart}}</b></li>
+                        <li>User Info <b>{{responseDownzip.uri.userInfo}}</b></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>URL:</label>
+                <div class="dataContent">
+                    <ul *ngIf="responseDownzip.url">
+                        <li>Authority <b>{{responseDownzip.url.authority}}</b></li>
+                        <li>Default port <b>{{responseDownzip.url.defaultPort}}</b></li>
+                        <li>File <b>{{responseDownzip.url.file}}</b></li>
+                        <li>Host <b>{{responseDownzip.url.host}}</b></li>
+                        <li>Path <b>{{responseDownzip.url.path}}</b></li>
+                        <li>Port <b>{{responseDownzip.url.port}}</b></li>
+                        <li>Protocol <b>{{responseDownzip.url.protocol}}</b></li>
+                        <li>Query <b>{{responseDownzip.url.query}}</b></li>
+                        <li>Ref <b>{{responseDownzip.url.ref}}</b></li>
+                        <li>User Info <b>{{responseDownzip.url.userInfo}}</b></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="send" (click)="step = 1">Retry</button>
+</section>
+
+<section id="response" *ngIf="step==4">
+    <!-- DATA RESPONSE -->
+    <div class="url"><span class="method">POST</span> {{urlEndpoint}}</div>
+    <code [class.error]="error">
+       {{jsonResponse}}
+    </code>
+    <div class="responses" *ngIf="response">
+        <div class="responseProcessed">
+            <div class="dataBlock">
+                <label>TxId:</label>
+                <div class="dataContent">
+                    {{response.txId}}
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>IDS:</label>
+                <div class="dataContent">
+                    <ul>
+                        <li *ngFor="let id of response.ids">{{id}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="send" (click)="step = 1">Retry</button>
+</section>
+
+
+<section id="response" *ngIf="step==5">
+    <!-- INFO RESPONSE -->
+    <div class="url"><span class="method">POST</span> {{urlEndpoint}}</div>
+    <code [class.error]="error">
+       {{jsonResponse}}
+    </code>
+    <div class="responses" *ngIf="response">
+        <div class="responseProcessed">
+            <div class="dataBlock">
+                <label>txId:</label>
+                <div class="dataContent">
+                    {{responseInfo.txId}}
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>Composite finger count:</label>
+                <div class="dataContent">
+                    {{responseInfo.compositeFingerCount}}
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>Enrollment date:</label>
+                <div class="dataContent">
+                    {{responseInfo.enrollmentDate}}
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>Composite Face Count:</label>
+                <div class="dataContent">
+                    {{responseInfo.faceCount}}
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>Composite Finger Count:</label>
+                <div class="dataContent">
+                    {{responseInfo.fingerCount}}
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>Exception:</label>
+                <div class="dataContent">
+                    <b *ngIf="responseInfo.exception">YES</b>
+                    <b *ngIf="!responseInfo.exception">NO</b>
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>Face count:</label>
+                <div class="dataContent">
+                    {{responseInfo.faceCount}}
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>Finger count:</label>
+                <div class="dataContent">
+                    {{responseInfo.fingerCount}}
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>Has Text Independent Voice:</label>
+                <div class="dataContent">
+                    <b *ngIf="responseInfo.hasTextIndependentVoice">YES</b>
+                    <b *ngIf="!responseInfo.hasTextIndependentVoice">NO</b>
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>i1:</label>
+                <div class="dataContent">
+                    {{responseInfo.i1}}
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>i2:</label>
+                <div class="dataContent">
+                    {{responseInfo.i2}}
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>i3:</label>
+                <div class="dataContent">
+                    {{responseInfo.i3}}
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>i4:</label>
+                <div class="dataContent">
+                    {{responseInfo.i4}}
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>i5:</label>
+                <div class="dataContent">
+                    {{responseInfo.i5}}
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>Last identify date:</label>
+                <div class="dataContent">
+                    {{responseInfo.lastIdentifyDate}}
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>Last update date:</label>
+                <div class="dataContent">
+                    {{responseInfo.lastUpdateDate}}
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>Last verify date:</label>
+                <div class="dataContent">
+                    {{responseInfo.lastVerifyDate}}
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>s1:</label>
+                <div class="dataContent">
+                    {{responseInfo.s1}}
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>s2:</label>
+                <div class="dataContent">
+                    {{responseInfo.s2}}
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>s3:</label>
+                <div class="dataContent">
+                    {{responseInfo.s3}}
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>s4:</label>
+                <div class="dataContent">
+                    {{responseInfo.s4}}
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>s5:</label>
+                <div class="dataContent">
+                    {{responseInfo.s5}}
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>Status:</label>
+                <div class="dataContent">
+                    {{responseInfo.status}}
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>Text dependent voice count:</label>
+                <div class="dataContent">
+                    {{responseInfo.textDependentVoiceCount}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="send" (click)="step = 1">Retry</button>
+</section>
+
 <form *ngIf="step==1">
     <section>
         <div class="inputRow">
