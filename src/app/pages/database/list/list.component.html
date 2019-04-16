@@ -1,6 +1,32 @@
 <app-header title="Database" subtitle="List"></app-header>
 <app-loader [isLoading]="loading"></app-loader>
 
+<section id="response" *ngIf="step==2">
+    <div class="url"><span class="method">POST</span> {{urlEndpoint}}</div>
+    <code [class.error]="error">
+            {{jsonResponse}}
+        </code>
+    <div class="responses" *ngIf="response">
+        <div class="responseProcessed">
+            <div class="dataBlock">
+                <label>TxId:</label>
+                <div class="dataContent">
+                    {{response.txId}}
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>IDS:</label>
+                <div class="dataContent">
+                    <ul>
+                        <li *ngFor="let id of response.ids">{{id}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="send" (click)="step = 1">Retry</button>
+</section>
+
 <form *ngIf="step==1">
     <section>
         <div class="inputRow">
@@ -99,5 +125,8 @@
             </label>
             <input type="text" name="s5" [(ngModel)]="dto.conditions.s5">
         </div>
+    </section>
+    <section>
+        <button type="button" class="send" (click)="send()">Send Data</button>
     </section>
 </form>
