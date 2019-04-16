@@ -29,6 +29,24 @@
           {{response.txId}}
         </div>
       </div>
+      <div class="dataBlock">
+        <label>False acceptance probability:</label>
+        <div class="dataContent">
+          <app-gauge [percent]="(response.faP * 100).toFixed(2)" color="#eeab00"></app-gauge>
+        </div>
+      </div>
+      <div class="dataBlock">
+        <label>Confidence:</label>
+        <div class="dataContent">
+          <app-gauge [percent]="(response.confidence * 100).toFixed(2)"></app-gauge>
+        </div>
+      </div>
+      <div class="dataBlock">
+          <label>score:</label>
+          <div class="dataContent">
+            {{response.score}}
+          </div>
+        </div>
     </div>
   </div>
   <button type="button" class="send" (click)="retry()">Retry</button>
@@ -350,7 +368,7 @@
       <label>
         Far
       </label>
-      <input name="far" [(ngModel)]="farCalculated" type="range" min="1" max="999"/>
+      <input name="far" [(ngModel)]="farCalculated" type="range" min="1" max="999" />
       <app-gauge [percent]="farCalculated / 10" color="#eeab00"></app-gauge>
     </div>
     <section>
