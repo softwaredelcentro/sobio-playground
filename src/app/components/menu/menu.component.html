@@ -12,8 +12,8 @@
       <a class="deployable" (click)="deployar(5)" [class.opened]="deployados[5]">EXTRACTION</a>
       <ul *ngIf="deployados[5]">
         <li class="disabled"><a href="">concat audio stream</a></li>
-        <li><a routerLink="/extraction/extract-face-image" routerLinkActive="active">extract face image</a></li>
-        <li><a routerLink="/extraction/extract-face-video" routerLinkActive="active">extract face video</a></li>
+        <li><a routerLink="extraction/extract-face-image" routerLinkActive="active">extract face image</a></li>
+        <li><a routerLink="extraction/extract-face-video" routerLinkActive="active">extract face video</a></li>
         <li class="disabled"><a href="">extract fingerprint image</a></li>
         <li class="disabled"><a href="">extract text dependent voice</a></li>
         <li class="disabled"><a href="">extract text independent voice</a></li>
@@ -25,13 +25,13 @@
       <ul *ngIf="deployados[7]">
         <li class="disabled"><a href="">Identify</a></li>
         <li class="disabled"><a href="">Verify</a></li>
-        <li><a routerLink="/matching/verify-t2t" routerLinkActive="active">Verify t2t</a></li>
+        <li><a routerLink="matching/verify-t2t" routerLinkActive="active">Verify t2t</a></li>
       </ul>
     </li>
     <li>
       <a class="deployable" (click)="deployar(8)" [class.opened]="deployados[8]">DOCUMENT EXTRACTION</a>
       <ul *ngIf="deployados[8]">
-        <li><a routerLink="/document-extraction/dni-ar" routerLinkActive="active">DNI Ar</a></li>
+        <li><a routerLink="document-extraction/dni-ar" routerLinkActive="active">DNI Ar</a></li>
       </ul>
     </li>
   </ul>
