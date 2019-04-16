@@ -1,0 +1,12 @@
+<div class="parentWindow">
+
+  <div class="mainCircle" [style]="'height: '+size+'px' | styleSecure">
+    <div class="radioColor" [style]="'margin-top: '+size/4+'px; border-width: '+borderWeight+'px;width: '+size+'px; height: '+size+'px; transform: rotate('+grade+'deg);transition: transform '+animSeconds+'s; border-color: '+color | styleSecure">
+    </div>
+  </div>
+  <!-- 45 - 225 = 180 -->
+  <div class="percentLabel">
+    {{percent}}{{symbol}}
+  </div>
+
+</div>

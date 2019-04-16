@@ -13,7 +13,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { VerifyT2tComponent } from './pages/matching/verify-t2t/verify-t2t.component';
 import { DniArComponent } from './pages/document-extraction/dni-ar/dni-ar.component';
-
+import { GaugeComponent } from './components/gauge/gauge.component';
+import { HtmlSecurePipe } from './components/gauge/pipes/html-secure.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,9 @@ import { DniArComponent } from './pages/document-extraction/dni-ar/dni-ar.compon
     HeaderComponent,
     LoaderComponent,
     VerifyT2tComponent,
-    DniArComponent
+    DniArComponent,
+    GaugeComponent,
+    HtmlSecurePipe,
   ],
   imports: [
     BrowserModule,

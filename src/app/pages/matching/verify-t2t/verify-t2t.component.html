@@ -344,13 +344,14 @@
       <label>
         Confidence
       </label>
-      {{(1000 - dto.params.far) / 1000}}
+      <app-gauge [percent]="(1000 - dto.params.far) / 10"></app-gauge>
     </div>
     <div class="inputRow">
       <label>
         Far
       </label>
-      <input name="far" [(ngModel)]="dto.params.far" type="range" min="1" max="999" /> {{dto.params.far / 1000}}
+      <input name="far" [(ngModel)]="dto.params.far" type="range" min="1" max="999"/>
+      <app-gauge [percent]="dto.params.far / 10" color="#eeab00"></app-gauge>
     </div>
     <section>
       <header>
