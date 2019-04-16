@@ -22,12 +22,11 @@ export class ExtractFaceVideoComponent implements OnInit {
 
   constructor(private extractionSrv: ExtractionService) {
     this.dto = new FaceVideoDTO();
-
-    this.dto.auditToken = this.create_UUID();
   }
 
   ngOnInit() {
     this.step = 1;
+    this.dto.auditToken = this.create_UUID();
   }
 
   create_UUID() {

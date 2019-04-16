@@ -1,6 +1,6 @@
 export class UUID {
 
-    static create_UUID(tpl?: string): string {
+    static create(tpl?: string): string {
         if (!tpl) {
             tpl = 'xxxxxxxx';
         }

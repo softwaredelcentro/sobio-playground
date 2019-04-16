@@ -19,7 +19,7 @@ export class ListComponent implements OnInit {
 
   ngOnInit() {
     this.step = 1;
-    this.dto.auditToken = UUID.create_UUID();
+    this.dto.auditToken = UUID.create();
   }
 
 }
