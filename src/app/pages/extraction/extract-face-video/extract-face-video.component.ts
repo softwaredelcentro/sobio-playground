@@ -2,6 +2,7 @@ import { FaceVideoResponse } from './../../../dataTypeObjects/faceVideoResponse'
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FaceVideoDTO } from 'src/app/dataTypeObjects/faceVideo';
 import { ExtractionService } from 'src/app/providers/extraction.service';
+import { UUID } from 'src/app/Utils/UUID';
 
 @Component({
   selector: 'app-extract-face-video',
@@ -26,21 +27,8 @@ export class ExtractFaceVideoComponent implements OnInit {
 
   ngOnInit() {
     this.step = 1;
-    this.dto.auditToken = this.create_UUID();
+    this.dto.auditToken = UUID.create();
   }
-
-  create_UUID() {
-    let dt = new Date().getTime();
-    const uuid = 'xxxxxxxx'.replace(/[xy]/g, (c) => {
-        // tslint:disable-next-line:no-bitwise
-        const r = (dt + Math.random() * 16) % 16 | 0;
-        dt = Math.floor(dt / 16);
-        // tslint:disable-next-line:no-bitwise
-        return (c === 'x' ? r : (r & 0x3 | 0x8) ).toString(16);
-    });
-    return uuid;
-  }
-
 
   fileChange() {
     this.loading = true;
