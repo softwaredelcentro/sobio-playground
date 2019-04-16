@@ -1,3 +1,4 @@
+import { DatabaseService } from './providers/database.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
@@ -14,7 +15,11 @@ export class AppComponent implements OnInit {
 
   apiEndpoint: string;
 
-  constructor(private eSrv: ExtractionService, private mSrv: MatchingService, private route: ActivatedRoute) { }
+  constructor(
+    private eSrv: ExtractionService,
+    private mSrv: MatchingService,
+    private dbSrv: DatabaseService,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.apiEndpoint = environment.endpoint;
@@ -33,5 +38,6 @@ export class AppComponent implements OnInit {
   apiChange() {
     this.eSrv.reSetEndpoints(this.apiEndpoint);
     this.mSrv.reSetEndpoints(this.apiEndpoint);
+    this.dbSrv.reSetEndpoints(this.apiEndpoint);
   }
 }

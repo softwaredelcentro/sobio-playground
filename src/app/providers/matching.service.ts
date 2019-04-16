@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { EndpointsMatchingService } from './EndpointsMatchingService';
+import { EndpointsMatchingService } from './endpointsMatchingService';
 import { environment } from 'src/environments/environment';
 import { VerifyT2t } from '../dataTypeObjects/verifyT2t';
 import { Observable } from 'rxjs';
