@@ -20,4 +20,19 @@ export class BySubjectComponent implements OnInit {
     this.auditToken = UUID.create();
   }
 
+  delete() {
+
+  }
+
+  downzip() {
+
+  }
+
+  data() {
+
+  }
+
+  info() {
+    
+  }
 }
