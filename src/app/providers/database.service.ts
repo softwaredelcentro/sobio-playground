@@ -10,6 +10,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { BioListResponse } from '../dataTypeObjects/bioListResponse';
+import { Enroll } from '../dataTypeObjects/enroll';
+import { EnrollResponse } from '../dataTypeObjects/enrollResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +34,7 @@ export class DatabaseService {
     this.endpoints.zip = endpoint + '/' + environment.version + '/bio/download-zipped-biodata/';
     this.endpoints.data = endpoint + '/' + environment.version + '/bio/subject-data';
     this.endpoints.info = endpoint + '/' + environment.version + '/bio/subject-info';
+    this.endpoints.enroll = endpoint + '/' + environment.version + '/bio/enroll';
   }
 
   public getList(dto: BioList): Observable<BioListResponse> {
@@ -60,6 +63,12 @@ export class DatabaseService {
     const options = { headers: {'Content-Type': 'application/json'} };
     const dataSTR = JSON.stringify(data);
     return this.httpClient.post<SubjectInfoResponse>(this.endpoints.info, dataSTR, options);
+  }
+
+  public enroll(data: Enroll): Observable<EnrollResponse> {
+    const options = { headers: {'Content-Type': 'application/json'} };
+    const dataSTR = JSON.stringify(data);
+    return this.httpClient.post<EnrollResponse>(this.endpoints.enroll, dataSTR, options);
   }
 
 }

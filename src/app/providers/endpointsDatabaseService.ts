@@ -4,4 +4,5 @@ export class EndpointsDatabaseService {
     data: string;
     info: string;
     zip: string;
+    enroll: string;
 }
