@@ -62,60 +62,61 @@
       </div>
       <div class="dataBlock">
         <label>Document Info:</label>
-        <div class="dataContent">
-          Address: {{response.documentInfo.address}}
+        <div class="dataContent" style="display: block">
+          Address: <b>{{response.documentInfo.address}}</b>
         </div>
-        <div class="dataContent">
-          Address Confidence: {{response.documentInfo.addressConfidence}}
+        <div class="dataContent" style="display: block">
+          Address Confidence: <b>{{response.documentInfo.addressConfidence}}</b>
         </div>
-        <div class="dataContent">
-          Code 1: {{response.documentInfo.code1}}
+        <div class="dataContent" style="display: block">
+          Code 1: <b>{{response.documentInfo.code1}}</b>
         </div>
-        <div class="dataContent">
-          Code 2: {{response.documentInfo.code2}}
+        <div class="dataContent" style="display: block">
+          Code 2: <b>{{response.documentInfo.code2}}</b>
         </div>
-        <div class="dataContent">
-          Date of Birth: {{response.documentInfo.dateOfBirth.day}} / {{response.documentInfo.dateOfBirth.month}} /
-          {{response.documentInfo.dateOfBirth.year}}
+        <div class="dataContent" style="display: block">
+          Date of Birth: <b>{{response.documentInfo.dateOfBirth.day}} / {{response.documentInfo.dateOfBirth.month}} /
+          {{response.documentInfo.dateOfBirth.year}}</b>
         </div>
-        <div class="dataContent">
-          Document Number: {{response.documentInfo.documentNumber}}
+        <div class="dataContent" style="display: block">
+          Document Number: <b>{{response.documentInfo.documentNumber}}</b>
         </div>
-        <div class="dataContent">
-          Document Type: {{response.documentInfo.documentType}}
+        <div class="dataContent" style="display: block">
+          Document Type: <b>{{response.documentInfo.documentType}}</b>
         </div>
-        <div class="dataContent">
-          Document Version: {{response.documentInfo.documentVersion}}
+        <div class="dataContent" style="display: block">
+          Document Version: <b>{{response.documentInfo.documentVersion}}</b>
         </div>
-        <div class="dataContent">
-          Expiration date: {{response.documentInfo.expirationDate.day}} / {{response.documentInfo.expirationDate.month}}
-          /
-          {{response.documentInfo.expirationDate.year}}
+        <div class="dataContent" style="display: block">
+          Expiration date: <b>{{response.documentInfo.expirationDate.day}} 
+          / {{response.documentInfo.expirationDate.month}}
+          / {{response.documentInfo.expirationDate.year}}</b>
         </div>
-        <div class="dataContent">
-          Given Names: {{response.documentInfo.givenNames}}
+        <div class="dataContent" style="display: block">
+          Given Names: <b>{{response.documentInfo.givenNames}}</b>
         </div>
-        <div class="dataContent">
-          Issuing Country: {{response.documentInfo.issuingCountry}}
+        <div class="dataContent" style="display: block">
+          Issuing Country: <b>{{response.documentInfo.issuingCountry}}</b>
         </div>
-        <div class="dataContent">
-          Issuing Date: {{response.documentInfo.issuingDate.day}} / {{response.documentInfo.issuingDate.month}} /
-          {{response.documentInfo.issuingDate.year}}
+        <div class="dataContent" style="display: block">
+          Issuing Date: <b>{{response.documentInfo.issuingDate.day}} 
+          / {{response.documentInfo.issuingDate.month}} 
+          / {{response.documentInfo.issuingDate.year}}</b>
         </div>
-        <div class="dataContent">
-          Nationality: {{response.documentInfo.nationality}}
+        <div class="dataContent" style="display: block">
+          Nationality: <b>{{response.documentInfo.nationality}}</b>
         </div>
-        <div class="dataContent">
-          Order: {{response.documentInfo.order}}
+        <div class="dataContent" style="display: block">
+          Order: <b>{{response.documentInfo.order}}</b>
         </div>
-        <div class="dataContent">
-          Sequence: {{response.documentInfo.sequence}}
+        <div class="dataContent" style="display: block">
+          Sequence: <b>{{response.documentInfo.sequence}}</b>
         </div>
-        <div class="dataContent">
-          Sex: {{response.documentInfo.sex}}
+        <div class="dataContent" style="display: block">
+          Sex: <b>{{response.documentInfo.sex}}</b>
         </div>
-        <div class="dataContent">
-          Surname: {{response.documentInfo.surname}}
+        <div class="dataContent" style="display: block">
+          Surname: <b>{{response.documentInfo.surname}}</b>
         </div>
       </div>
 
@@ -140,17 +141,17 @@
         </div>
         <div class="dataContent">
           Date of birth:
-          <b *ngIf="response.documentInfo.validComposite">Yes</b>
+          <b *ngIf="response.documentInfo.validDateOfBirth">Yes</b>
           <b *ngIf="!response.documentInfo.validDateOfBirth">No</b>
         </div>
         <div class="dataContent">
           Document number:
-          <b *ngIf="response.documentInfo.validComposite">Yes</b>
+          <b *ngIf="response.documentInfo.validDocumentNumber">Yes</b>
           <b *ngIf="!response.documentInfo.validDocumentNumber">No</b>
         </div>
         <div class="dataContent">
           Expiration date:
-          <b *ngIf="response.documentInfo.validComposite">Yes</b>
+          <b *ngIf="response.documentInfo.validExpirationDate">Yes</b>
           <b *ngIf="!response.documentInfo.validExpirationDate">No</b>
         </div>
       </div>
