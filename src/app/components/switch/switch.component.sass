@@ -1,0 +1,40 @@
+.switchComponent
+    display: inline-block;
+    cursor: pointer
+    .nameLabel
+        display: inline-block
+        text-transform: uppercase
+        font-weight: bolder
+        color: #949c9d
+        font-size: 13px
+        &.off
+            color: #343434
+    .background 
+        display: inline-block
+        position: relative
+        height: 20px
+        width: 45px
+        background: white
+        border-radius: 10px
+        margin: 0px 10px
+        vertical-align: middle
+        box-shadow: inset 0px 1px 7px rgba(119, 119, 119, 0.25)
+        .toggler
+            position: absolute
+            width: 22px
+            height: 22px
+            background: #f7f7f7
+            border-radius: 15px
+            top: -2px
+            box-shadow: 0px 1px 3px #929292b0
+            left: -2px
+            transition: left 0.2s linear
+    &.on
+        .background
+            .toggler
+                left: 25px
+        .nameLabel
+            &.on
+                color: #343434
+            &.off
+                color: #949c9d

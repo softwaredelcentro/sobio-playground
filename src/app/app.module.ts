@@ -21,6 +21,7 @@ import { BySubjectComponent } from './pages/database/by-subject/by-subject.compo
 import { UpdateComponent } from './pages/database/update/update.component';
 import { IdentifyComponent } from './pages/matching/identify/identify.component';
 import { VerifyComponent } from './pages/matching/verify/verify.component';
+import { SwitchComponent } from './components/switch/switch.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +41,7 @@ import { VerifyComponent } from './pages/matching/verify/verify.component';
     UpdateComponent,
     IdentifyComponent,
     VerifyComponent,
+    SwitchComponent,
   ],
   imports: [
     BrowserModule,

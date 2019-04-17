@@ -17,6 +17,11 @@ form {
             }
             header {
                 position: relative;
+                .buttonRights {
+                    position: absolute;
+                    right: 10px;
+                    top: -1px;
+                }
             }
             border-bottom: 0px;
             border: 1px solid #e6ecf0;

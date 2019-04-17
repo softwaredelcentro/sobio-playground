@@ -297,133 +297,144 @@
         <section>
             <header>
                 <h4>Duplicate Search</h4>
+                <div class="buttonRights">
+                    <app-switch [initStatus]="true" (switch)="duplicatedSearch = $event" style="display: inline-block;"></app-switch>
+                </div>
             </header>
-            <div class="inputRow">
-                <label>
-                    I1
-                </label>
-                <input type="number" name="dupl_i1" [(ngModel)]="dto.params.duplicateSearchParameters.conditions.i1">
-            </div>
-            <div class="inputRow">
-                <label>
-                    I2
-                </label>
-                <input type="number" name="dupl_i2" [(ngModel)]="dto.params.duplicateSearchParameters.conditions.i2">
-            </div>
-            <div class="inputRow">
-                <label>
-                    I3
-                </label>
-                <input type="number" name="dupl_i3" [(ngModel)]="dto.params.duplicateSearchParameters.conditions.i3">
-            </div>
-            <div class="inputRow">
-                <label>
-                    I4
-                </label>
-                <input type="number" name="dupl_i4" [(ngModel)]="dto.params.duplicateSearchParameters.conditions.i4">
-            </div>
-            <div class="inputRow">
-                <label>
-                    I5
-                </label>
-                <input type="number" name="dupl_i5" [(ngModel)]="dto.params.duplicateSearchParameters.conditions.i5">
-            </div>
-            <div class="inputRow">
-                <label>
-                    id
-                </label>
-                <input type="text" name="dupl_id" [(ngModel)]="dto.params.duplicateSearchParameters.conditions.id">
-            </div>
-            <div class="inputRow">
-                <label>
-                    id In
-                </label>
-                <input type="text" name="dupl_idIn" [(ngModel)]="dto.params.duplicateSearchParameters.conditions.idIn">
-            </div>
-            <div class="inputRow">
-                <label>
-                    id Like
-                </label>
-                <input type="text" name="dupl_idLike"
-                    [(ngModel)]="dto.params.duplicateSearchParameters.conditions.idLike">
-            </div>
-            <div class="inputRow">
-                <label>
-                    id No
-                </label>
-                <input type="text" name="dupl_idNo" [(ngModel)]="dto.params.duplicateSearchParameters.conditions.id">
-            </div>
-            <div class="inputRow">
-                <label>
-                    s1
-                </label>
-                <input type="text" name="dupl_s1" [(ngModel)]="dto.params.duplicateSearchParameters.conditions.s1">
-            </div>
-            <div class="inputRow">
-                <label>
-                    s2
-                </label>
-                <input type="text" name="dupl_s2" [(ngModel)]="dto.params.duplicateSearchParameters.conditions.s2">
-            </div>
-            <div class="inputRow">
-                <label>
-                    s3
-                </label>
-                <input type="text" name="dupl_s3" [(ngModel)]="dto.params.duplicateSearchParameters.conditions.s3">
-            </div>
-            <div class="inputRow">
-                <label>
-                    s4
-                </label>
-                <input type="text" name="dupl_s4" [(ngModel)]="dto.params.duplicateSearchParameters.conditions.s4">
-            </div>
-            <div class="inputRow">
-                <label>
-                    s5
-                </label>
-                <input type="text" name="dupl_s5" [(ngModel)]="dto.params.duplicateSearchParameters.conditions.s5">
-            </div>
-            <div class="inputRow">
-                <label>
-                    Confidence
-                </label>
-                <app-gauge [percent]="(1000 - farCalculated) / 10"></app-gauge>
-            </div>
-            <div class="inputRow">
-                <label>
-                    Far
-                </label>
-                <input name="far" [(ngModel)]="farCalculated" type="range" min="1" max="999" />
-                <app-gauge [percent]="farCalculated / 10" color="#eeab00"></app-gauge>
-            </div>
-            <section>
-                <header>
-                    <h4>Finger Print Matching Params</h4>
-                </header>
+            <div class="container" *ngIf="duplicatedSearch">
                 <div class="inputRow">
                     <label>
-                        Max Rotation
+                        I1
                     </label>
-                    <input name="maxRotation" type="range" min="0" max="180"
-                        [(ngModel)]="dto.params.duplicateSearchParameters.fingerPrintMatchingParams.maxRotation" />
-                    {{dto.params.duplicateSearchParameters.fingerPrintMatchingParams.maxRotation}}
+                    <input type="number" name="dupl_i1"
+                        [(ngModel)]="dto.params.duplicateSearchParameters.conditions.i1">
                 </div>
                 <div class="inputRow">
                     <label>
-                        Use Only Ansi378
+                        I2
                     </label>
-                    <input type="checkbox"
-                        [(ngModel)]="dto.params.duplicateSearchParameters.fingerPrintMatchingParams.useOnlyAnsi378"
-                        name="useOnlyAnsi378" />
+                    <input type="number" name="dupl_i2"
+                        [(ngModel)]="dto.params.duplicateSearchParameters.conditions.i2">
                 </div>
-            </section>
-            <div class="inputRow">
-                <label>
-                    Global Search With Conditions
-                </label>
-                <input type="checkbox"
-                    [(ngModel)]="dto.params.duplicateSearchParameters.globalSearchWithConditions"
-                    name="globalSearchWithConditions" />
+                <div class="inputRow">
+                    <label>
+                        I3
+                    </label>
+                    <input type="number" name="dupl_i3"
+                        [(ngModel)]="dto.params.duplicateSearchParameters.conditions.i3">
+                </div>
+                <div class="inputRow">
+                    <label>
+                        I4
+                    </label>
+                    <input type="number" name="dupl_i4"
+                        [(ngModel)]="dto.params.duplicateSearchParameters.conditions.i4">
+                </div>
+                <div class="inputRow">
+                    <label>
+                        I5
+                    </label>
+                    <input type="number" name="dupl_i5"
+                        [(ngModel)]="dto.params.duplicateSearchParameters.conditions.i5">
+                </div>
+                <div class="inputRow">
+                    <label>
+                        id
+                    </label>
+                    <input type="text" name="dupl_id" [(ngModel)]="dto.params.duplicateSearchParameters.conditions.id">
+                </div>
+                <div class="inputRow">
+                    <label>
+                        id In
+                    </label>
+                    <input type="text" name="dupl_idIn"
+                        [(ngModel)]="dto.params.duplicateSearchParameters.conditions.idIn">
+                </div>
+                <div class="inputRow">
+                    <label>
+                        id Like
+                    </label>
+                    <input type="text" name="dupl_idLike"
+                        [(ngModel)]="dto.params.duplicateSearchParameters.conditions.idLike">
+                </div>
+                <div class="inputRow">
+                    <label>
+                        id No
+                    </label>
+                    <input type="text" name="dupl_idNo"
+                        [(ngModel)]="dto.params.duplicateSearchParameters.conditions.id">
+                </div>
+                <div class="inputRow">
+                    <label>
+                        s1
+                    </label>
+                    <input type="text" name="dupl_s1" [(ngModel)]="dto.params.duplicateSearchParameters.conditions.s1">
+                </div>
+                <div class="inputRow">
+                    <label>
+                        s2
+                    </label>
+                    <input type="text" name="dupl_s2" [(ngModel)]="dto.params.duplicateSearchParameters.conditions.s2">
+                </div>
+                <div class="inputRow">
+                    <label>
+                        s3
+                    </label>
+                    <input type="text" name="dupl_s3" [(ngModel)]="dto.params.duplicateSearchParameters.conditions.s3">
+                </div>
+                <div class="inputRow">
+                    <label>
+                        s4
+                    </label>
+                    <input type="text" name="dupl_s4" [(ngModel)]="dto.params.duplicateSearchParameters.conditions.s4">
+                </div>
+                <div class="inputRow">
+                    <label>
+                        s5
+                    </label>
+                    <input type="text" name="dupl_s5" [(ngModel)]="dto.params.duplicateSearchParameters.conditions.s5">
+                </div>
+                <div class="inputRow">
+                    <label>
+                        Confidence
+                    </label>
+                    <app-gauge [percent]="(1000 - farCalculated) / 10"></app-gauge>
+                </div>
+                <div class="inputRow">
+                    <label>
+                        Far
+                    </label>
+                    <input name="far" [(ngModel)]="farCalculated" type="range" min="1" max="999" />
+                    <app-gauge [percent]="farCalculated / 10" color="#eeab00"></app-gauge>
+                </div>
+                <section>
+                    <header>
+                        <h4>Finger Print Matching Params</h4>
+                    </header>
+                    <div class="inputRow">
+                        <label>
+                            Max Rotation
+                        </label>
+                        <input name="maxRotation" type="range" min="0" max="180"
+                            [(ngModel)]="dto.params.duplicateSearchParameters.fingerPrintMatchingParams.maxRotation" />
+                        {{dto.params.duplicateSearchParameters.fingerPrintMatchingParams.maxRotation}}
+                    </div>
+                    <div class="inputRow">
+                        <label>
+                            Use Only Ansi378
+                        </label>
+                        <input type="checkbox"
+                            [(ngModel)]="dto.params.duplicateSearchParameters.fingerPrintMatchingParams.useOnlyAnsi378"
+                            name="useOnlyAnsi378" />
+                    </div>
+                </section>
+                <div class="inputRow">
+                    <label>
+                        Global Search With Conditions
+                    </label>
+                    <input type="checkbox" [(ngModel)]="dto.params.duplicateSearchParameters.globalSearchWithConditions"
+                        name="globalSearchWithConditions" />
+                </div>
             </div>
         </section>
     </section>

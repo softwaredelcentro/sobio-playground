@@ -21,6 +21,7 @@ export class EnrollComponent implements OnInit {
   jsonResponse: string;
   error: boolean;
   response: EnrollResponse;
+  duplicatedSearch: boolean;
 
   @ViewChildren('bi1_image_faces') bi1ImageFaces: QueryList<ElementRef>;
   @ViewChildren('bi1_image_fprints') bi1ImageFPrints: QueryList<ElementRef>;
@@ -31,6 +32,7 @@ export class EnrollComponent implements OnInit {
 
   ngOnInit() {
     this.step = 1;
+    this.duplicatedSearch = true;
     this.dto.auditToken = UUID.create();
     this.farCalculated = this.dto.params.duplicateSearchParameters.far;
   }
