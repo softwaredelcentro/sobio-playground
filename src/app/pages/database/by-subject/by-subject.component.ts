@@ -28,7 +28,7 @@ export class BySubjectComponent implements OnInit {
   error: boolean;
   urlEndpoint: string;
 
-  constructor(private dbSrv: DatabaseService) {}
+  constructor(private dbSrv: DatabaseService) { }
 
   ngOnInit() {
     this.step = 1;
@@ -60,7 +60,13 @@ export class BySubjectComponent implements OnInit {
       console.log(resp);
       this.loading = false;
       this.step = 3;
-      this.responseDownzip = resp;
+      // this.responseDownzip = resp;
+      const blob = new Blob([resp], { type: 'application/zip' });
+      const url = window.URL.createObjectURL(blob);
+      const pwa = window.open(url);
+      if (!pwa || pwa.closed || typeof pwa.closed === 'undefined') {
+        alert('Please disable your Pop-up blocker and try again.');
+      }
       this.jsonResponse = JSON.stringify(resp);
     }, err => {
       console.log(err);
@@ -118,17 +124,17 @@ export class BySubjectComponent implements OnInit {
         // alert('Copied A');
       });
     } catch (e) {
-        const selection = document.getSelection();
-        const range = document.createRange();
-        range.selectNode(document.getElementById('tplComposite' + index));
-        selection.removeAllRanges();
-        selection.addRange(range);
-        const result = document.execCommand('copy');
-        if (!result) {
-          alert('Can\'t copy (HTTPS/Chrome +43/Permisos).');
-        } else {
-          // alert('Copied B');
-        }
+      const selection = document.getSelection();
+      const range = document.createRange();
+      range.selectNode(document.getElementById('tplComposite' + index));
+      selection.removeAllRanges();
+      selection.addRange(range);
+      const result = document.execCommand('copy');
+      if (!result) {
+        alert('Can\'t copy (HTTPS/Chrome +43/Permisos).');
+      } else {
+        // alert('Copied B');
+      }
     }
   }
 
@@ -138,17 +144,17 @@ export class BySubjectComponent implements OnInit {
         // alert('Copied A');
       });
     } catch (e) {
-        const selection = document.getSelection();
-        const range = document.createRange();
-        range.selectNode(document.getElementById('tplFaces' + index));
-        selection.removeAllRanges();
-        selection.addRange(range);
-        const result = document.execCommand('copy');
-        if (!result) {
-          alert('Can\'t copy (HTTPS/Chrome +43/Permisos).');
-        } else {
-          // alert('Copied B');
-        }
+      const selection = document.getSelection();
+      const range = document.createRange();
+      range.selectNode(document.getElementById('tplFaces' + index));
+      selection.removeAllRanges();
+      selection.addRange(range);
+      const result = document.execCommand('copy');
+      if (!result) {
+        alert('Can\'t copy (HTTPS/Chrome +43/Permisos).');
+      } else {
+        // alert('Copied B');
+      }
     }
   }
 
@@ -158,17 +164,17 @@ export class BySubjectComponent implements OnInit {
         // alert('Copied A');
       });
     } catch (e) {
-        const selection = document.getSelection();
-        const range = document.createRange();
-        range.selectNode(document.getElementById('tplFingerPrints' + index));
-        selection.removeAllRanges();
-        selection.addRange(range);
-        const result = document.execCommand('copy');
-        if (!result) {
-          alert('Can\'t copy (HTTPS/Chrome +43/Permisos).');
-        } else {
-          // alert('Copied B');
-        }
+      const selection = document.getSelection();
+      const range = document.createRange();
+      range.selectNode(document.getElementById('tplFingerPrints' + index));
+      selection.removeAllRanges();
+      selection.addRange(range);
+      const result = document.execCommand('copy');
+      if (!result) {
+        alert('Can\'t copy (HTTPS/Chrome +43/Permisos).');
+      } else {
+        // alert('Copied B');
+      }
     }
   }
 
@@ -178,17 +184,17 @@ export class BySubjectComponent implements OnInit {
         // alert('Copied A');
       });
     } catch (e) {
-        const selection = document.getSelection();
-        const range = document.createRange();
-        range.selectNode(document.getElementById('tplTDV' + index));
-        selection.removeAllRanges();
-        selection.addRange(range);
-        const result = document.execCommand('copy');
-        if (!result) {
-          alert('Can\'t copy (HTTPS/Chrome +43/Permisos).');
-        } else {
-          // alert('Copied B');
-        }
+      const selection = document.getSelection();
+      const range = document.createRange();
+      range.selectNode(document.getElementById('tplTDV' + index));
+      selection.removeAllRanges();
+      selection.addRange(range);
+      const result = document.execCommand('copy');
+      if (!result) {
+        alert('Can\'t copy (HTTPS/Chrome +43/Permisos).');
+      } else {
+        // alert('Copied B');
+      }
     }
   }
 
@@ -198,17 +204,17 @@ export class BySubjectComponent implements OnInit {
         // alert('Copied A');
       });
     } catch (e) {
-        const selection = document.getSelection();
-        const range = document.createRange();
-        range.selectNode(document.getElementById('tplTIV'));
-        selection.removeAllRanges();
-        selection.addRange(range);
-        const result = document.execCommand('copy');
-        if (!result) {
-          alert('Can\'t copy (HTTPS/Chrome +43/Permisos).');
-        } else {
-          // alert('Copied B');
-        }
+      const selection = document.getSelection();
+      const range = document.createRange();
+      range.selectNode(document.getElementById('tplTIV'));
+      selection.removeAllRanges();
+      selection.addRange(range);
+      const result = document.execCommand('copy');
+      if (!result) {
+        alert('Can\'t copy (HTTPS/Chrome +43/Permisos).');
+      } else {
+        // alert('Copied B');
+      }
     }
   }
 }

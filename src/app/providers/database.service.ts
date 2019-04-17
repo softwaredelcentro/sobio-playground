@@ -1,12 +1,11 @@
 import { DeleteResponse } from './../dataTypeObjects/deleteResponse';
 import { SubjectInfoResponse } from './../dataTypeObjects/subjectInfoResponse';
 import { SubjectDataResponse } from './../dataTypeObjects/subjectDataResponse';
-import { DownZipBiodataResponse } from './../dataTypeObjects/downZipBiodataResponse';
 import { DBData } from './../dataTypeObjects/DBData';
 import { BioList } from './../dataTypeObjects/bioList';
 import { Injectable } from '@angular/core';
 import { EndpointsDatabaseService } from './endpointsDatabaseService';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { BioListResponse } from '../dataTypeObjects/bioListResponse';
@@ -49,8 +48,16 @@ export class DatabaseService {
     return this.httpClient.post<DeleteResponse>(this.endpoints.delete, dataSTR, options);
   }
 
-  public downZip(subjectId: string): Observable<DownZipBiodataResponse> {
-    return this.httpClient.get<DownZipBiodataResponse>(this.endpoints.zip + subjectId);
+  public downZip(subjectId: string): Observable<any> {
+    return this.httpClient.get(
+      this.endpoints.zip + subjectId,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        }),
+        responseType: 'blob' as 'json'
+      }
+    );
   }
 
   public getData(data: DBData): Observable<SubjectDataResponse> {
