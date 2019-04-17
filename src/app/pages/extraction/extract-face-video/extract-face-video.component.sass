@@ -29,3 +29,41 @@
     font-family: helvetica
     text-transform: uppercase
     font-size: 12px
+.navTab
+    .tabTitle 
+        .tabChange
+            display: inline-block
+            width: 100px
+            text-align: center
+            padding: 5px
+            background: #e8e8e8
+            border-radius: 5px 5px 0px 0px
+            margin-right: 7px
+            cursor: pointer
+            &.active
+                background: #fdfdfd
+    .tab 
+        background: #fdfdfd
+        width: 100%
+        padding: 10px
+        .point 
+            position: absolute
+            width: 4px
+            height: 4px
+            background: red
+            cursor: pointer
+            span.label 
+                background: #0000007a
+                width: 65px
+                text-align: center
+                margin-top: -30px
+                margin-left: 15px
+                font-size: 14px
+                border-radius: 5px
+                color: white
+                z-index: 1
+                display: none
+                position: relative
+            &:hover
+                span.label
+                    display: block

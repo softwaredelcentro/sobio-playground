@@ -33,168 +33,187 @@
                     {{face.face.template}}
                 </div>
             </div>
-            <div class="dataBlock" *ngIf="response.properties.position">
-                <label style="vertical-align: top;">Position</label>
+            <div class="dataBlock" *ngIf="face.properties.position">
+                <label style="display: block;">Position</label>
                 <div class="dataContent">
-                    x: <b>{{response.properties.position.x}}</b> y: <b>{{response.properties.position.y}}</b><br />
-                    Width: <b>{{response.properties.position.width}}</b> Height: <b>{{response.properties.position.height}}</b><br />
-                    Roll: <b>{{response.properties.position.roll}}</b> Pitch: <b>{{response.properties.position.pitch}}</b> Yaw:
-                    <b>{{response.properties.position.yaw}}</b><br />
+                    x: <b>{{face.properties.position.x}}</b> y: <b>{{face.properties.position.y}}</b><br />
+                    Width: <b>{{face.properties.position.width}}</b> Height:
+                    <b>{{face.properties.position.height}}</b><br />
+                    Roll: <b>{{face.properties.position.roll}}</b> Pitch:
+                    <b>{{face.properties.position.pitch}}</b> Yaw:
+                    <b>{{face.properties.position.yaw}}</b><br />
+                    <hr />
                     <b>Points:</b><br />
-                    <div class="dataTagBlock" *ngFor="let point of response.properties.position.points">
-                        Num: <b>{{point.num}}</b><br />
-                        Confidence: <b>{{point.confidence}}</b><br />
-                        x: <b>{{point.x}}</b> y: <b>{{point.y}}</b>
+                    <div class="navTab">
+                        <div class="tabTitle">
+                            <div class="tabChange" [class.active]="inTab==1" (click)="inTab=1">Graphical</div>
+                            <div class="tabChange" [class.active]="inTab==2" (click)="inTab=2">List</div>
+                        </div>
+                        <div class="tab" *ngIf="inTab==1">
+                            <div class="pointsBoard" style="position: relative;">
+                                <img [src]="'data:image/png;base64,'+face.face.image" style="width: auto">
+                                <div class="point" *ngFor="let point of face.properties.position.points"
+                                    [style.top.px]="point.y" [style.left.px]="point.x"><span class="label">{{point.num}}
+                                        - {{point.confidence}}%</span></div>
+                            </div>
+                        </div>
+                        <div class="tab" *ngIf="inTab==2">
+                            <div class="dataTagBlock" *ngFor="let point of face.properties.position.points">
+                                Num: <b>{{point.num}}</b><br />
+                                Confidence: <b>{{point.confidence}}</b><br />
+                                x: <b>{{point.x}}</b> y: <b>{{point.y}}</b>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="dataBlock">
                 <label>Clahe:</label>
                 <div class="dataContent">
-                    {{response.properties.clahe}}
+                    {{face.properties.clahe}}
                 </div>
             </div>
             <div class="dataBlock">
                 <label>Confidence:</label>
                 <div class="dataContent">
-                    {{response.properties.confidence}}%
+                    {{face.properties.confidence}}%
                 </div>
             </div>
-            <div class="dataBlock" *ngIf="response.properties.traits">
+            <div class="dataBlock" *ngIf="face.properties.traits">
                 <label>glasses:</label>
                 <div class="dataContent">
-                    {{response.properties.traits.glasses}}
+                    {{face.properties.traits.glasses}}
                 </div>
             </div>
-            <div class="dataBlock" *ngIf="response.properties.traits">
+            <div class="dataBlock" *ngIf="face.properties.traits">
                 <label>Open mouth:</label>
                 <div class="dataContent">
-                    {{response.properties.traits.openMouth}}
+                    {{face.properties.traits.openMouth}}
                 </div>
             </div>
-            <div class="dataBlock" *ngIf="response.properties.traits">
+            <div class="dataBlock" *ngIf="face.properties.traits">
                 <label>Both eyes closed:</label>
                 <div class="dataContent">
-                    <b *ngIf="response.properties.traits.ambosOjosCerrados">YES</b>
-                    <b *ngIf="!response.properties.traits.ambosOjosCerrados">NO</b>
+                    <b *ngIf="face.properties.traits.ambosOjosCerrados">YES</b>
+                    <b *ngIf="!face.properties.traits.ambosOjosCerrados">NO</b>
                 </div>
             </div>
-            <div class="dataBlock" *ngIf="response.properties.traits">
+            <div class="dataBlock" *ngIf="face.properties.traits">
                 <label>Dark glasses:</label>
                 <div class="dataContent">
-                    {{response.properties.traits.darkGlasses}}
+                    {{face.properties.traits.darkGlasses}}
                 </div>
             </div>
-            <div class="dataBlock" *ngIf="response.properties.traits">
+            <div class="dataBlock" *ngIf="face.properties.traits">
                 <label>Beard:</label>
                 <div class="dataContent">
-                    {{response.properties.traits.beard}}%
+                    {{face.properties.traits.beard}}%
                 </div>
             </div>
-            <div class="dataBlock" *ngIf="response.properties.traits">
+            <div class="dataBlock" *ngIf="face.properties.traits">
                 <label>Mustache:</label>
                 <div class="dataContent">
-                    {{response.properties.traits.mustache}}%
+                    {{face.properties.traits.mustache}}%
                 </div>
             </div>
-            <div class="dataBlock" *ngIf="response.properties.traits">
+            <div class="dataBlock" *ngIf="face.properties.traits">
                 <label>Hat:</label>
                 <div class="dataContent">
-                    {{response.properties.traits.hat}}%
+                    {{face.properties.traits.hat}}%
                 </div>
             </div>
-            <div class="dataBlock" *ngIf="response.properties.traits">
+            <div class="dataBlock" *ngIf="face.properties.traits">
                 <label>Left eye closed:</label>
                 <div class="dataContent">
-                    <b *ngIf="response.properties.traits.leftEyeClosed">YES</b>
-                    <b *ngIf="!response.properties.traits.leftEyeClosed">NO</b>
+                    <b *ngIf="face.properties.traits.leftEyeClosed">YES</b>
+                    <b *ngIf="!face.properties.traits.leftEyeClosed">NO</b>
                 </div>
             </div>
-            <div class="dataBlock" *ngIf="response.properties.traits">
+            <div class="dataBlock" *ngIf="face.properties.traits">
                 <label>Right Eye Closed:</label>
                 <div class="dataContent">
-                    <b *ngIf="response.properties.traits.rightEyeClosed">YES</b>
-                    <b *ngIf="!response.properties.traits.rightEyeClosed">NO</b>
+                    <b *ngIf="face.properties.traits.rightEyeClosed">YES</b>
+                    <b *ngIf="!face.properties.traits.rightEyeClosed">NO</b>
                 </div>
             </div>
-            <div class="dataBlock" *ngIf="response.properties.traits">
+            <div class="dataBlock" *ngIf="face.properties.traits">
                 <label>Looking Upward:</label>
                 <div class="dataContent">
-                    <b *ngIf="response.properties.traits.lookingUpward">YES</b>
-                    <b *ngIf="!response.properties.traits.lookingUpward">NO</b>
+                    <b *ngIf="face.properties.traits.lookingUpward">YES</b>
+                    <b *ngIf="!face.properties.traits.lookingUpward">NO</b>
 
                 </div>
             </div>
-            <div class="dataBlock" *ngIf="response.properties.traits">
+            <div class="dataBlock" *ngIf="face.properties.traits">
                 <label>Looking Downward:</label>
                 <div class="dataContent">
-                    <b *ngIf="response.properties.traits.lookingDownward">YES</b>
-                    <b *ngIf="!response.properties.traits.lookingDownward">NO</b>
+                    <b *ngIf="face.properties.traits.lookingDownward">YES</b>
+                    <b *ngIf="!face.properties.traits.lookingDownward">NO</b>
 
                 </div>
             </div>
-            <div class="dataBlock" *ngIf="response.properties.traits">
+            <div class="dataBlock" *ngIf="face.properties.traits">
                 <label>Looking Right:</label>
                 <div class="dataContent">
-                    <b *ngIf="response.properties.traits.lookingRight">YES</b>
-                    <b *ngIf="!response.properties.traits.lookingRight">NO</b>
+                    <b *ngIf="face.properties.traits.lookingRight">YES</b>
+                    <b *ngIf="!face.properties.traits.lookingRight">NO</b>
                 </div>
             </div>
-            <div class="dataBlock" *ngIf="response.properties.traits">
+            <div class="dataBlock" *ngIf="face.properties.traits">
                 <label>Looking Left:</label>
                 <div class="dataContent">
-                    <b *ngIf="response.properties.traits.lookingLeft">YES</b>
-                    <b *ngIf="!response.properties.traits.lookingLeft">NO</b>
+                    <b *ngIf="face.properties.traits.lookingLeft">YES</b>
+                    <b *ngIf="!face.properties.traits.lookingLeft">NO</b>
                 </div>
             </div>
-            <div class="dataBlock" *ngIf="response.properties.traits">
+            <div class="dataBlock" *ngIf="face.properties.traits">
                 <label>Looking Front:</label>
                 <div class="dataContent">
-                    <b *ngIf="response.properties.traits.lookingFront">YES</b>
-                    <b *ngIf="!response.properties.traits.lookingFront">NO</b>
+                    <b *ngIf="face.properties.traits.lookingFront">YES</b>
+                    <b *ngIf="!face.properties.traits.lookingFront">NO</b>
                 </div>
             </div>
             <hr />
-            <div class="dataBlock" *ngIf="response.properties.expression">
+            <div class="dataBlock" *ngIf="face.properties.expression">
                 <label style="vertical-align: top;">Expression:</label>
                 <div class="dataContent">
-                    Type: {{response.properties.expression.type}}<br />
-                    Confidence: {{response.properties.expression.confidence}}
+                    Type: {{face.properties.expression.type}}<br />
+                    Confidence: {{face.properties.expression.confidence}}
                 </div>
             </div>
             <hr />
-            <div class="dataBlock" *ngIf="response.properties.emotion">
+            <div class="dataBlock" *ngIf="face.properties.emotion">
                 <label style="vertical-align: top;">Emotions:</label>
                 <div class="dataContent">
-                    Anger: {{response.properties.emotion.anger}}<br />
-                    Disgust: {{response.properties.emotion.disgust}}<br />
-                    Fear: {{response.properties.emotion.fear}}<br />
-                    Happiness: {{response.properties.emotion.happiness}}<br />
-                    Neutral: {{response.properties.emotion.neutral}}<br />
-                    Sadness: {{response.properties.emotion.sadness}}<br />
-                    Surprise: {{response.properties.emotion.surprise}}<br />
+                    Anger: {{face.properties.emotion.anger}}<br />
+                    Disgust: {{face.properties.emotion.disgust}}<br />
+                    Fear: {{face.properties.emotion.fear}}<br />
+                    Happiness: {{face.properties.emotion.happiness}}<br />
+                    Neutral: {{face.properties.emotion.neutral}}<br />
+                    Sadness: {{face.properties.emotion.sadness}}<br />
+                    Surprise: {{face.properties.emotion.surprise}}<br />
                 </div>
             </div>
             <hr />
-            <div class="dataBlock" *ngIf="response.gender">
+            <div class="dataBlock" *ngIf="face.gender">
                 <label style="vertical-align: top;">Gender:</label>
                 <div class="dataContent">
-                    Type: {{response.properties.gender.type}}<br />
-                    Confidence: {{response.properties.gender.confidence}}
+                    Type: {{face.properties.gender.type}}<br />
+                    Confidence: {{face.properties.gender.confidence}}
                 </div>
             </div>
             <hr />
             <div class="dataBlock">
                 <label>Age:</label>
                 <div class="dataContent">
-                    Type: {{response.properties.age}}
+                    {{face.properties.age}}
                 </div>
             </div>
-            <div class="dataBlock" *ngIf="response.detectedActions">
+            <div class="dataBlock" *ngIf="face.detectedActions">
                 <label>Detected Actions:</label>
                 <div class="dataContent">
                     <ul>
-                        <li *ngFor="let action of response.properties.detectedActions">
+                        <li *ngFor="let action of face.properties.detectedActions">
                             Frame: {{action.frameNum}}<br />
                             Type: {{action.type}}
                         </li>

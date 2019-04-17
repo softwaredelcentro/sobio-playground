@@ -31,18 +31,33 @@
         </div>
       </div>
       <div class="dataBlock" *ngIf="response.properties.position">
-        <label style="vertical-align: top;">Position</label>
+        <label style="display: block;">Position</label>
         <div class="dataContent">
           x: <b>{{response.properties.position.x}}</b> y: <b>{{response.properties.position.y}}</b><br />
           Width: <b>{{response.properties.position.width}}</b> Height:
           <b>{{response.properties.position.height}}</b><br />
           Roll: <b>{{response.properties.position.roll}}</b> Pitch: <b>{{response.properties.position.pitch}}</b> Yaw:
           <b>{{response.properties.position.yaw}}</b><br />
+          <hr />
           <b>Points:</b><br />
-          <div class="dataTagBlock" *ngFor="let point of response.properties.position.points">
-            Num: <b>{{point.num}}</b><br />
-            Confidence: <b>{{point.confidence}}</b><br />
-            x: <b>{{point.x}}</b> y: <b>{{point.y}}</b>
+          <div class="navTab">
+            <div class="tabTitle">
+              <div class="tabChange" [class.active]="inTab==1" (click)="inTab=1">Graphical</div>
+              <div class="tabChange" [class.active]="inTab==2" (click)="inTab=2">List</div>
+            </div>
+            <div class="tab" *ngIf="inTab==1">
+              <div class="pointsBoard" style="position: relative;">
+                <img [src]="'data:image/png;base64,'+response.face.image" style="width: auto">
+                <div class="point" *ngFor="let point of response.properties.position.points" [style.top.px]="point.y"  [style.left.px]="point.x"><span class="label">{{point.num}} - {{point.confidence}}%</span></div>
+              </div>
+            </div>
+            <div class="tab" *ngIf="inTab==2">
+              <div class="dataTagBlock" *ngFor="let point of response.properties.position.points">
+                Num: <b>{{point.num}}</b><br />
+                Confidence: <b>{{point.confidence}}</b><br />
+                x: <b>{{point.x}}</b> y: <b>{{point.y}}</b>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -179,7 +194,7 @@
       <div class="dataBlock">
         <label>Age:</label>
         <div class="dataContent">
-          Type: {{response.properties.age}}
+          {{response.properties.age}}
         </div>
       </div>
       <div class="dataBlock" *ngIf="response.properties.detectedActions">

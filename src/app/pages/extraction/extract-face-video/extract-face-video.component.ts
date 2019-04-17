@@ -20,6 +20,7 @@ export class ExtractFaceVideoComponent implements OnInit {
   error: boolean;
   urlEndpoint: string;
   dataType: string;
+  inTab: number;
 
   constructor(private extractionSrv: ExtractionService) {
     this.dto = new FaceVideoDTO();
@@ -28,6 +29,7 @@ export class ExtractFaceVideoComponent implements OnInit {
   ngOnInit() {
     this.step = 1;
     this.dto.auditToken = UUID.create();
+    this.inTab = 1;
   }
 
   fileChange() {

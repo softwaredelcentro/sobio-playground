@@ -20,10 +20,11 @@ export class ExtractFaceImageComponent implements OnInit {
   error: boolean;
   urlEndpoint: string;
   dataType: string;
+  inTab: number;
 
   constructor(private extractionSrv: ExtractionService) {
     this.dto = new FaceImageDTO();
-
+    this.inTab = 1;
     // mock inicial
     this.dto.auditToken = UUID.create();
   }
