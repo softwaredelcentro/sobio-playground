@@ -313,7 +313,7 @@
             <div class="dataBlock">
                 <label>Enrollment date:</label>
                 <div class="dataContent">
-                    {{responseInfo.enrollmentDate}}
+                    {{responseInfo.enrollmentDate  | DateParsed}}
                 </div>
             </div>
             <div class="dataBlock">
@@ -387,19 +387,19 @@
             <div class="dataBlock">
                 <label>Last identify date:</label>
                 <div class="dataContent">
-                    {{responseInfo.lastIdentifyDate}}
+                    {{responseInfo.lastIdentifyDate | DateParsed}}
                 </div>
             </div>
             <div class="dataBlock">
                 <label>Last update date:</label>
                 <div class="dataContent">
-                    {{responseInfo.lastUpdateDate}}
+                    {{responseInfo.lastUpdateDate | DateParsed}}
                 </div>
             </div>
             <div class="dataBlock">
                 <label>Last verify date:</label>
                 <div class="dataContent">
-                    {{responseInfo.lastVerifyDate}}
+                    {{responseInfo.lastVerifyDate | DateParsed}}
                 </div>
             </div>
             <div class="dataBlock">

@@ -22,6 +22,8 @@ import { UpdateComponent } from './pages/database/update/update.component';
 import { IdentifyComponent } from './pages/matching/identify/identify.component';
 import { VerifyComponent } from './pages/matching/verify/verify.component';
 import { SwitchComponent } from './components/switch/switch.component';
+import { DateParsedPipe } from './Utils/dateParsed.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +44,7 @@ import { SwitchComponent } from './components/switch/switch.component';
     IdentifyComponent,
     VerifyComponent,
     SwitchComponent,
+    DateParsedPipe,
   ],
   imports: [
     BrowserModule,

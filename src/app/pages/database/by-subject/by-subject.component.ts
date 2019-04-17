@@ -5,6 +5,7 @@ import { DeleteResponse } from 'src/app/dataTypeObjects/deleteResponse';
 import { DownZipBiodataResponse } from 'src/app/dataTypeObjects/downZipBiodataResponse';
 import { SubjectDataResponse } from 'src/app/dataTypeObjects/subjectDataResponse';
 import { SubjectInfoResponse } from 'src/app/dataTypeObjects/subjectInfoResponse';
+import { TMTP } from 'src/app/Utils/TMTP';
 
 @Component({
   selector: 'app-by-subject',
