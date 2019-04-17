@@ -1,7 +1,7 @@
 import { BioInfo, FingerPrintMatchingParams } from './verifyT2t';
 export class Verify {
     auditToken: string;
-    bioInfo: BioInfo;
+    bioInfo: BioInfo = new BioInfo();
     params: VerifyParams = new VerifyParams();
     subjectId: string;
 }

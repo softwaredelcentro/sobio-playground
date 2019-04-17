@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { Enroll } from 'src/app/dataTypeObjects/enroll';
 import { CompositeFingerPrints, Faces, FingerPrints, TextDependentVoices } from 'src/app/dataTypeObjects/verifyT2t';
 import { UUID } from 'src/app/Utils/UUID';
@@ -21,6 +21,11 @@ export class EnrollComponent implements OnInit {
   jsonResponse: string;
   error: boolean;
   response: EnrollResponse;
+
+  @ViewChildren('bi1_image_faces') bi1ImageFaces: QueryList<ElementRef>;
+  @ViewChildren('bi1_image_fprints') bi1ImageFPrints: QueryList<ElementRef>;
+  @ViewChildren('bi1_audio_tdv') bi1AudioTdv: QueryList<ElementRef>;
+  @ViewChildren('bi1_audio_tiv') bi1AudioTiv: QueryList<ElementRef>;
 
   constructor(private dbSrv: DatabaseService) { }
 
@@ -80,6 +85,62 @@ export class EnrollComponent implements OnInit {
       this.jsonResponse = JSON.stringify(err);
     });
     this.urlEndpoint = this.dbSrv.getEndpoints().enroll;
+  }
+
+  bi1_image_faces_change(idx) {
+    this.loading = true;
+    const reader  = new FileReader();
+    const item = this.bi1ImageFaces.toArray()[idx];
+    reader.onload = () => {
+      const image = reader.result as string;
+      this.dto.bioInfo.faces[idx].image = image.replace(/data:([a-zA-Z0-9]+)\/([a-zA-Z0-9]+);base64,/gi, '');
+      this.loading = false;
+    };
+    if (item.nativeElement.files[0]) {
+      reader.readAsDataURL(item.nativeElement.files[0]);
+    }
+  }
+
+  bi1_image_fprints_change(idx) {
+    this.loading = true;
+    const reader  = new FileReader();
+    const item = this.bi1ImageFPrints.toArray()[idx];
+    reader.onload = () => {
+      const image = reader.result as string;
+      this.dto.bioInfo.fingerPrints[idx].image = image.replace(/data:([a-zA-Z0-9]+)\/([a-zA-Z0-9]+);base64,/gi, '');
+      this.loading = false;
+    };
+    if (item.nativeElement.files[0]) {
+      reader.readAsDataURL(item.nativeElement.files[0]);
+    }
+  }
+
+  bi1_audio_tdv_change(idx) {
+    this.loading = true;
+    const reader  = new FileReader();
+    const item = this.bi1AudioTdv.toArray()[idx];
+    reader.onload = () => {
+      const audio = reader.result as string;
+      this.dto.bioInfo.textDependentVoices[idx].audio = audio.replace(/data:([a-zA-Z0-9]+)\/([a-zA-Z0-9]+);base64,/gi, '');
+      this.loading = false;
+    };
+    if (item.nativeElement.files[0]) {
+      reader.readAsDataURL(item.nativeElement.files[0]);
+    }
+  }
+
+  bi1_audio_tiv_change(idx) {
+    this.loading = true;
+    const reader  = new FileReader();
+    const item = this.bi1AudioTiv.toArray()[idx];
+    reader.onload = () => {
+      const audio = reader.result as string;
+      this.dto.bioInfo.textIndependentVoice[idx].audio = audio.replace(/data:([a-zA-Z0-9]+)\/([a-zA-Z0-9]+);base64,/gi, '');
+      this.loading = false;
+    };
+    if (item.nativeElement.files[0]) {
+      reader.readAsDataURL(item.nativeElement.files[0]);
+    }
   }
 
 }
