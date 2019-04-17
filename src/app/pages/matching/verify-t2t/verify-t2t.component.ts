@@ -226,7 +226,6 @@ export class VerifyT2tComponent implements OnInit {
   }
 
   send() {
-
     this.error = false;
     this.loading = true;
     this.dto.params.far = this.farCalculated / 1000;

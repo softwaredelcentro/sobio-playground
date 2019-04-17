@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChildren, QueryList, ElementRef } from '@angular
 import { UUID } from 'src/app/Utils/UUID';
 import { Identify } from 'src/app/dataTypeObjects/identify';
 import { CompositeFingerPrints, Faces, FingerPrints, TextDependentVoices } from 'src/app/dataTypeObjects/verifyT2t';
+import { MatchingService } from 'src/app/providers/matching.service';
+import { IdentifyResponse } from 'src/app/dataTypeObjects/identifyResponse';
 
 @Component({
   selector: 'app-identify',
@@ -17,19 +19,20 @@ export class IdentifyComponent implements OnInit {
   jsonResponse: string;
   error: boolean;
   step: number;
+  response: IdentifyResponse;
 
   @ViewChildren('bi1_image_faces') bi1ImageFaces: QueryList<ElementRef>;
   @ViewChildren('bi1_image_fprints') bi1ImageFPrints: QueryList<ElementRef>;
   @ViewChildren('bi1_audio_tdv') bi1AudioTdv: QueryList<ElementRef>;
   @ViewChildren('bi1_audio_tiv') bi1AudioTiv: QueryList<ElementRef>;
 
-  constructor() {
+  constructor(private matching: MatchingService) {
     this.dto = new Identify();
     this.step = 1;
+    this.loading = false;
   }
 
   ngOnInit() {
-    this.loading = false;
     this.dto.auditToken = UUID.create();
     this.farCalculated = this.dto.params.far;
   }
@@ -120,6 +123,26 @@ export class IdentifyComponent implements OnInit {
     if (item.nativeElement.files[0]) {
       reader.readAsDataURL(item.nativeElement.files[0]);
     }
+  }
+
+  send() {
+    this.error = false;
+    this.loading = true;
+    this.dto.params.far = this.farCalculated / 1000;
+    this.matching.identify(this.dto).subscribe(resp => {
+      console.log(resp);
+      this.loading = false;
+      this.step = 2;
+      this.response = resp;
+      this.jsonResponse = JSON.stringify(resp);
+    }, err => {
+      console.log(err);
+      this.error = true;
+      this.loading = false;
+      this.step = 2;
+      this.jsonResponse = JSON.stringify(err);
+    });
+    this.urlEndpoint = this.matching.getEndpoints().identify;
   }
 
 }

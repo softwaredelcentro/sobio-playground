@@ -6,8 +6,8 @@
 <section id="response" *ngIf="step==2">
     <div class="url"><span class="method">POST</span> {{urlEndpoint}}</div>
     <code [class.error]="error">
-                    {{jsonResponse}}
-                </code>
+        {{jsonResponse}}
+    </code>
     <div class="responses" *ngIf="response">
         <div class="responseProcessed">
             <div class="dataBlock">
@@ -17,9 +17,27 @@
                 </div>
             </div>
             <div class="dataBlock">
-                <label>Duplicated Subject ID:</label>
+                <label>False acceptance probability:</label>
                 <div class="dataContent">
-                    {{response.txId}}
+                    <app-gauge [percent]="(response.faP * 100).toFixed(2)" color="#eeab00"></app-gauge>
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>Confidence:</label>
+                <div class="dataContent">
+                    <app-gauge [percent]="(response.confidence * 100).toFixed(2)"></app-gauge>
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>Subject ID:</label>
+                <div class="dataContent">
+                    {{response.subjectId}}
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>Score:</label>
+                <div class="dataContent">
+                    {{response.score}}
                 </div>
             </div>
             <div class="dataBlock">
@@ -320,8 +338,7 @@
                 <label>
                     Use Only Ansi378
                 </label>
-                <input type="checkbox"
-                    [(ngModel)]="dto.params.fingerPrintMatchingParams.useOnlyAnsi378"
+                <input type="checkbox" [(ngModel)]="dto.params.fingerPrintMatchingParams.useOnlyAnsi378"
                     name="useOnlyAnsi378" />
             </div>
         </section>
