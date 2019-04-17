@@ -110,4 +110,104 @@ export class BySubjectComponent implements OnInit {
     });
     this.urlEndpoint = this.dbSrv.getEndpoints().info;
   }
+
+  copyComposite(index) {
+    try {
+      (navigator as any).clipboard.writeText(this.responseData.template.compositeFingerPrints[index].template).then(() => {
+        // alert('Copied A');
+      });
+    } catch (e) {
+        const selection = document.getSelection();
+        const range = document.createRange();
+        range.selectNode(document.getElementById('tplComposite' + index));
+        selection.removeAllRanges();
+        selection.addRange(range);
+        const result = document.execCommand('copy');
+        if (!result) {
+          alert('Can\'t copy (HTTPS/Chrome +43/Permisos).');
+        } else {
+          // alert('Copied B');
+        }
+    }
+  }
+
+  copyFaces(index) {
+    try {
+      (navigator as any).clipboard.writeText(this.responseData.template.faces[index].template).then(() => {
+        // alert('Copied A');
+      });
+    } catch (e) {
+        const selection = document.getSelection();
+        const range = document.createRange();
+        range.selectNode(document.getElementById('tplFaces' + index));
+        selection.removeAllRanges();
+        selection.addRange(range);
+        const result = document.execCommand('copy');
+        if (!result) {
+          alert('Can\'t copy (HTTPS/Chrome +43/Permisos).');
+        } else {
+          // alert('Copied B');
+        }
+    }
+  }
+
+  copyFingerPrint(index) {
+    try {
+      (navigator as any).clipboard.writeText(this.responseData.template.fingerPrints[index].template).then(() => {
+        // alert('Copied A');
+      });
+    } catch (e) {
+        const selection = document.getSelection();
+        const range = document.createRange();
+        range.selectNode(document.getElementById('tplFingerPrints' + index));
+        selection.removeAllRanges();
+        selection.addRange(range);
+        const result = document.execCommand('copy');
+        if (!result) {
+          alert('Can\'t copy (HTTPS/Chrome +43/Permisos).');
+        } else {
+          // alert('Copied B');
+        }
+    }
+  }
+
+  copyTDV(index) {
+    try {
+      (navigator as any).clipboard.writeText(this.responseData.template.textDependentVoices[index].template).then(() => {
+        // alert('Copied A');
+      });
+    } catch (e) {
+        const selection = document.getSelection();
+        const range = document.createRange();
+        range.selectNode(document.getElementById('tplTDV' + index));
+        selection.removeAllRanges();
+        selection.addRange(range);
+        const result = document.execCommand('copy');
+        if (!result) {
+          alert('Can\'t copy (HTTPS/Chrome +43/Permisos).');
+        } else {
+          // alert('Copied B');
+        }
+    }
+  }
+
+  copyTIV() {
+    try {
+      (navigator as any).clipboard.writeText(this.responseData.template.textIndependentVoice.template).then(() => {
+        // alert('Copied A');
+      });
+    } catch (e) {
+        const selection = document.getSelection();
+        const range = document.createRange();
+        range.selectNode(document.getElementById('tplTIV'));
+        selection.removeAllRanges();
+        selection.addRange(range);
+        const result = document.execCommand('copy');
+        if (!result) {
+          alert('Can\'t copy (HTTPS/Chrome +43/Permisos).');
+        } else {
+          // alert('Copied B');
+        }
+    }
+  }
 }
