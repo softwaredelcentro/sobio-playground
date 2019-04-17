@@ -100,7 +100,8 @@
                     <label>
                         Select image file
                     </label>
-                    <input type="file" accept="image/*" name="bi1_image_faces{{idx}}" (change)="bi1_image_faces_change(idx)" #bi1_image_faces>
+                    <input type="file" accept="image/*" name="bi1_image_faces{{idx}}"
+                        (change)="bi1_image_faces_change(idx)" #bi1_image_faces>
                 </div>
                 <div class="inputRow">
                     <label>
@@ -141,13 +142,15 @@
                     <label>
                         Position
                     </label>
-                    <input type="text" name="bi1_position_fp{{idx}}" [(ngModel)]="dto.bioInfo.fingerPrints[idx].position">
+                    <input type="text" name="bi1_position_fp{{idx}}"
+                        [(ngModel)]="dto.bioInfo.fingerPrints[idx].position">
                 </div>
                 <div class="inputRow">
                     <label>
                         Template
                     </label>
-                    <textarea name="bi1_template_fp{{idx}}" [(ngModel)]="dto.bioInfo.fingerPrints[idx].template"></textarea>
+                    <textarea name="bi1_template_fp{{idx}}"
+                        [(ngModel)]="dto.bioInfo.fingerPrints[idx].template"></textarea>
                 </div>
             </div>
         </section>
@@ -414,6 +417,14 @@
                         name="useOnlyAnsi378" />
                 </div>
             </section>
+            <div class="inputRow">
+                <label>
+                    Global Search With Conditions
+                </label>
+                <input type="checkbox"
+                    [(ngModel)]="dto.params.duplicateSearchParameters.globalSearchWithConditions"
+                    name="globalSearchWithConditions" />
+            </div>
         </section>
     </section>
     <section>
