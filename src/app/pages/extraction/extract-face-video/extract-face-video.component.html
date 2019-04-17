@@ -161,7 +161,7 @@
           <b *ngIf="!response.properties.traits.lookingFront">NO</b>
         </div>
       </div>
-      <hr />
+      <hr *ngIf="response.properties.traits"/>
       <div class="dataBlock" *ngIf="response.properties.expression">
         <label style="vertical-align: top;">Expression:</label>
         <div class="dataContent">
@@ -169,7 +169,7 @@
           Confidence: {{response.properties.expression.confidence}}
         </div>
       </div>
-      <hr />
+      <hr *ngIf="response.properties.expression"/>
       <div class="dataBlock" *ngIf="response.properties.emotion">
         <label style="vertical-align: top;">Emotions:</label>
         <div class="dataContent">
@@ -182,7 +182,7 @@
           Surprise: {{response.properties.emotion.surprise}}<br />
         </div>
       </div>
-      <hr />
+      <hr *ngIf="response.properties.emotion"/>
       <div class="dataBlock" *ngIf="response.properties.gender">
         <label style="vertical-align: top;">Gender:</label>
         <div class="dataContent">
@@ -190,7 +190,7 @@
           Confidence: {{response.properties.gender.confidence}}
         </div>
       </div>
-      <hr />
+      <hr *ngIf="response.properties.gender"/>
       <div class="dataBlock">
         <label>Age:</label>
         <div class="dataContent">

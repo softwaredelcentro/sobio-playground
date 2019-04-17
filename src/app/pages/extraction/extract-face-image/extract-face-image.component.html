@@ -173,7 +173,7 @@
                     <b *ngIf="!face.properties.traits.lookingFront">NO</b>
                 </div>
             </div>
-            <hr />
+            <hr *ngIf="face.properties.traits"/>
             <div class="dataBlock" *ngIf="face.properties.expression">
                 <label style="vertical-align: top;">Expression:</label>
                 <div class="dataContent">
@@ -181,7 +181,7 @@
                     Confidence: {{face.properties.expression.confidence}}
                 </div>
             </div>
-            <hr />
+            <hr *ngIf="face.properties.expression"/>
             <div class="dataBlock" *ngIf="face.properties.emotion">
                 <label style="vertical-align: top;">Emotions:</label>
                 <div class="dataContent">
@@ -194,7 +194,7 @@
                     Surprise: {{face.properties.emotion.surprise}}<br />
                 </div>
             </div>
-            <hr />
+            <hr  *ngIf="face.properties.emotion"/>
             <div class="dataBlock" *ngIf="face.gender">
                 <label style="vertical-align: top;">Gender:</label>
                 <div class="dataContent">
@@ -202,7 +202,7 @@
                     Confidence: {{face.properties.gender.confidence}}
                 </div>
             </div>
-            <hr />
+            <hr *ngIf="face.gender"/>
             <div class="dataBlock">
                 <label>Age:</label>
                 <div class="dataContent">
