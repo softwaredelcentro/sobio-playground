@@ -31,8 +31,8 @@
     <li>
       <a class="deployable" (click)="deployar(7)" [class.opened]="deployados[7]">MATCHING</a>
       <ul *ngIf="deployados[7]">
-        <li class="disabled"><a href="">Identify</a></li>
-        <li class="disabled"><a href="">Verify</a></li>
+        <li><a routerLink="matching/identify" routerLinkActive="active">Identify</a></li>
+        <li><a routerLink="matching/verify" routerLinkActive="active">Verify</a></li>
         <li><a routerLink="matching/verify-t2t" routerLinkActive="active">Verify t2t</a></li>
       </ul>
     </li>

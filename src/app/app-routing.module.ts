@@ -1,3 +1,5 @@
+import { IdentifyComponent } from './pages/matching/identify/identify.component';
+import { VerifyComponent } from './pages/matching/verify/verify.component';
 import { UpdateComponent } from './pages/database/update/update.component';
 import { ListComponent } from './pages/database/list/list.component';
 import { BySubjectComponent } from './pages/database/by-subject/by-subject.component';
@@ -24,6 +26,19 @@ const routes: Routes = [
     path: 'extraction/extract-face-video',
     component: ExtractFaceVideoComponent,
     data: { title: 'Extract Face Video' }
+  },
+  {
+    path: 'matching/identify',
+    component: IdentifyComponent,
+    data: {
+      title:
+        'Performs an identification (1:N) of supplied biometric data against enrolled subjects (that match optionally supplied conditions)'
+    }
+  },
+  {
+    path: 'matching/verify',
+    component: VerifyComponent,
+    data: { title: 'Performs a verification (1:1) of supplied biometric data against a supplied enrolled subject id' }
   },
   {
     path: 'matching/verify-t2t',
