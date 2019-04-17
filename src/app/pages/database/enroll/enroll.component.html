@@ -298,7 +298,7 @@
             <header>
                 <h4>Duplicate Search</h4>
                 <div class="buttonRights">
-                    <app-switch [initStatus]="true" (switch)="duplicatedSearch = $event" style="display: inline-block;"></app-switch>
+                    <app-switch [initStatus]="duplicatedSearch" (switch)="duplicatedSearch = $event" style="display: inline-block;"></app-switch>
                 </div>
             </header>
             <div class="container" *ngIf="duplicatedSearch">

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
-import { Enroll } from 'src/app/dataTypeObjects/enroll';
+import { Enroll, DuplicateSearchParameters } from 'src/app/dataTypeObjects/enroll';
 import { CompositeFingerPrints, Faces, FingerPrints, TextDependentVoices } from 'src/app/dataTypeObjects/verifyT2t';
 import { UUID } from 'src/app/Utils/UUID';
 import { DatabaseService } from 'src/app/providers/database.service';
@@ -35,6 +35,7 @@ export class EnrollComponent implements OnInit {
     this.duplicatedSearch = true;
     this.dto.auditToken = UUID.create();
     this.farCalculated = this.dto.params.duplicateSearchParameters.far;
+    this.duplicatedSearch = true;
   }
 
   addCompositeFinger() {
@@ -73,18 +74,23 @@ export class EnrollComponent implements OnInit {
     this.error = false;
     this.loading = true;
     this.dto.params.duplicateSearchParameters.far = this.farCalculated / 100;
+    if (!this.duplicatedSearch) {
+      this.dto.params.duplicateSearchParameters = undefined;
+    }
     this.dbSrv.enroll(this.dto).subscribe(resp => {
       console.log(resp);
       this.loading = false;
       this.step = 2;
       this.response = resp;
       this.jsonResponse = JSON.stringify(resp);
+      this.dto.params.duplicateSearchParameters = new DuplicateSearchParameters();
     }, err => {
       console.log(err);
       this.error = true;
       this.loading = false;
       this.step = 2;
       this.jsonResponse = JSON.stringify(err);
+      this.dto.params.duplicateSearchParameters = new DuplicateSearchParameters();
     });
     this.urlEndpoint = this.dbSrv.getEndpoints().enroll;
   }
