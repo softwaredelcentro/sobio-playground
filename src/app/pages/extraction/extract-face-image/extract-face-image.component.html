@@ -33,6 +33,174 @@
                     {{face.face.template}}
                 </div>
             </div>
+            <div class="dataBlock" *ngIf="response.properties.position">
+                <label style="vertical-align: top;">Position</label>
+                <div class="dataContent">
+                    x: <b>{{response.properties.position.x}}</b> y: <b>{{response.properties.position.y}}</b><br />
+                    Width: <b>{{response.properties.position.width}}</b> Height: <b>{{response.properties.position.height}}</b><br />
+                    Roll: <b>{{response.properties.position.roll}}</b> Pitch: <b>{{response.properties.position.pitch}}</b> Yaw:
+                    <b>{{response.properties.position.yaw}}</b><br />
+                    <b>Points:</b><br />
+                    <div class="dataTagBlock" *ngFor="let point of response.properties.position.points">
+                        Num: <b>{{point.num}}</b><br />
+                        Confidence: <b>{{point.confidence}}</b><br />
+                        x: <b>{{point.x}}</b> y: <b>{{point.y}}</b>
+                    </div>
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>Clahe:</label>
+                <div class="dataContent">
+                    {{response.properties.clahe}}
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>Confidence:</label>
+                <div class="dataContent">
+                    {{response.properties.confidence}}%
+                </div>
+            </div>
+            <div class="dataBlock" *ngIf="response.properties.traits">
+                <label>glasses:</label>
+                <div class="dataContent">
+                    {{response.properties.traits.glasses}}
+                </div>
+            </div>
+            <div class="dataBlock" *ngIf="response.properties.traits">
+                <label>Open mouth:</label>
+                <div class="dataContent">
+                    {{response.properties.traits.openMouth}}
+                </div>
+            </div>
+            <div class="dataBlock" *ngIf="response.properties.traits">
+                <label>Both eyes closed:</label>
+                <div class="dataContent">
+                    <b *ngIf="response.properties.traits.ambosOjosCerrados">YES</b>
+                    <b *ngIf="!response.properties.traits.ambosOjosCerrados">NO</b>
+                </div>
+            </div>
+            <div class="dataBlock" *ngIf="response.properties.traits">
+                <label>Dark glasses:</label>
+                <div class="dataContent">
+                    {{response.properties.traits.darkGlasses}}
+                </div>
+            </div>
+            <div class="dataBlock" *ngIf="response.properties.traits">
+                <label>Beard:</label>
+                <div class="dataContent">
+                    {{response.properties.traits.beard}}%
+                </div>
+            </div>
+            <div class="dataBlock" *ngIf="response.properties.traits">
+                <label>Mustache:</label>
+                <div class="dataContent">
+                    {{response.properties.traits.mustache}}%
+                </div>
+            </div>
+            <div class="dataBlock" *ngIf="response.properties.traits">
+                <label>Hat:</label>
+                <div class="dataContent">
+                    {{response.properties.traits.hat}}%
+                </div>
+            </div>
+            <div class="dataBlock" *ngIf="response.properties.traits">
+                <label>Left eye closed:</label>
+                <div class="dataContent">
+                    <b *ngIf="response.properties.traits.leftEyeClosed">YES</b>
+                    <b *ngIf="!response.properties.traits.leftEyeClosed">NO</b>
+                </div>
+            </div>
+            <div class="dataBlock" *ngIf="response.properties.traits">
+                <label>Right Eye Closed:</label>
+                <div class="dataContent">
+                    <b *ngIf="response.properties.traits.rightEyeClosed">YES</b>
+                    <b *ngIf="!response.properties.traits.rightEyeClosed">NO</b>
+                </div>
+            </div>
+            <div class="dataBlock" *ngIf="response.properties.traits">
+                <label>Looking Upward:</label>
+                <div class="dataContent">
+                    <b *ngIf="response.properties.traits.lookingUpward">YES</b>
+                    <b *ngIf="!response.properties.traits.lookingUpward">NO</b>
+
+                </div>
+            </div>
+            <div class="dataBlock" *ngIf="response.properties.traits">
+                <label>Looking Downward:</label>
+                <div class="dataContent">
+                    <b *ngIf="response.properties.traits.lookingDownward">YES</b>
+                    <b *ngIf="!response.properties.traits.lookingDownward">NO</b>
+
+                </div>
+            </div>
+            <div class="dataBlock" *ngIf="response.properties.traits">
+                <label>Looking Right:</label>
+                <div class="dataContent">
+                    <b *ngIf="response.properties.traits.lookingRight">YES</b>
+                    <b *ngIf="!response.properties.traits.lookingRight">NO</b>
+                </div>
+            </div>
+            <div class="dataBlock" *ngIf="response.properties.traits">
+                <label>Looking Left:</label>
+                <div class="dataContent">
+                    <b *ngIf="response.properties.traits.lookingLeft">YES</b>
+                    <b *ngIf="!response.properties.traits.lookingLeft">NO</b>
+                </div>
+            </div>
+            <div class="dataBlock" *ngIf="response.properties.traits">
+                <label>Looking Front:</label>
+                <div class="dataContent">
+                    <b *ngIf="response.properties.traits.lookingFront">YES</b>
+                    <b *ngIf="!response.properties.traits.lookingFront">NO</b>
+                </div>
+            </div>
+            <hr />
+            <div class="dataBlock" *ngIf="response.properties.expression">
+                <label style="vertical-align: top;">Expression:</label>
+                <div class="dataContent">
+                    Type: {{response.properties.expression.type}}<br />
+                    Confidence: {{response.properties.expression.confidence}}
+                </div>
+            </div>
+            <hr />
+            <div class="dataBlock" *ngIf="response.properties.emotion">
+                <label style="vertical-align: top;">Emotions:</label>
+                <div class="dataContent">
+                    Anger: {{response.properties.emotion.anger}}<br />
+                    Disgust: {{response.properties.emotion.disgust}}<br />
+                    Fear: {{response.properties.emotion.fear}}<br />
+                    Happiness: {{response.properties.emotion.happiness}}<br />
+                    Neutral: {{response.properties.emotion.neutral}}<br />
+                    Sadness: {{response.properties.emotion.sadness}}<br />
+                    Surprise: {{response.properties.emotion.surprise}}<br />
+                </div>
+            </div>
+            <hr />
+            <div class="dataBlock" *ngIf="response.gender">
+                <label style="vertical-align: top;">Gender:</label>
+                <div class="dataContent">
+                    Type: {{response.properties.gender.type}}<br />
+                    Confidence: {{response.properties.gender.confidence}}
+                </div>
+            </div>
+            <hr />
+            <div class="dataBlock">
+                <label>Age:</label>
+                <div class="dataContent">
+                    Type: {{response.properties.age}}
+                </div>
+            </div>
+            <div class="dataBlock" *ngIf="response.detectedActions">
+                <label>Detected Actions:</label>
+                <div class="dataContent">
+                    <ul>
+                        <li *ngFor="let action of response.properties.detectedActions">
+                            Frame: {{action.frameNum}}<br />
+                            Type: {{action.type}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
     <button type="button" class="send" (click)="retry()">Retry</button>
@@ -55,7 +223,8 @@
             <label>
                 Blink Sensibility
             </label>
-            <input type="range" min="1" max="7" name="blinkSensibility" [(ngModel)]="dto.params.blinkSensibility"> {{dto.params.blinkSensibility/10}}
+            <input type="range" min="1" max="7" name="blinkSensibility" [(ngModel)]="dto.params.blinkSensibility">
+            {{dto.params.blinkSensibility/10}}
         </div>
         <div class="inputRow">
             <label>
@@ -85,15 +254,13 @@
             <label>
                 Detect Only Major Face
             </label>
-            <input type="checkbox" name="detectOnlyMajorFace" 
-                [(ngModel)]="dto.params.detectOnlyMajorFace">
+            <input type="checkbox" name="detectOnlyMajorFace" [(ngModel)]="dto.params.detectOnlyMajorFace">
         </div>
         <div class="inputRow">
             <label>
                 Detect Traits And Actions
             </label>
-            <input type="checkbox" name="detectTraitsAndActions"
-                [(ngModel)]="dto.params.detectTraitsAndActions">
+            <input type="checkbox" name="detectTraitsAndActions" [(ngModel)]="dto.params.detectTraitsAndActions">
         </div>
         <section>
             <header>
@@ -104,47 +271,55 @@
                     Looking Downwards Pitch Angle
                 </label>
                 <input type="range" min="-30" max="-5" name="lookingDownwardsPitchAngle"
-                    [(ngModel)]="dto.params.facePoseSensibility.lookingDownwardsPitchAngle"> {{dto.params.facePoseSensibility.lookingDownwardsPitchAngle}}
+                    [(ngModel)]="dto.params.facePoseSensibility.lookingDownwardsPitchAngle">
+                {{dto.params.facePoseSensibility.lookingDownwardsPitchAngle}}
             </div>
             <div class="inputRow">
                 <label>
                     Looking Front
                 </label>
-                <input type="range" min="1" max="20" name="lookingFront" [(ngModel)]="dto.params.facePoseSensibility.lookingFront"> {{dto.params.facePoseSensibility.lookingFront}}
+                <input type="range" min="1" max="20" name="lookingFront"
+                    [(ngModel)]="dto.params.facePoseSensibility.lookingFront">
+                {{dto.params.facePoseSensibility.lookingFront}}
             </div>
             <div class="inputRow">
                 <label>
                     Looking Left Yaw Angle
                 </label>
                 <input type="range" min="-60" max="-10" name="lookingLeftYawAngle"
-                    [(ngModel)]="dto.params.facePoseSensibility.lookingLeftYawAngle"> {{dto.params.facePoseSensibility.lookingLeftYawAngle}}
+                    [(ngModel)]="dto.params.facePoseSensibility.lookingLeftYawAngle">
+                {{dto.params.facePoseSensibility.lookingLeftYawAngle}}
             </div>
             <div class="inputRow">
                 <label>
                     Looking Right Yaw Angle
                 </label>
                 <input type="range" min="10" max="60" name="lookingRightYawAngle"
-                    [(ngModel)]="dto.params.facePoseSensibility.lookingRightYawAngle"> {{dto.params.facePoseSensibility.lookingRightYawAngle}}
+                    [(ngModel)]="dto.params.facePoseSensibility.lookingRightYawAngle">
+                {{dto.params.facePoseSensibility.lookingRightYawAngle}}
             </div>
             <div class="inputRow">
                 <label>
                     Looking Upwards Pitch Angle
                 </label>
                 <input type="range" min="5" max="25" name="lookingUpwardsPitchAngle"
-                    [(ngModel)]="dto.params.facePoseSensibility.lookingUpwardsPitchAngle"> {{dto.params.facePoseSensibility.lookingUpwardsPitchAngle}}
+                    [(ngModel)]="dto.params.facePoseSensibility.lookingUpwardsPitchAngle">
+                {{dto.params.facePoseSensibility.lookingUpwardsPitchAngle}}
             </div>
         </section>
         <div class="inputRow">
             <label>
                 Max Clahe
             </label>
-            <input type="range" min="5" max="15" name="maxCLAHE" [(ngModel)]="dto.params.maxCLAHE"> {{dto.params.maxCLAHE}}
+            <input type="range" min="5" max="15" name="maxCLAHE" [(ngModel)]="dto.params.maxCLAHE">
+            {{dto.params.maxCLAHE}}
         </div>
         <div class="inputRow">
             <label>
                 Max Roll
             </label>
-            <input type="range" min="0" max="180" name="maxRoll" [(ngModel)]="dto.params.maxRoll"> {{dto.params.maxRoll}}
+            <input type="range" min="0" max="180" name="maxRoll" [(ngModel)]="dto.params.maxRoll">
+            {{dto.params.maxRoll}}
         </div>
         <div class="inputRow">
             <label>
@@ -156,13 +331,15 @@
             <label>
                 Min Clahe
             </label>
-            <input type="range" min="0" max="5" name="minCLAHE" [(ngModel)]="dto.params.minCLAHE"> {{dto.params.minCLAHE}}
+            <input type="range" min="0" max="5" name="minCLAHE" [(ngModel)]="dto.params.minCLAHE">
+            {{dto.params.minCLAHE}}
         </div>
         <div class="inputRow">
             <label>
                 Min Confidence
             </label>
-            <input type="range" min="0" max="100" name="minConfidence" [(ngModel)]="dto.params.minConfidence"> {{dto.params.minConfidence}}
+            <input type="range" min="0" max="100" name="minConfidence" [(ngModel)]="dto.params.minConfidence">
+            {{dto.params.minConfidence}}
         </div>
         <div class="inputRow">
             <label>
@@ -174,7 +351,8 @@
             <label>
                 Min Quality
             </label>
-            <input type="range" min="0" max="100" name="minQuality" [(ngModel)]="dto.params.minQuality"> {{dto.params.minQuality}}
+            <input type="range" min="0" max="100" name="minQuality" [(ngModel)]="dto.params.minQuality">
+            {{dto.params.minQuality}}
         </div>
         <div class="inputRow">
             <label>
@@ -186,7 +364,8 @@
             <label>
                 Thumbnail Width
             </label>
-            <input type="range" min="24" max="512" name="thumbnailWidth" [(ngModel)]="dto.params.thumbnailWidth"> {{dto.params.thumbnailWidth}}
+            <input type="range" min="24" max="512" name="thumbnailWidth" [(ngModel)]="dto.params.thumbnailWidth">
+            {{dto.params.thumbnailWidth}}
         </div>
         <div class="inputRow">
             <label>
@@ -204,7 +383,8 @@
             <label>
                 Video Frames Seq
             </label>
-            <input type="range" min="1" max="5" name="videoFramesSeq" [(ngModel)]="dto.params.videoFramesSeq"> {{dto.params.videoFramesSeq}}
+            <input type="range" min="1" max="5" name="videoFramesSeq" [(ngModel)]="dto.params.videoFramesSeq">
+            {{dto.params.videoFramesSeq}}
         </div>
     </section>
     <section>
@@ -216,7 +396,8 @@
                 Select image file
             </label>
             <input type="file" accept="image/*" (change)="fileChange()" #fileInput>
-            <img *ngIf="dto.image" [src]="'data:'+dataType+';base64,'+dto.image" class="imagefile" (click)="dto.image = undefined"/>
+            <img *ngIf="dto.image" [src]="'data:'+dataType+';base64,'+dto.image" class="imagefile"
+                (click)="dto.image = undefined" />
         </div>
     </section>
     <section>
