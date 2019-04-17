@@ -19,6 +19,8 @@ import { EnrollComponent } from './pages/database/enroll/enroll.component';
 import { ListComponent } from './pages/database/list/list.component';
 import { BySubjectComponent } from './pages/database/by-subject/by-subject.component';
 import { UpdateComponent } from './pages/database/update/update.component';
+import { IdentifyComponent } from './pages/matching/identify/identify.component';
+import { VerifyComponent } from './pages/matching/verify/verify.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +38,8 @@ import { UpdateComponent } from './pages/database/update/update.component';
     ListComponent,
     BySubjectComponent,
     UpdateComponent,
+    IdentifyComponent,
+    VerifyComponent,
   ],
   imports: [
     BrowserModule,
