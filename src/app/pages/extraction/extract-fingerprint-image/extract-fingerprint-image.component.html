@@ -1,2 +1,107 @@
 <app-header title="Extraction::fingerprint-image" subtitle="Extract finger biometric data (template) from a supplied image"></app-header>
 <app-loader [isLoading]="loading"></app-loader>
+
+<form *ngIf="step==1">
+    <section>
+        <div class="inputRow">
+            <label>
+                Audit Token
+            </label>
+            <input type="text" name="auditToken" value="" [(ngModel)]="dto.auditToken">
+        </div>
+    </section>
+    <section>
+        <header>
+            <h3>Params</h3>
+        </header>
+        <div class="inputRow">
+            <label>
+                Determine Pattern Class
+            </label>
+            <input type="checkbox" name="determinePatternClass" [(ngModel)]="dto.params.determinePatternClass">
+        </div>
+        <div class="inputRow">
+            <label>
+                Evaluate NFIQ
+            </label>
+            <input type="checkbox" name="evaluateNFIQ" [(ngModel)]="dto.params.evaluateNFIQ">
+        </div>
+        <div class="inputRow">
+            <label>
+                Image Source
+            </label>
+            <select name="bi1_source_composite"
+            [(ngModel)]="dto.params.imageSource">
+                <option>LIVE_FINGERPRINT</option>
+                <option>SCANNED_FINGERPRINT_IMAGE</option>
+                <option>UNKNOWN</option>
+            </select>
+        </div>
+        <div class="inputRow">
+            <label>
+                Max Rotation
+            </label>
+            <input name="maxRotation" type="range" min="0" max="180"
+            [(ngModel)]="dto.params.maxRotation" />
+            {{dto.params.maxRotation}}
+        </div>
+        <div class="inputRow">
+            <label>
+                Min Quality
+            </label>
+            <input type="range" min="0" max="100" name="minQuality" [(ngModel)]="dto.params.minQuality">
+            {{dto.params.minQuality}}
+        </div>
+        <div class="inputRow">
+            <label>
+                Position
+            </label>
+            <select name="bi1_position_fp" [(ngModel)]="dto.params.position">
+                <option>RIGHT_THUMB</option>
+                <option>LEFT_THUMB</option>
+                <option>RIGHT_INDEX_FINGER</option>
+                <option>LEFT_INDEX_FINGER</option>
+                <option>RIGHT_MIDDLE_FINGER</option>
+                <option>LEFT_MIDDLE_FINGER</option>
+                <option>RIGHT_RING_FINGER</option>
+                <option>LEFT_RING_FINGER</option>
+                <option>RIGHT_LITTLE_FINGER</option>
+                <option>LEFT_LITTLE_FINGER</option>
+                <option>UNKNOWN</option>
+            </select>
+        </div>
+        <div class="inputRow">
+            <label>
+                Use Cache
+            </label>
+            <input type="checkbox" name="useCache" [(ngModel)]="dto.params.useCache">
+        </div>
+        <div class="inputRow">
+            <label>
+                Use Only Ansi 378
+            </label>
+            <input type="checkbox" name="useOnlyAnsi378" [(ngModel)]="dto.params.useOnlyAnsi378">
+        </div>
+    </section>
+    <section>
+        <header>
+            <h3>Image</h3>
+        </header>
+        <div class="inputRow">
+            <label>
+                Select image file
+            </label>
+            <input type="file" value="" accept="image/*" (change)="fileChange()" #fileInput>
+            <!-- [(ngModel)]="dto.image" -->
+            <div class="videoWrapper" *ngIf="dto.image">
+                <div class="cross" (click)="dto.image = undefined">X</div>
+                <video controls>
+                    <source [type]="dataType" [src]="'data:'+dataType+';base64,'+dto.image" />
+                </video>
+            </div>
+        </div>
+    </section>
+    <section>
+        <button type="button" class="send" (click)="send()">Send Data</button>
+    </section>
+</form>
