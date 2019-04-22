@@ -1,10 +1,8 @@
 import { Face } from './faceImageResponse';
-export class FaceVideoResponse {
+import { GenericRespone } from './genericResponse';
+export class FaceVideoResponse extends GenericRespone {
     public detectedActions: DetectedActions[];
-    public exception: boolean;
     public face: Face;
-    public status: string;
-    public txId: string;
 }
 
 export class DetectedActions {

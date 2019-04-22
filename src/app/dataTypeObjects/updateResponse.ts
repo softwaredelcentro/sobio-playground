@@ -1,6 +1,5 @@
-export class UpdateResponse {
+import { GenericRespone } from './genericResponse';
+
+export class UpdateResponse extends GenericRespone {
     duplicatedSubjectId: string;
-    exception: boolean;
-    status: string;
-    txId: string;
 }

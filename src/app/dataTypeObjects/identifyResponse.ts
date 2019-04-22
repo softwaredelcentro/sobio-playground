@@ -1,9 +1,8 @@
-export class IdentifyResponse {
+import { GenericRespone } from './genericResponse';
+
+export class IdentifyResponse extends GenericRespone {
     confidence: number;
-    exception: boolean;
     faP: number;
     score: number;
-    status: string;
     subjectId: string;
-    txId: string;
 }

@@ -1,7 +1,5 @@
-export class VerifyT2tResponse {
-    exception: boolean;
+import { GenericRespone } from './genericResponse';
+export class VerifyT2tResponse extends GenericRespone {
     faP: number;
     score: number;
-    status: string;
-    txId: string;
 }

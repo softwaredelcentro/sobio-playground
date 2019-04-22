@@ -1,5 +1,5 @@
-export class DeleteResponse {
-    exception: boolean;
-    status: string;
-    txId: string;
+import { GenericRespone } from './genericResponse';
+
+export class DeleteResponse extends GenericRespone {
+
 }

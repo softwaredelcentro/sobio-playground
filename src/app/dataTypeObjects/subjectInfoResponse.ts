@@ -1,7 +1,8 @@
-export class SubjectInfoResponse {
+import { GenericRespone } from './genericResponse';
+
+export class SubjectInfoResponse extends GenericRespone {
     compositeFingerCount: number;
     enrollmentDate: string;
-    exception: string;
     faceCount: number;
     fingerCount: number;
     hasTextIndependentVoice: boolean;
@@ -18,7 +19,5 @@ export class SubjectInfoResponse {
     s3: string;
     s4: string;
     s5: string;
-    status: string;
     textDependentVoiceCount: number;
-    txId: string;
 }

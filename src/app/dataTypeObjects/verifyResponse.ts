@@ -1,8 +1,6 @@
-export class VerifyResponse {
+import { GenericRespone } from './genericResponse';
+export class VerifyResponse extends GenericRespone {
     confidence: number;
-    exception: boolean;
     faP: number;
     score: number;
-    status: string;
-    txId: string;
 }
