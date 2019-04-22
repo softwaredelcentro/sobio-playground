@@ -94,8 +94,12 @@
                     <label>
                         Source
                     </label>
-                    <input type="text" name="bi1_source_composite{{idx}}"
+                    <select name="bi1_source_composite{{idx}}"
                         [(ngModel)]="dto.bioInfo.compositeFingerPrints[idx].source">
+                        <option>LIVE_FINGERPRINT</option>
+                        <option>SCANNED_FINGERPRINT_IMAGE</option>
+                        <option>UNKNOWN</option>
+                    </select>
                     <!-- <select name="bi1_source">
                 <option value="LIVE_FINGERPRINT">Live Fingerprint</option>
               </select> -->
@@ -155,15 +159,29 @@
                     <label>
                         Image Source
                     </label>
-                    <input type="text" name="bi1_imagesource_fp{{idx}}"
-                        [(ngModel)]="dto.bioInfo.fingerPrints[idx].imageSource">
+                    <select name="bi1_imagesource_fp{{idx}}" [(ngModel)]="dto.bioInfo.fingerPrints[idx].imageSource">
+                        <option>LIVE_FINGERPRINT</option>
+                        <option>SCANNED_FINGERPRINT_IMAGE</option>
+                        <option>UNKNOWN</option>
+                    </select>
                 </div>
                 <div class="inputRow">
                     <label>
                         Position
                     </label>
-                    <input type="text" name="bi1_position_fp{{idx}}"
-                        [(ngModel)]="dto.bioInfo.fingerPrints[idx].position">
+                    <select name="bi1_position_fp{{idx}}" [(ngModel)]="dto.bioInfo.fingerPrints[idx].position">
+                        <option>RIGHT_THUMB</option>
+                        <option>LEFT_THUMB</option>
+                        <option>RIGHT_INDEX_FINGER</option>
+                        <option>LEFT_INDEX_FINGER</option>
+                        <option>RIGHT_MIDDLE_FINGER</option>
+                        <option>LEFT_MIDDLE_FINGER</option>
+                        <option>RIGHT_RING_FINGER</option>
+                        <option>LEFT_RING_FINGER</option>
+                        <option>RIGHT_LITTLE_FINGER</option>
+                        <option>LEFT_LITTLE_FINGER</option>
+                        <option>UNKNOWN</option>
+                    </select>
                 </div>
                 <div class="inputRow">
                     <label>
