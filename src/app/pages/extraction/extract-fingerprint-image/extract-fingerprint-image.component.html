@@ -1,5 +1,65 @@
-<app-header title="Extraction::fingerprint-image" subtitle="Extract finger biometric data (template) from a supplied image"></app-header>
+<app-header title="Extraction::fingerprint-image"
+    subtitle="Extract finger biometric data (template) from a supplied image"></app-header>
 <app-loader [isLoading]="loading"></app-loader>
+
+<section id="response" *ngIf="step==2">
+    <div class="url"><span class="method">POST</span> {{urlEndpoint}}</div>
+    <code [class.error]="error">
+        {{jsonResponse}}
+    </code>
+    <div class="responses" *ngIf="response">
+        <div class="responseProcessed">
+            <div class="dataBlock">
+                <label>TxId:</label>
+                <div class="dataContent">
+                    {{response.txId}}
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>Status:</label>
+                <div class="dataContent">
+                    {{response.status}}
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>Exception:</label>
+                <div class="dataContent">
+                    <b *ngIf="response.exception">YES</b>
+                    <b *ngIf="response.exception">NO</b>
+                </div>
+            </div>
+            <div class="dataBlock" *ngIf="response.fingerPrint">
+                <label>Template Format:</label>
+                <div class="dataContent">
+                    {{response.fingerPrint.formatoTemplate}}
+                </div>
+            </div>
+            <div class="dataBlock" *ngIf="response.fingerPrint">
+                <label>Image:</label>
+                <div class="dataContent">
+                    {{response.fingerPrint.image}}
+                </div>
+            </div>
+            <div class="dataBlock" *ngIf="response.fingerPrint">
+                <label>Image Source:</label>
+                <img [src]="'data:image/png;base64,'+response.fingerPrint.imageSource">
+            </div>
+            <div class="dataBlock" *ngIf="response.fingerPrint">
+                <label>Position:</label>
+                <div class="dataContent">
+                    {{response.fingerPrint.position}}
+                </div>
+            </div>
+            <div class="copy" (click)="copy(idx)" *ngIf="response.fingerPrint"><img src="assets/copy.png" /></div>
+            <div class="dataBlock" *ngIf="response.fingerPrint">
+                <label>Template:</label>
+                <div class="dataTemplate" id="templateResponse">
+                    {{response.fingerPrint.template}}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <form *ngIf="step==1">
     <section>
@@ -30,8 +90,7 @@
             <label>
                 Image Source
             </label>
-            <select name="bi1_source_composite"
-            [(ngModel)]="dto.params.imageSource">
+            <select name="bi1_source_composite" [(ngModel)]="dto.params.imageSource">
                 <option>LIVE_FINGERPRINT</option>
                 <option>SCANNED_FINGERPRINT_IMAGE</option>
                 <option>UNKNOWN</option>
@@ -41,8 +100,7 @@
             <label>
                 Max Rotation
             </label>
-            <input name="maxRotation" type="range" min="0" max="180"
-            [(ngModel)]="dto.params.maxRotation" />
+            <input name="maxRotation" type="range" min="0" max="180" [(ngModel)]="dto.params.maxRotation" />
             {{dto.params.maxRotation}}
         </div>
         <div class="inputRow">

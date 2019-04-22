@@ -4,4 +4,5 @@ export class EndpointsExtractionService {
     dniAr: string;
     textDependentVoice: string;
     textIndependentVoice: string;
+    fingerPrintImage: string;
 }
