@@ -96,7 +96,7 @@
       <label>
         Phrase ID
       </label>
-      <input type="number" name="auditToken" value="" [(ngModel)]="dto.auditToken">
+      <input type="number" min="1" max="65535" name="auditToken" value="" [(ngModel)]="dto.phraseId">
     </div>
   </section>
   <section>
