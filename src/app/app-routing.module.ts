@@ -66,7 +66,7 @@ const routes: Routes = [
   {
     path: 'document-extraction/dni-ar',
     component: DniArComponent,
-    data: { title: 'Extracts Argentinean ID Card document information' }
+    data: { title: 'Extract Argentinean ID Card document information' }
   },
   {
     path: 'database/enroll',
