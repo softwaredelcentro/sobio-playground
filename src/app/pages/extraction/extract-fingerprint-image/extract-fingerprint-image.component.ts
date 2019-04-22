@@ -93,4 +93,8 @@ export class ExtractFingerprintImageComponent implements OnInit {
     }
   }
 
+  retry() {
+    this.step = 1;
+  }
+
 }
