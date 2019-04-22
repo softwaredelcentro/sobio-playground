@@ -1,3 +1,4 @@
+import { ExtractFingerprintImageComponent } from './pages/extraction/extract-fingerprint-image/extract-fingerprint-image.component';
 import { TextIndependentVoiceComponent } from './pages/extraction/text-independent-voice/text-independent-voice.component';
 import { TextDependentVoiceComponent } from './pages/extraction/text-dependent-voice/text-dependent-voice.component';
 import { IdentifyComponent } from './pages/matching/identify/identify.component';
@@ -28,6 +29,11 @@ const routes: Routes = [
     path: 'extraction/extract-face-video',
     component: ExtractFaceVideoComponent,
     data: { title: 'Extract Face Video' }
+  },
+  {
+    path: 'extraction/extract-fingerprint-image',
+    component: ExtractFingerprintImageComponent,
+    data: { title: 'Extract Fingerprint Image' }
   },
   {
     path: 'matching/identify',

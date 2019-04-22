@@ -25,6 +25,7 @@ import { SwitchComponent } from './components/switch/switch.component';
 import { DateParsedPipe } from './Utils/dateParsed.pipe';
 import { TextDependentVoiceComponent } from './pages/extraction/text-dependent-voice/text-dependent-voice.component';
 import { TextIndependentVoiceComponent } from './pages/extraction/text-independent-voice/text-independent-voice.component';
+import { ExtractFingerprintImageComponent } from './pages/extraction/extract-fingerprint-image/extract-fingerprint-image.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { TextIndependentVoiceComponent } from './pages/extraction/text-independe
     DateParsedPipe,
     TextDependentVoiceComponent,
     TextIndependentVoiceComponent,
+    ExtractFingerprintImageComponent,
   ],
   imports: [
     BrowserModule,
