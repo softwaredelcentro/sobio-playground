@@ -1,8 +1,46 @@
 <app-header title="Extraction::text-dependent-voice"
   subtitle="Extract text-dependent voice biometric data (template) from a supplied audio"></app-header>
 <app-loader [isLoading]="loading"></app-loader>
+<section id="response" *ngIf="step==2">
+  <div class="url"><span class="method">POST</span> {{urlEndpoint}}</div>
+  <code [class.error]="error">
+      {{jsonResponse}}
+    </code>
+  <div class="responses" *ngIf="response">
+    <div class="responseProcessed">
+      <div class="dataBlock">
+        <label>txID:</label>
+        <div class="dataContent">
+          {{response.txId}}
+        </div>
+      </div>
+      <div class="dataBlock">
+        <label>Status:</label>
+        <div class="dataContent">
+          {{response.status}}
+        </div>
+      </div>
+      <div class="dataBlock" *ngIf="response.voice">
+        <label>Audio:</label>
 
-
+      </div>
+      <div class="dataBlock" *ngIf="response.voice">
+        <label>Template:</label>
+        <div class="copy" (click)="copy()"><img src="assets/copy.png" /></div>
+        <div class="dataTemplate" id="templateResponse">
+          {{response.voice.template}}
+        </div>
+      </div>
+      <div class="dataBlock" *ngIf="response.voice">
+        <label>PhraseID:</label>
+        <div class="dataContent">
+          {{response.voice.phraseId}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="send" (click)="retry()">Retry</button>
+</section>
 <form *ngIf="step==1">
   <section>
     <div class="inputRow">
