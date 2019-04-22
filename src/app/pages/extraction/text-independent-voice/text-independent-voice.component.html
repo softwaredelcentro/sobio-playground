@@ -1,2 +1,57 @@
-<app-header title="Extraction::text-independent-voice" subtitle="Extract text-independent voice biometric data (template) from a supplied audio"></app-header>
+<app-header title="Extraction::text-independent-voice"
+  subtitle="Extract text-independent voice biometric data (template) from a supplied audio"></app-header>
 <app-loader [isLoading]="loading"></app-loader>
+<form *ngIf="step==1">
+  <section>
+    <div class="inputRow">
+      <label>
+        Audit Token
+      </label>
+      <input type="text" name="auditToken" value="" [(ngModel)]="dto.auditToken">
+    </div>
+  </section>
+  <section>
+    <header>
+      <h3>Params</h3>
+    </header>
+    <div class="inputRow">
+      <label>
+        Min Duration
+      </label>
+      <input type="range" min="1" max="7" name="minDuration" value="" [(ngModel)]="dto.params.minDuration">
+      {{dto.params.minDuration}}
+    </div>
+    <div class="inputRow">
+      <label>
+        Min Level
+      </label>
+      <input type="number" name="detectAge" checked="checked" [(ngModel)]="dto.params.minLevel">
+    </div>
+    <div class="inputRow">
+      <label>
+        Use Cache
+      </label>
+      <input type="checkbox" name="useCache" [(ngModel)]="dto.params.useCache">
+    </div>
+  </section>
+  <section>
+    <header>
+      <h3>Audio</h3>
+    </header>
+    <div class="inputRow">
+      <label>
+        Select audio file
+      </label>
+      <input type="file" value="" accept="audio/*" (change)="fileChange()" #fileInput> <!-- [(ngModel)]="dto.image" -->
+      <div class="videoWrapper" *ngIf="dto.audio">
+        <div class="cross" (click)="dto.audio = undefined">X</div>
+        <audio controls>
+          <source [type]="dataType" [src]="'data:'+dataType+';base64,'+dto.audio" />
+        </audio>
+      </div>
+    </div>
+  </section>
+  <section>
+    <button type="button" class="send" (click)="send()">Send Data</button>
+  </section>
+</form>
