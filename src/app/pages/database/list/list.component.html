@@ -1,6 +1,483 @@
 <app-header title="Database::List" subtitle="List enrolled Subject ID's"></app-header>
 <app-loader [isLoading]="loading"></app-loader>
 
+<div class="popup" *ngIf="popup">
+    <div class="close" (click)="closePopup()">
+        <svg class="svg-icon" viewBox="0 0 20 20">
+            <path
+                d="M10.185,1.417c-4.741,0-8.583,3.842-8.583,8.583c0,4.74,3.842,8.582,8.583,8.582S18.768,14.74,18.768,10C18.768,5.259,14.926,1.417,10.185,1.417 M10.185,17.68c-4.235,0-7.679-3.445-7.679-7.68c0-4.235,3.444-7.679,7.679-7.679S17.864,5.765,17.864,10C17.864,14.234,14.42,17.68,10.185,17.68 M10.824,10l2.842-2.844c0.178-0.176,0.178-0.46,0-0.637c-0.177-0.178-0.461-0.178-0.637,0l-2.844,2.841L7.341,6.52c-0.176-0.178-0.46-0.178-0.637,0c-0.178,0.176-0.178,0.461,0,0.637L9.546,10l-2.841,2.844c-0.178,0.176-0.178,0.461,0,0.637c0.178,0.178,0.459,0.178,0.637,0l2.844-2.841l2.844,2.841c0.178,0.178,0.459,0.178,0.637,0c0.178-0.176,0.178-0.461,0-0.637L10.824,10z">
+            </path>
+        </svg>
+    </div>
+    <form>
+        <section>
+            <div class="inputRow">
+                <label>
+                    Audit Token
+                </label>
+                <input type="text" name="auditToken" [(ngModel)]="subAuditToken">
+            </div>
+            <div class="inputRow">
+                <label>
+                    Subject ID
+                </label>
+                <input type="text" name="subjectID" [(ngModel)]="subjectID">
+            </div>
+        </section>
+        <section>
+            <button type="button" (click)="doDelete()" *ngIf="subAction == 1">Delete</button>
+            <button type="button" (click)="doDownload()" *ngIf="subAction == 2">Download Zip</button>
+            <button type="button" (click)="doViewData()" *ngIf="subAction == 3">View Data</button>
+            <button type="button" (click)="doViewInfo()" *ngIf="subAction == 4">View Info</button>
+        </section>
+
+
+        <section id="response" *ngIf="subStep==2">
+            <!-- DELETE RESPONSE -->
+            <div class="url"><span class="method">POST</span> {{subUrlEndpoint}}</div>
+            <code [class.subError]="error">
+               {{subJsonResponse}}
+            </code>
+            <div class="responses" *ngIf="responseDalete">
+                <div class="responseProcessed">
+                    <div class="dataBlock">
+                        <label>TxId:</label>
+                        <div class="dataContent">
+                            {{responseDalete.txId}}
+                        </div>
+                    </div>
+                    <div class="dataBlock">
+                        <label>Status:</label>
+                        <div class="dataContent">
+                            {{responseDalete.status}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="response" *ngIf="subStep==3">
+            <!-- DOWNZIP RESPONSE -->
+            <div class="url"><span class="method">GET</span> {{subUrlEndpoint}}</div>
+            <code [class.subError]="error">
+               {{subJsonResponse}}
+            </code>
+            <div class="responses" *ngIf="responseDownzip">
+                <div class="responseProcessed">
+                    <div class="dataBlock">
+                        <label>Description:</label>
+                        <div class="dataContent">
+                            {{responseDownzip.description}}
+                        </div>
+                    </div>
+                    <div class="dataBlock">
+                        <label>File:</label>
+                        <div class="dataContent">
+                            <ul>
+                                <li>Absolute
+                                    <b *ngIf="responseDownzip.file.absolute">YES</b>
+                                    <b *ngIf="!responseDownzip.file.absolute">NO</b>
+                                </li>
+                                <li>Absolute path <b>{{responseDownzip.file.absolutePath}}</b></li>
+                                <li>Canonical path <b>{{responseDownzip.file.canonicalPath}}</b></li>
+                                <li>Directory
+                                    <b *ngIf="responseDownzip.file.directory">YES</b>
+                                    <b *ngIf="!responseDownzip.file.directory">NO</b>
+                                </li>
+                                <li>File
+                                    <b *ngIf="responseDownzip.file.file">YES</b>
+                                    <b *ngIf="!responseDownzip.file.file">NO</b>
+                                </li>
+                                <li>Free space <b>{{responseDownzip.file.freeSpace}}</b></li>
+                                <li>Hidden
+                                    <b *ngIf="responseDownzip.file.hidden">YES</b>
+                                    <b *ngIf="!responseDownzip.file.hidden">NO</b>
+                                </li>
+                                <li>Name <b>{{responseDownzip.file.name}}</b></li>
+                                <li>Parent <b>{{responseDownzip.file.parent}}</b></li>
+                                <li>Path <b>{{responseDownzip.file.path}}</b></li>
+                                <li>Total space <b>{{responseDownzip.file.totalSpace}}</b></li>
+                                <li>Usable Space <b>{{responseDownzip.file.usableSpace}}</b></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="dataBlock">
+                        <label>Filename:</label>
+                        <div class="dataContent">
+                            {{responseDownzip.filename}}
+                        </div>
+                    </div>
+                    <div class="dataBlock">
+                        <label>Open:</label>
+                        <div class="dataContent">
+                            <b *ngIf="responseDownzip.open">YES</b>
+                            <b *ngIf="!responseDownzip.open">NO</b>
+                        </div>
+                    </div>
+                    <div class="dataBlock">
+                        <label>Readable:</label>
+                        <div class="dataContent">
+                            <b *ngIf="responseDownzip.readable">YES</b>
+                            <b *ngIf="!responseDownzip.readable">NO</b>
+                        </div>
+                    </div>
+                    <div class="dataBlock">
+                        <label>URI:</label>
+                        <div class="dataContent">
+                            <ul *ngIf="responseDownzip.file">
+                                <li>Absolute
+                                    <b *ngIf="responseDownzip.file.absolute">YES</b>
+                                    <b *ngIf="!responseDownzip.file.absolute">NO</b>
+                                </li>
+                                <li>Authority <b>{{responseDownzip.uri.authority}}</b></li>
+                                <li>Fragment <b>{{responseDownzip.uri.fragment}}</b></li>
+                                <li>Host <b>{{responseDownzip.uri.host}}</b></li>
+                                <li>Opaque
+                                    <b *ngIf="responseDownzip.file.opaque">YES</b>
+                                    <b *ngIf="!responseDownzip.file.opaque">NO</b>
+                                </li>
+                                <li>Path <b>{{responseDownzip.uri.path}}</b></li>
+                                <li>Port <b>{{responseDownzip.uri.port}}</b></li>
+                                <li>Query <b>{{responseDownzip.uri.query}}</b></li>
+                                <li>Raw authority <b>{{responseDownzip.uri.rawAuthority}}</b></li>
+                                <li>Raw fragment <b>{{responseDownzip.uri.rawFragment}}</b></li>
+                                <li>Raw path <b>{{responseDownzip.uri.rawPath}}</b></li>
+                                <li>Raw query <b>{{responseDownzip.uri.rawQuery}}</b></li>
+                                <li>Raw Scheme Specific Part <b>{{responseDownzip.uri.rawSchemeSpecificPart}}</b></li>
+                                <li>Raw User Info <b>{{responseDownzip.uri.rawUserInfo}}</b></li>
+                                <li>Scheme <b>{{responseDownzip.uri.scheme}}</b></li>
+                                <li>Scheme Specific Part <b>{{responseDownzip.uri.schemeSpecificPart}}</b></li>
+                                <li>User Info <b>{{responseDownzip.uri.userInfo}}</b></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="dataBlock">
+                        <label>URL:</label>
+                        <div class="dataContent">
+                            <ul *ngIf="responseDownzip.url">
+                                <li>Authority <b>{{responseDownzip.url.authority}}</b></li>
+                                <li>Default port <b>{{responseDownzip.url.defaultPort}}</b></li>
+                                <li>File <b>{{responseDownzip.url.file}}</b></li>
+                                <li>Host <b>{{responseDownzip.url.host}}</b></li>
+                                <li>Path <b>{{responseDownzip.url.path}}</b></li>
+                                <li>Port <b>{{responseDownzip.url.port}}</b></li>
+                                <li>Protocol <b>{{responseDownzip.url.protocol}}</b></li>
+                                <li>Query <b>{{responseDownzip.url.query}}</b></li>
+                                <li>Ref <b>{{responseDownzip.url.ref}}</b></li>
+                                <li>User Info <b>{{responseDownzip.url.userInfo}}</b></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="response" *ngIf="subStep==4">
+            <!-- DATA RESPONSE -->
+            <div class="url"><span class="method">POST</span> {{subUrlEndpoint}}</div>
+            <code [class.subError]="error">
+               {{subJsonResponse}}
+            </code>
+            <div class="responses" *ngIf="responseData">
+                <div class="responseProcessed">
+                    <div class="dataBlock">
+                        <label>TxId:</label>
+                        <div class="dataContent">
+                            {{responseData.txId}}
+                        </div>
+                    </div>
+                    <div class="dataBlock">
+                        <label>Status:</label>
+                        <div class="dataContent">
+                            {{responseData.status}}
+                        </div>
+                    </div>
+                    <div class="dataBlock">
+                        <label>Exception:</label>
+                        <div class="dataContent">
+                            <b *ngIf="responseData.exception">YES</b>
+                            <b *ngIf="!responseData.exception">NO</b>
+                        </div>
+                    </div>
+                    <div class="dataBlock">
+                        <label style="display: block; text-align: left;">Composite Finger Prints:</label>
+                        <div class="dataContent fixedTPLUL" *ngIf="responseData.template.compositeFingerPrints">
+                            <ul *ngFor="let cfp of responseData.template.compositeFingerPrints; let idx = index">
+                                <li>
+                                    <label>Finger</label>
+                                    {{cfp.dedo}}
+                                </li>
+                                <li>
+                                    <label>Images</label>
+                                    <img *ngFor="let cfpimage of cfp.images" src="'data:image/png;base64,'+cfpimage" />
+                                </li>
+                                <li>
+                                    <label>Source</label>
+                                    {{cfp.source}}
+                                </li>
+                                <li>
+                                    <label>Template</label>
+                                    <div class="copy" (click)="copyComposite(idx)"><img src="assets/copy.png" /></div>
+                                    <div class="dataTemplate" id="tplComposite{{idx}}">
+                                        {{cfp.template}}
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="dataBlock">
+                        <label style="display: block; text-align: left;">Faces:</label>
+                        <div class="dataContent fixedTPLUL" *ngIf="responseData.template.faces">
+                            <ul *ngFor="let face of responseData.template.faces; let idx = index">
+                                <li *ngIf="face.image">
+                                    <label>Image</label>
+                                    <img [src]="'data:image/png;base64,'+face.image" />
+                                </li>
+                                <li>
+                                    <label>Template</label>
+                                    <div class="copy" (click)="copyFaces(idx)"><img src="assets/copy.png" /></div>
+                                    <div class="dataTemplate" id="tplFaces{{idx}}">
+                                        {{face.template}}
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="dataBlock">
+                        <label style="display: block; text-align: left;">Finger Prints:</label>
+                        <div class="dataContent fixedTPLUL" *ngIf="responseData.template.fingerPrints">
+                            <ul *ngFor="let fPrint of responseData.template.fingerPrints; let idx = index">
+                                <li>
+                                    <label>Template Format</label>
+                                    {{fPrint.formatoTemplate}}
+                                </li>
+                                <li *ngIf="fPrint.image">
+                                    <label>Image</label>
+                                    <img [src]="'data:image/png;base64,'+fPrint.image" />
+                                </li>
+                                <li>
+                                    <label>Image Source</label>
+                                    {{fPrint.imageSource}}
+                                </li>
+                                <li>
+                                    <label>Position</label>
+                                    {{fPrint.position}}
+                                </li>
+                                <li>
+                                    <label>Template</label>
+                                    <div class="copy" (click)="copyFingerPrint(idx)"><img src="assets/copy.png" /></div>
+                                    <div class="dataTemplate" id="tplFingerPrints{{idx}}">
+                                        {{fPrint.template}}
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="dataBlock">
+                        <label style="display: block; text-align: left;">Text Depndent Voices:</label>
+                        <div class="dataContent fixedTPLUL" *ngIf="responseData.template.textDependentVoices">
+                            <ul *ngFor="let tdv of responseData.template.textDependentVoices; let idx = index">
+                                <li>
+                                    <label>Audio</label>
+                                    {{tdv.audio}}
+                                </li>
+                                <li>
+                                    <label>Phrase ID</label>
+                                    {{td.phraseId}}
+                                </li>
+                                <li>
+                                    <label>Template</label>
+                                    <div class="copy" (click)="copyTDV(idx)"><img src="assets/copy.png" /></div>
+                                    <div class="dataTemplate" id="tplTDV{{idx}}">
+                                        {{tdv.template}}
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="dataBlock">
+                        <label style="display: block; text-align: left;">Text Independent Voices:</label>
+                        <div class="dataContent fixedTPLUL" *ngIf="responseData.template.textIndependentVoice">
+                            <ul>
+                                <li *ngIf="responseData.template.textIndependentVoice.audio">
+                                    <label>Audio</label>
+                                    {{responseData.template.textIndependentVoice.audio}}
+                                </li>
+                                <li *ngIf="responseData.template.textIndependentVoice.template">
+                                    <label>Template</label>
+                                    <div class="copy" (click)="copyTIV()"><img src="assets/copy.png" /></div>
+                                    <div class="dataTemplate" id="tplTIV">
+                                        {{responseData.template.textIndependentVoice.template}}
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="response" *ngIf="subStep==5">
+            <!-- INFO RESPONSE -->
+            <div class="url"><span class="method">POST</span> {{subUrlEndpoint}}</div>
+            <code [class.subError]="error">
+               {{subJsonResponse}}
+            </code>
+            <div class="responses" *ngIf="responseInfo">
+                <div class="responseProcessed">
+                    <div class="dataBlock">
+                        <label>txId:</label>
+                        <div class="dataContent">
+                            {{responseInfo.txId}}
+                        </div>
+                    </div>
+                    <div class="dataBlock">
+                        <label>Composite finger count:</label>
+                        <div class="dataContent">
+                            {{responseInfo.compositeFingerCount}}
+                        </div>
+                    </div>
+                    <div class="dataBlock">
+                        <label>Enrollment date:</label>
+                        <div class="dataContent">
+                            {{responseInfo.enrollmentDate  | DateParsed}}
+                        </div>
+                    </div>
+                    <div class="dataBlock">
+                        <label>Composite Face Count:</label>
+                        <div class="dataContent">
+                            {{responseInfo.faceCount}}
+                        </div>
+                    </div>
+                    <div class="dataBlock">
+                        <label>Composite Finger Count:</label>
+                        <div class="dataContent">
+                            {{responseInfo.fingerCount}}
+                        </div>
+                    </div>
+                    <div class="dataBlock">
+                        <label>Exception:</label>
+                        <div class="dataContent">
+                            <b *ngIf="responseInfo.exception">YES</b>
+                            <b *ngIf="!responseInfo.exception">NO</b>
+                        </div>
+                    </div>
+                    <div class="dataBlock">
+                        <label>Face count:</label>
+                        <div class="dataContent">
+                            {{responseInfo.faceCount}}
+                        </div>
+                    </div>
+                    <div class="dataBlock">
+                        <label>Finger count:</label>
+                        <div class="dataContent">
+                            {{responseInfo.fingerCount}}
+                        </div>
+                    </div>
+                    <div class="dataBlock">
+                        <label>Has Text Independent Voice:</label>
+                        <div class="dataContent">
+                            <b *ngIf="responseInfo.hasTextIndependentVoice">YES</b>
+                            <b *ngIf="!responseInfo.hasTextIndependentVoice">NO</b>
+                        </div>
+                    </div>
+                    <div class="dataBlock">
+                        <label>i1:</label>
+                        <div class="dataContent">
+                            {{responseInfo.i1}}
+                        </div>
+                    </div>
+                    <div class="dataBlock">
+                        <label>i2:</label>
+                        <div class="dataContent">
+                            {{responseInfo.i2}}
+                        </div>
+                    </div>
+                    <div class="dataBlock">
+                        <label>i3:</label>
+                        <div class="dataContent">
+                            {{responseInfo.i3}}
+                        </div>
+                    </div>
+                    <div class="dataBlock">
+                        <label>i4:</label>
+                        <div class="dataContent">
+                            {{responseInfo.i4}}
+                        </div>
+                    </div>
+                    <div class="dataBlock">
+                        <label>i5:</label>
+                        <div class="dataContent">
+                            {{responseInfo.i5}}
+                        </div>
+                    </div>
+                    <div class="dataBlock">
+                        <label>Last identify date:</label>
+                        <div class="dataContent">
+                            {{responseInfo.lastIdentifyDate | DateParsed}}
+                        </div>
+                    </div>
+                    <div class="dataBlock">
+                        <label>Last update date:</label>
+                        <div class="dataContent">
+                            {{responseInfo.lastUpdateDate | DateParsed}}
+                        </div>
+                    </div>
+                    <div class="dataBlock">
+                        <label>Last verify date:</label>
+                        <div class="dataContent">
+                            {{responseInfo.lastVerifyDate | DateParsed}}
+                        </div>
+                    </div>
+                    <div class="dataBlock">
+                        <label>s1:</label>
+                        <div class="dataContent">
+                            {{responseInfo.s1}}
+                        </div>
+                    </div>
+                    <div class="dataBlock">
+                        <label>s2:</label>
+                        <div class="dataContent">
+                            {{responseInfo.s2}}
+                        </div>
+                    </div>
+                    <div class="dataBlock">
+                        <label>s3:</label>
+                        <div class="dataContent">
+                            {{responseInfo.s3}}
+                        </div>
+                    </div>
+                    <div class="dataBlock">
+                        <label>s4:</label>
+                        <div class="dataContent">
+                            {{responseInfo.s4}}
+                        </div>
+                    </div>
+                    <div class="dataBlock">
+                        <label>s5:</label>
+                        <div class="dataContent">
+                            {{responseInfo.s5}}
+                        </div>
+                    </div>
+                    <div class="dataBlock">
+                        <label>Status:</label>
+                        <div class="dataContent">
+                            {{responseInfo.status}}
+                        </div>
+                    </div>
+                    <div class="dataBlock">
+                        <label>Text dependent voice count:</label>
+                        <div class="dataContent">
+                            {{responseInfo.textDependentVoiceCount}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </form>
+</div>
+
 <section id="response" *ngIf="step==2">
     <div class="url"><span class="method">POST</span> {{urlEndpoint}}</div>
     <code [class.error]="error">
@@ -14,11 +491,49 @@
                     {{response.txId}}
                 </div>
             </div>
-            <div class="dataBlock">
-                <label>IDS:</label>
+            <div class="dataBlock borderFixed">
                 <div class="dataContent">
-                    <ul>
-                        <li *ngFor="let id of response.ids">{{id}}</li>
+                    <b>IDS:</b>
+                    <!-- <div class="inputRow">
+                        <label>
+                            Audit Token
+                        </label>
+                        <input type="text" name="auditToken" [(ngModel)]="auditToken">
+                    </div> -->
+                    <ul class="ListActionsItems">
+                        <li *ngFor="let id of response.ids">
+                            {{id}}
+                            <div class="actions">
+                                <span class="delete" title="Delete" (click)="delete(id)">
+                                    <svg class="svg-icon" viewBox="0 0 20 20">
+                                        <path
+                                            d="M10.185,1.417c-4.741,0-8.583,3.842-8.583,8.583c0,4.74,3.842,8.582,8.583,8.582S18.768,14.74,18.768,10C18.768,5.259,14.926,1.417,10.185,1.417 M10.185,17.68c-4.235,0-7.679-3.445-7.679-7.68c0-4.235,3.444-7.679,7.679-7.679S17.864,5.765,17.864,10C17.864,14.234,14.42,17.68,10.185,17.68 M10.824,10l2.842-2.844c0.178-0.176,0.178-0.46,0-0.637c-0.177-0.178-0.461-0.178-0.637,0l-2.844,2.841L7.341,6.52c-0.176-0.178-0.46-0.178-0.637,0c-0.178,0.176-0.178,0.461,0,0.637L9.546,10l-2.841,2.844c-0.178,0.176-0.178,0.461,0,0.637c0.178,0.178,0.459,0.178,0.637,0l2.844-2.841l2.844,2.841c0.178,0.178,0.459,0.178,0.637,0c0.178-0.176,0.178-0.461,0-0.637L10.824,10z">
+                                        </path>
+                                    </svg>
+                                </span>
+                                <span class="download" title="Download zip" (click)="download(id)">
+                                    <svg class="svg-icon" viewBox="0 0 20 20">
+                                        <path
+                                            d="M4.317,16.411c-1.423-1.423-1.423-3.737,0-5.16l8.075-7.984c0.994-0.996,2.613-0.996,3.611,0.001C17,4.264,17,5.884,16.004,6.88l-8.075,7.984c-0.568,0.568-1.493,0.569-2.063-0.001c-0.569-0.569-0.569-1.495,0-2.064L9.93,8.828c0.145-0.141,0.376-0.139,0.517,0.005c0.141,0.144,0.139,0.375-0.006,0.516l-4.062,3.968c-0.282,0.282-0.282,0.745,0.003,1.03c0.285,0.284,0.747,0.284,1.032,0l8.074-7.985c0.711-0.71,0.711-1.868-0.002-2.579c-0.711-0.712-1.867-0.712-2.58,0l-8.074,7.984c-1.137,1.137-1.137,2.988,0.001,4.127c1.14,1.14,2.989,1.14,4.129,0l6.989-6.896c0.143-0.142,0.375-0.14,0.516,0.003c0.143,0.143,0.141,0.374-0.002,0.516l-6.988,6.895C8.054,17.836,5.743,17.836,4.317,16.411">
+                                        </path>
+                                    </svg>
+                                </span>
+                                <span class="viewData" title="View data" (click)="viewData(id)">
+                                    <svg class="svg-icon" viewBox="0 0 20 20">
+                                        <path
+                                            d="M8.749,9.934c0,0.247-0.202,0.449-0.449,0.449H4.257c-0.247,0-0.449-0.202-0.449-0.449S4.01,9.484,4.257,9.484H8.3C8.547,9.484,8.749,9.687,8.749,9.934 M7.402,12.627H4.257c-0.247,0-0.449,0.202-0.449,0.449s0.202,0.449,0.449,0.449h3.145c0.247,0,0.449-0.202,0.449-0.449S7.648,12.627,7.402,12.627 M8.3,6.339H4.257c-0.247,0-0.449,0.202-0.449,0.449c0,0.247,0.202,0.449,0.449,0.449H8.3c0.247,0,0.449-0.202,0.449-0.449C8.749,6.541,8.547,6.339,8.3,6.339 M18.631,4.543v10.78c0,0.248-0.202,0.45-0.449,0.45H2.011c-0.247,0-0.449-0.202-0.449-0.45V4.543c0-0.247,0.202-0.449,0.449-0.449h16.17C18.429,4.094,18.631,4.296,18.631,4.543 M17.732,4.993H2.46v9.882h15.272V4.993z M16.371,13.078c0,0.247-0.202,0.449-0.449,0.449H9.646c-0.247,0-0.449-0.202-0.449-0.449c0-1.479,0.883-2.747,2.162-3.299c-0.434-0.418-0.714-1.008-0.714-1.642c0-1.197,0.997-2.246,2.133-2.246s2.134,1.049,2.134,2.246c0,0.634-0.28,1.224-0.714,1.642C15.475,10.331,16.371,11.6,16.371,13.078M11.542,8.137c0,0.622,0.539,1.348,1.235,1.348s1.235-0.726,1.235-1.348c0-0.622-0.539-1.348-1.235-1.348S11.542,7.515,11.542,8.137 M15.435,12.629c-0.214-1.273-1.323-2.246-2.657-2.246s-2.431,0.973-2.644,2.246H15.435z">
+                                        </path>
+                                    </svg>
+                                </span>
+                                <span class="viewInfo" title="View info" (click)="viewInfo(id)">
+                                    <svg class="svg-icon" viewBox="0 0 20 20">
+                                        <path
+                                            d="M18.125,15.804l-4.038-4.037c0.675-1.079,1.012-2.308,1.01-3.534C15.089,4.62,12.199,1.75,8.584,1.75C4.815,1.75,1.982,4.726,2,8.286c0.021,3.577,2.908,6.549,6.578,6.549c1.241,0,2.417-0.347,3.44-0.985l4.032,4.026c0.167,0.166,0.43,0.166,0.596,0l1.479-1.478C18.292,16.234,18.292,15.968,18.125,15.804 M8.578,13.99c-3.198,0-5.716-2.593-5.733-5.71c-0.017-3.084,2.438-5.686,5.74-5.686c3.197,0,5.625,2.493,5.64,5.624C14.242,11.548,11.621,13.99,8.578,13.99 M16.349,16.981l-3.637-3.635c0.131-0.11,0.721-0.695,0.876-0.884l3.642,3.639L16.349,16.981z">
+                                        </path>
+                                    </svg>
+                                </span>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>

@@ -1,0 +1,78 @@
+.borderFixed
+    border: 1px solid #cecece
+    margin: 5px 0px
+    padding: 3px
+    background: white
+    .dataContent
+        display: block!important
+        .ListActionsItems
+            list-style: none
+            padding: 0px
+            li
+                display: block
+                margin: 5px
+                background: #e8f7e3
+                padding: 5px
+                font-family: helvetica
+                font-size: 13px
+                position: relative
+                &:hover
+                    background: #fbfffa
+                .actions
+                    position: absolute
+                    right: 1px
+                    top: 1px
+                    span 
+                        display: inline-block
+                        width: 20px
+                        cursor: pointer
+                        margin: 2px 3px
+                        &.delete:hover::after
+                            content: 'Delete'
+                            position: absolute
+                            top: -16px
+                            left: -8px
+                            background: white
+                            border-radius: 3px
+                            padding: 2px
+                        &.download:hover::after
+                            content: 'Download Zip'
+                            position: absolute
+                            top: -16px
+                            left: -8px
+                            background: white
+                            border-radius: 3px
+                            padding: 2px
+                        &.viewData:hover::after
+                            content: 'View Data'
+                            position: absolute
+                            top: -16px
+                            left: -8px
+                            background: white
+                            border-radius: 3px
+                            padding: 2px
+                        &.viewInfo:hover::after
+                            content: 'View Info'
+                            position: absolute
+                            top: -16px
+                            left: -8px
+                            background: white
+                            border-radius: 3px
+                            padding: 2px
+.popup 
+    position: fixed
+    top: 1px
+    width: 80%
+    height: 100%
+    background: #0000000f
+    z-index: 1
+    padding-top: 45px
+    form
+        background: white
+        height: auto
+    .close
+        width: 25px
+        position: absolute
+        right: 40px
+        margin-top: 10px
+        cursor: pointer
