@@ -99,4 +99,9 @@ export class TextDependentVoiceComponent implements OnInit {
     }
   }
 
+  validatePhraseID() {
+    if (this.dto.phraseId > 65535) {
+      this.dto.phraseId = 65535;
+    }
+  }
 }
