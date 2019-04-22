@@ -1,3 +1,5 @@
+import { TextIndependentVoiceComponent } from './pages/extraction/text-independent-voice/text-independent-voice.component';
+import { TextDependentVoiceComponent } from './pages/extraction/text-dependent-voice/text-dependent-voice.component';
 import { IdentifyComponent } from './pages/matching/identify/identify.component';
 import { VerifyComponent } from './pages/matching/verify/verify.component';
 import { UpdateComponent } from './pages/database/update/update.component';
@@ -34,6 +36,16 @@ const routes: Routes = [
       title:
         'Performs an identification (1:N) of supplied biometric data against enrolled subjects (that match optionally supplied conditions)'
     }
+  },
+  {
+    path: 'extraction/text-dependent-voice',
+    component: TextDependentVoiceComponent,
+    data: { title: 'Extract Text Dependent Voice' }
+  },
+  {
+    path: 'extraction/text-independent-voice',
+    component: TextIndependentVoiceComponent,
+    data: { title: 'Extract Text Independent Voice' }
   },
   {
     path: 'matching/verify',

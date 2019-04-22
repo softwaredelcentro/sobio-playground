@@ -23,6 +23,8 @@ import { IdentifyComponent } from './pages/matching/identify/identify.component'
 import { VerifyComponent } from './pages/matching/verify/verify.component';
 import { SwitchComponent } from './components/switch/switch.component';
 import { DateParsedPipe } from './Utils/dateParsed.pipe';
+import { TextDependentVoiceComponent } from './pages/extraction/text-dependent-voice/text-dependent-voice.component';
+import { TextIndependentVoiceComponent } from './pages/extraction/text-independent-voice/text-independent-voice.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { DateParsedPipe } from './Utils/dateParsed.pipe';
     VerifyComponent,
     SwitchComponent,
     DateParsedPipe,
+    TextDependentVoiceComponent,
+    TextIndependentVoiceComponent,
   ],
   imports: [
     BrowserModule,
