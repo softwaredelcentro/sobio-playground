@@ -11,6 +11,8 @@ import { Observable } from 'rxjs';
 import { BioListResponse } from '../dataTypeObjects/bioListResponse';
 import { Enroll } from '../dataTypeObjects/enroll';
 import { EnrollResponse } from '../dataTypeObjects/enrollResponse';
+import { Update } from '../dataTypeObjects/update';
+import { UpdateResponse } from '../dataTypeObjects/updateResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +36,7 @@ export class DatabaseService {
     this.endpoints.data = endpoint + '/' + environment.version + '/bio/subject-data';
     this.endpoints.info = endpoint + '/' + environment.version + '/bio/subject-info';
     this.endpoints.enroll = endpoint + '/' + environment.version + '/bio/enroll';
+    this.endpoints.update = endpoint + '/' + environment.version + '/bio/update';
   }
 
   public getList(dto: BioList): Observable<BioListResponse> {
@@ -76,6 +79,12 @@ export class DatabaseService {
     const options = { headers: {'Content-Type': 'application/json'} };
     const dataSTR = JSON.stringify(data);
     return this.httpClient.post<EnrollResponse>(this.endpoints.enroll, dataSTR, options);
+  }
+
+  public update(data: Update): Observable<UpdateResponse> {
+    const options = { headers: {'Content-Type': 'application/json'} };
+    const dataSTR = JSON.stringify(data);
+    return this.httpClient.post<UpdateResponse>(this.endpoints.update, dataSTR, options);
   }
 
 }

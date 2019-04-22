@@ -1,2 +1,452 @@
-<app-header title="Database" subtitle="Update"></app-header>
+<app-header title="Database::Update" subtitle="Update biometric data of an already enrolled subject"></app-header>
 <app-loader [isLoading]="loading"></app-loader>
+
+<section id="response" *ngIf="step==2">
+    <div class="url"><span class="method">POST</span> {{urlEndpoint}}</div>
+    <code [class.error]="error">
+                {{jsonResponse}}
+            </code>
+    <div class="responses" *ngIf="response">
+        <div class="responseProcessed">
+            <div class="dataBlock">
+                <label>TxId:</label>
+                <div class="dataContent">
+                    {{response.txId}}
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>Duplicated Subject ID:</label>
+                <div class="dataContent">
+                    {{response.duplicatedSubjectId}}
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>Exception:</label>
+                <div class="dataContent">
+                    <b *ngIf="response.exception">YES</b>
+                    <b *ngIf="!response.exception">NO</b>
+                </div>
+            </div>
+            <div class="dataBlock">
+                <label>Status:</label>
+                <div class="dataContent">
+                    {{response.status}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="send" (click)="step = 1">Retry</button>
+</section>
+
+<form *ngIf="step==1">
+    <section>
+        <div class="inputRow">
+            <label>
+                Audit Token
+            </label>
+            <input type="text" name="auditToken" [(ngModel)]="dto.auditToken">
+        </div>
+    </section>
+    <section>
+        <header>
+            <h3>Bio Info</h3>
+        </header>
+        <section>
+            <header>
+                <h4>Composite Finger Prints</h4>
+                <button class="rightButton" (click)="addCompositeFinger()">+</button>
+            </header>
+            <!-- ESTO ES UN ARREGLO -->
+            <div class="composedBlock" *ngFor="let item of dto.bioInfo.compositeFingerPrints; let idx = index;">
+                <button class="rightButton red" (click)="removeCompositeFinger(idx)">-</button>
+                <div class="inputRow">
+                    <label>
+                        Finger
+                    </label>
+                    <input type="text" name="bi1_dedo_composite{{idx}}"
+                        [(ngModel)]="dto.bioInfo.compositeFingerPrints[idx].dedo">
+                    <!-- <select name="bi1_dedo">
+            <option value="RIGHT_THUMB">Right Thumb</option>
+          </select> -->
+                </div>
+                <!-- IMAGES [0] -->
+                <div class="inputRow">
+                    <label>
+                        Source
+                    </label>
+                    <input type="text" name="bi1_source_composite{{idx}}"
+                        [(ngModel)]="dto.bioInfo.compositeFingerPrints[idx].source">
+                    <!-- <select name="bi1_source">
+            <option value="LIVE_FINGERPRINT">Live Fingerprint</option>
+          </select> -->
+                </div>
+                <div class="inputRow">
+                    <label>
+                        Template
+                    </label>
+                    <textarea name="bi1_template_composite{{idx}}"
+                        [(ngModel)]="dto.bioInfo.compositeFingerPrints[idx].template"></textarea>
+                </div>
+            </div>
+        </section>
+        <section>
+            <header>
+                <h4>Faces</h4>
+                <button class="rightButton" (click)="addFace()">+</button>
+            </header>
+            <div class="composedBlock" *ngFor="let item of dto.bioInfo.faces; let idx = index;">
+                <button class="rightButton red" (click)="removeFace(idx)">-</button>
+                <div class="inputRow">
+                    <label>
+                        Select image file
+                    </label>
+                    <input type="file" accept="image/*" name="bi1_image_faces{{idx}}"
+                        (change)="bi1_image_faces_change(idx)" #bi1_image_faces>
+                </div>
+                <div class="inputRow">
+                    <label>
+                        Template
+                    </label>
+                    <textarea name="bi1_template_faces{{idx}}" [(ngModel)]="dto.bioInfo.faces[idx].template"></textarea>
+                </div>
+            </div>
+        </section>
+        <section>
+            <header>
+                <h4>Finger Prints</h4>
+                <button class="rightButton" (click)="addFPrint()">+</button>
+            </header>
+            <div class="composedBlock" *ngFor="let item of dto.bioInfo.fingerPrints; let idx = index;">
+                <div class="inputRow">
+                    <button class="rightButton red" (click)="removeFPrint(idx)">-</button>
+                    <label>
+                        Template Format
+                    </label>
+                    <input type="text" name="bi1_template_format_fp{{idx}}"
+                        [(ngModel)]="dto.bioInfo.fingerPrints[idx].formatoTemplate">
+                </div>
+                <div class="inputRow">
+                    <label>
+                        Select image file
+                    </label>
+                    <input type="file" accept="image/*" (change)="bi1_image_fprints_change(idx)" #bi1_image_fprints>
+                </div>
+                <div class="inputRow">
+                    <label>
+                        Image Source
+                    </label>
+                    <input type="text" name="bi1_imagesource_fp{{idx}}"
+                        [(ngModel)]="dto.bioInfo.fingerPrints[idx].imageSource">
+                </div>
+                <div class="inputRow">
+                    <label>
+                        Position
+                    </label>
+                    <input type="text" name="bi1_position_fp{{idx}}"
+                        [(ngModel)]="dto.bioInfo.fingerPrints[idx].position">
+                </div>
+                <div class="inputRow">
+                    <label>
+                        Template
+                    </label>
+                    <textarea name="bi1_template_fp{{idx}}"
+                        [(ngModel)]="dto.bioInfo.fingerPrints[idx].template"></textarea>
+                </div>
+            </div>
+        </section>
+        <section>
+            <header>
+                <h4>Text Dependent Voices</h4>
+                <button class="rightButton" (click)="addTDV()">+</button>
+            </header>
+            <div class="composedBlock" *ngFor="let item of dto.bioInfo.textDependentVoices; let idx = index;">
+                <button class="rightButton red" (click)="removeTDV(idx)">-</button>
+                <div class="inputRow">
+                    <label>
+                        Select audio file
+                    </label>
+                    <input type="file" accept="audio/*" (change)="bi1_audio_tdv_change(idx)" #bi1_audio_tdv>
+                </div>
+                <div class="inputRow">
+                    <label>
+                        Phase ID
+                    </label>
+                    <input type="number" name="bi1_phaseid_tdv{{idx}}"
+                        [(ngModel)]="dto.bioInfo.textDependentVoices[idx].phraseId">
+                </div>
+                <div class="inputRow">
+                    <label>
+                        Template
+                    </label>
+                    <textarea name="bi1_template_tdv{{idx}}"
+                        [(ngModel)]="dto.bioInfo.textDependentVoices[idx].template"></textarea>
+                </div>
+            </div>
+        </section>
+        <section>
+            <header>
+                <h4>Text Independent Voices</h4>
+            </header>
+            <div class="inputRow">
+                <label>
+                    Select audio file
+                </label>
+                <input type="file" value="" accept="audio/*" (change)="bi1_audio_tiv_change(idx)" #bi1_audio_tiv>
+            </div>
+            <div class="inputRow">
+                <label>
+                    Template
+                </label>
+                <textarea name="bi1_template_tiv" [(ngModel)]="dto.bioInfo.textDependentVoices.template"></textarea>
+            </div>
+        </section>
+    </section>
+    <section>
+        <header>
+            <h3>Params</h3>
+        </header>
+        <section>
+            <header>
+                <h4>Conditions</h4>
+            </header>
+            <div class="inputRow">
+                <label>
+                    I1
+                </label>
+                <input type="number" name="i1" [(ngModel)]="dto.params.conditions.i1">
+            </div>
+            <div class="inputRow">
+                <label>
+                    I2
+                </label>
+                <input type="number" name="i2" [(ngModel)]="dto.params.conditions.i2">
+            </div>
+            <div class="inputRow">
+                <label>
+                    I3
+                </label>
+                <input type="number" name="i3" [(ngModel)]="dto.params.conditions.i3">
+            </div>
+            <div class="inputRow">
+                <label>
+                    I4
+                </label>
+                <input type="number" name="i4" [(ngModel)]="dto.params.conditions.i4">
+            </div>
+            <div class="inputRow">
+                <label>
+                    I5
+                </label>
+                <input type="number" name="i5" [(ngModel)]="dto.params.conditions.i5">
+            </div>
+            <div class="inputRow">
+                <label>
+                    id
+                </label>
+                <input type="text" name="id" [(ngModel)]="dto.params.conditions.id">
+            </div>
+            <div class="inputRow">
+                <label>
+                    id In
+                </label>
+                <input type="text" name="idIn" [(ngModel)]="dto.params.conditions.idIn">
+            </div>
+            <div class="inputRow">
+                <label>
+                    id Like
+                </label>
+                <input type="text" name="idLike" [(ngModel)]="dto.params.conditions.idLike">
+            </div>
+            <div class="inputRow">
+                <label>
+                    id No
+                </label>
+                <input type="text" name="idNo" [(ngModel)]="dto.params.conditions.id">
+            </div>
+            <div class="inputRow">
+                <label>
+                    s1
+                </label>
+                <input type="text" name="s1" [(ngModel)]="dto.params.conditions.s1">
+            </div>
+            <div class="inputRow">
+                <label>
+                    s2
+                </label>
+                <input type="text" name="s2" [(ngModel)]="dto.params.conditions.s2">
+            </div>
+            <div class="inputRow">
+                <label>
+                    s3
+                </label>
+                <input type="text" name="s3" [(ngModel)]="dto.params.conditions.s3">
+            </div>
+            <div class="inputRow">
+                <label>
+                    s4
+                </label>
+                <input type="text" name="s4" [(ngModel)]="dto.params.conditions.s4">
+            </div>
+            <div class="inputRow">
+                <label>
+                    s5
+                </label>
+                <input type="text" name="s5" [(ngModel)]="dto.params.conditions.s5">
+            </div>
+        </section>
+        <section>
+            <header>
+                <h4>Duplicate Search</h4>
+                <div class="buttonRights">
+                    <app-switch [initStatus]="duplicatedSearch" (switch)="duplicatedSearch = $event" style="display: inline-block;"></app-switch>
+                </div>
+            </header>
+            <div class="container" *ngIf="duplicatedSearch">
+                <div class="inputRow">
+                    <label>
+                        I1
+                    </label>
+                    <input type="number" name="dupl_i1"
+                        [(ngModel)]="dto.params.duplicateSearchParameters.conditions.i1">
+                </div>
+                <div class="inputRow">
+                    <label>
+                        I2
+                    </label>
+                    <input type="number" name="dupl_i2"
+                        [(ngModel)]="dto.params.duplicateSearchParameters.conditions.i2">
+                </div>
+                <div class="inputRow">
+                    <label>
+                        I3
+                    </label>
+                    <input type="number" name="dupl_i3"
+                        [(ngModel)]="dto.params.duplicateSearchParameters.conditions.i3">
+                </div>
+                <div class="inputRow">
+                    <label>
+                        I4
+                    </label>
+                    <input type="number" name="dupl_i4"
+                        [(ngModel)]="dto.params.duplicateSearchParameters.conditions.i4">
+                </div>
+                <div class="inputRow">
+                    <label>
+                        I5
+                    </label>
+                    <input type="number" name="dupl_i5"
+                        [(ngModel)]="dto.params.duplicateSearchParameters.conditions.i5">
+                </div>
+                <div class="inputRow">
+                    <label>
+                        id
+                    </label>
+                    <input type="text" name="dupl_id" [(ngModel)]="dto.params.duplicateSearchParameters.conditions.id">
+                </div>
+                <div class="inputRow">
+                    <label>
+                        id In
+                    </label>
+                    <input type="text" name="dupl_idIn"
+                        [(ngModel)]="dto.params.duplicateSearchParameters.conditions.idIn">
+                </div>
+                <div class="inputRow">
+                    <label>
+                        id Like
+                    </label>
+                    <input type="text" name="dupl_idLike"
+                        [(ngModel)]="dto.params.duplicateSearchParameters.conditions.idLike">
+                </div>
+                <div class="inputRow">
+                    <label>
+                        id No
+                    </label>
+                    <input type="text" name="dupl_idNo"
+                        [(ngModel)]="dto.params.duplicateSearchParameters.conditions.id">
+                </div>
+                <div class="inputRow">
+                    <label>
+                        s1
+                    </label>
+                    <input type="text" name="dupl_s1" [(ngModel)]="dto.params.duplicateSearchParameters.conditions.s1">
+                </div>
+                <div class="inputRow">
+                    <label>
+                        s2
+                    </label>
+                    <input type="text" name="dupl_s2" [(ngModel)]="dto.params.duplicateSearchParameters.conditions.s2">
+                </div>
+                <div class="inputRow">
+                    <label>
+                        s3
+                    </label>
+                    <input type="text" name="dupl_s3" [(ngModel)]="dto.params.duplicateSearchParameters.conditions.s3">
+                </div>
+                <div class="inputRow">
+                    <label>
+                        s4
+                    </label>
+                    <input type="text" name="dupl_s4" [(ngModel)]="dto.params.duplicateSearchParameters.conditions.s4">
+                </div>
+                <div class="inputRow">
+                    <label>
+                        s5
+                    </label>
+                    <input type="text" name="dupl_s5" [(ngModel)]="dto.params.duplicateSearchParameters.conditions.s5">
+                </div>
+                <div class="inputRow">
+                    <label>
+                        Confidence
+                    </label>
+                    <app-gauge [percent]="(1000 - farCalculated) / 10"></app-gauge>
+                </div>
+                <div class="inputRow">
+                    <label>
+                        Far
+                    </label>
+                    <input name="far" [(ngModel)]="farCalculated" type="range" min="1" max="999" />
+                    <app-gauge [percent]="farCalculated / 10" color="#eeab00"></app-gauge>
+                </div>
+                <section>
+                    <header>
+                        <h4>Finger Print Matching Params</h4>
+                    </header>
+                    <div class="inputRow">
+                        <label>
+                            Max Rotation
+                        </label>
+                        <input name="maxRotation" type="range" min="0" max="180"
+                            [(ngModel)]="dto.params.duplicateSearchParameters.fingerPrintMatchingParams.maxRotation" />
+                        {{dto.params.duplicateSearchParameters.fingerPrintMatchingParams.maxRotation}}
+                    </div>
+                    <div class="inputRow">
+                        <label>
+                            Use Only Ansi378
+                        </label>
+                        <input type="checkbox"
+                            [(ngModel)]="dto.params.duplicateSearchParameters.fingerPrintMatchingParams.useOnlyAnsi378"
+                            name="useOnlyAnsi378" />
+                    </div>
+                </section>
+                <div class="inputRow">
+                    <label>
+                        Global Search With Conditions
+                    </label>
+                    <input type="checkbox" [(ngModel)]="dto.params.duplicateSearchParameters.globalSearchWithConditions"
+                        name="globalSearchWithConditions" />
+                </div>
+            </div>
+        </section>
+    </section>
+    <section>
+        <div class="inputRow">
+            <label>
+                Subject ID
+            </label>
+            <input type="text" name="subjectID" [(ngModel)]="dto.subjectId">
+        </div>
+    </section>
+    <section>
+        <button type="button" class="send" (click)="send()">Send Data</button>
+    </section>
+</form>

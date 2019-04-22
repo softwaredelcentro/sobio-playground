@@ -5,4 +5,5 @@ export class EndpointsDatabaseService {
     info: string;
     zip: string;
     enroll: string;
+    update: string;
 }
