@@ -93,12 +93,8 @@
             </label>
             <input type="file" value="" accept="image/*" (change)="fileChange()" #fileInput>
             <!-- [(ngModel)]="dto.image" -->
-            <div class="videoWrapper" *ngIf="dto.image">
-                <div class="cross" (click)="dto.image = undefined">X</div>
-                <video controls>
-                    <source [type]="dataType" [src]="'data:'+dataType+';base64,'+dto.image" />
-                </video>
-            </div>
+            <img *ngIf="dto.image" [src]="'data:'+dataType+';base64,'+dto.image" class="imagefile"
+                (click)="dto.image = undefined" />
         </div>
     </section>
     <section>
