@@ -52,14 +52,14 @@
       <label>
         Min Duration
       </label>
-      <input type="range" min="1" max="7" name="minDuration" value="" [(ngModel)]="dto.params.minDuration">
+      <input type="number" name="minDuration" [(ngModel)]="dto.params.minDuration">
       {{dto.params.minDuration}}
     </div>
     <div class="inputRow">
       <label>
         Min Level
       </label>
-      <input type="number" name="detectAge" checked="checked" [(ngModel)]="dto.params.minLevel">
+      <input type="number" name="minLevel" [(ngModel)]="dto.params.minLevel">
     </div>
     <div class="inputRow">
       <label>

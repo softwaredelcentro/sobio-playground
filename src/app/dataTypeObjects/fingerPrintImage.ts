@@ -5,12 +5,12 @@ export class FingerPrintImage {
 }
 
 export class FingerPrintParams {
-    public determinePatternClass = true;
-    public evaluateNFIQ = true;
+    public determinePatternClass = false;
+    public evaluateNFIQ = false;
     public imageSource = 'LIVE_FINGERPRINT';
     public maxRotation = 45;
-    public minQuality = 10;
-    public position = 'RIGHT_THUMB';
+    public minQuality = 25;
+    public position = 'UNKNOWN';
     public useCache = true;
-    public useOnlyAnsi378 = true;
+    public useOnlyAnsi378 = false;
 }

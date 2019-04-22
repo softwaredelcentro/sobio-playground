@@ -6,7 +6,7 @@ export class TextDependentVoice {
 }
 
 export class VoiceParams {
-    public minDuration: number;
-    public minLevel: number;
-    public useCache: boolean;
+    public minDuration = 1500;
+    public minLevel = 0.05;
+    public useCache = true;
 }
