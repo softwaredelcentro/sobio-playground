@@ -76,7 +76,7 @@
         </div>
         <div class="dataContent" style="display: block">
           Date of Birth: <b>{{response.documentInfo.dateOfBirth.day}} / {{response.documentInfo.dateOfBirth.month}} /
-          {{response.documentInfo.dateOfBirth.year}}</b>
+            {{response.documentInfo.dateOfBirth.year}}</b>
         </div>
         <div class="dataContent" style="display: block">
           Document Number: <b>{{response.documentInfo.documentNumber}}</b>
@@ -88,9 +88,9 @@
           Document Version: <b>{{response.documentInfo.documentVersion}}</b>
         </div>
         <div class="dataContent" style="display: block">
-          Expiration date: <b>{{response.documentInfo.expirationDate.day}} 
-          / {{response.documentInfo.expirationDate.month}}
-          / {{response.documentInfo.expirationDate.year}}</b>
+          Expiration date: <b>{{response.documentInfo.expirationDate.day}}
+            / {{response.documentInfo.expirationDate.month}}
+            / {{response.documentInfo.expirationDate.year}}</b>
         </div>
         <div class="dataContent" style="display: block">
           Given Names: <b>{{response.documentInfo.givenNames}}</b>
@@ -99,9 +99,9 @@
           Issuing Country: <b>{{response.documentInfo.issuingCountry}}</b>
         </div>
         <div class="dataContent" style="display: block">
-          Issuing Date: <b>{{response.documentInfo.issuingDate.day}} 
-          / {{response.documentInfo.issuingDate.month}} 
-          / {{response.documentInfo.issuingDate.year}}</b>
+          Issuing Date: <b>{{response.documentInfo.issuingDate.day}}
+            / {{response.documentInfo.issuingDate.month}}
+            / {{response.documentInfo.issuingDate.year}}</b>
         </div>
         <div class="dataContent" style="display: block">
           Nationality: <b>{{response.documentInfo.nationality}}</b>
@@ -188,6 +188,35 @@
       <input type="file" accept="image/*" (change)="fileFrontChange()" #fileFrontInput>
       <img *ngIf="dto.frontImage" [src]="'data:'+frontDataType+';base64,'+dto.frontImage" class="imagefile"
         (click)="dto.frontImage = undefined" />
+    </div>
+  </section>
+  <section>
+    <header>
+      <h3>Params</h3>
+    </header>
+    <div class="inputRow">
+      <label>
+        Extract PDF417 info
+      </label>
+      <input type="checkbox" name="extractPDF417" checked="checked" [(ngModel)]="dto.params.extractPDF417">
+    </div>
+    <div class="inputRow">
+      <label>
+        Extract MRZ info
+      </label>
+      <input type="checkbox" name="extractMRZ" checked="checked" [(ngModel)]="dto.params.extractMRZ">
+    </div>
+    <div class="inputRow">
+      <label>
+        Extract face biometric info
+      </label>
+      <input type="checkbox" name="extractFace" checked="checked" [(ngModel)]="dto.params.extractFace">
+    </div>
+    <div class="inputRow">
+      <label>
+        Use cache
+      </label>
+      <input type="checkbox" name="useCache" checked="checked" [(ngModel)]="dto.params.useCache">
     </div>
   </section>
   <section>
