@@ -1,3 +1,5 @@
+import { TextIndependentVoice } from './../dataTypeObjects/textIndependentVoice';
+import { TextDependentVoice } from './../dataTypeObjects/textDependentVoice';
 import { DniAr } from './../dataTypeObjects/dniAr';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -9,6 +11,8 @@ import { FaceImageResponse } from '../dataTypeObjects/faceImageResponse';
 import { FaceImageDTO } from '../dataTypeObjects/faceImage';
 import { EndpointsExtractionService } from './endpointsExtractionService';
 import { DniArResponse } from '../dataTypeObjects/dniArResponse';
+import { TextDependentVoiceResponse } from '../dataTypeObjects/textDependentVoiceResponse';
+import { TextIndependentVoiceResponse } from '../dataTypeObjects/textIndependentVoiceResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +33,8 @@ export class ExtractionService {
     this.endpoints.faceImage = endpoint + '/' + environment.version + '/bio/extract-face-image';
     this.endpoints.faceVideo = endpoint + '/' + environment.version + '/bio/extract-face-video';
     this.endpoints.dniAr = endpoint + '/' + environment.version + '/document-extraction/dni-ar';
+    this.endpoints.textDependentVoice = endpoint + '/' + environment.version + '/bio/extract-text-dependent-voice';
+    this.endpoints.textIndependentVoice = endpoint + '/' + environment.version + '/bio/extract-text-independent-voice';
   }
 
   public extractFaceVideo(data: FaceVideoDTO): Observable<FaceVideoResponse> {
@@ -43,10 +49,22 @@ export class ExtractionService {
     return this.httpClient.post<FaceImageResponse>(this.endpoints.faceImage, dataSTR, options);
   }
 
-  public extractDni(data: DniAr): Observable<DniArResponse>{
+  public extractDni(data: DniAr): Observable<DniArResponse> {
     const options = { headers: {'Content-Type': 'application/json'} };
     const dataSTR = JSON.stringify(data);
     return this.httpClient.post<DniArResponse>(this.endpoints.dniAr, dataSTR, options);
+  }
+
+  public extractTextDependentVoice(data: TextDependentVoice): Observable<TextDependentVoiceResponse> {
+    const options = { headers: {'Content-Type': 'application/json'} };
+    const dataSTR = JSON.stringify(data);
+    return this.httpClient.post<TextDependentVoiceResponse>(this.endpoints.textDependentVoice, dataSTR, options);
+  }
+
+  public extractTextIndependentVoice(data: TextIndependentVoice): Observable<TextIndependentVoiceResponse> {
+    const options = { headers: {'Content-Type': 'application/json'} };
+    const dataSTR = JSON.stringify(data);
+    return this.httpClient.post<TextIndependentVoiceResponse>(this.endpoints.textIndependentVoice, dataSTR, options);
   }
 
 }

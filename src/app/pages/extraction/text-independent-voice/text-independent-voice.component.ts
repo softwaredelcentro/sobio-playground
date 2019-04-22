@@ -1,6 +1,8 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { TextIndependentVoice } from 'src/app/dataTypeObjects/textIndependentVoice';
 import { UUID } from 'src/app/Utils/UUID';
+import { TextIndependentVoiceResponse } from 'src/app/dataTypeObjects/textIndependentVoiceResponse';
+import { ExtractionService } from 'src/app/providers/extraction.service';
 
 @Component({
   selector: 'app-text-independent-voice',
@@ -17,9 +19,13 @@ export class TextIndependentVoiceComponent implements OnInit {
   dto: TextIndependentVoice;
   dataType: string;
   step: number;
+  jsonResponse: string;
+  response: TextIndependentVoiceResponse;
+  error: boolean;
+  urlEndpoint: string;
   @ViewChild('fileInput') fileInput: ElementRef;
 
-  constructor() {
+  constructor(private extractionSrv: ExtractionService) {
     this.dto = new TextIndependentVoice();
   }
 
@@ -48,7 +54,22 @@ export class TextIndependentVoiceComponent implements OnInit {
   }
 
   send() {
-
+    this.error = false;
+    this.loading = true;
+    this.extractionSrv.extractTextIndependentVoice(this.dto).subscribe(resp => {
+      console.log(resp);
+      this.loading = false;
+      this.step = 2;
+      this.response = resp;
+      this.jsonResponse = JSON.stringify(resp);
+    }, err => {
+      console.log(err);
+      this.error = true;
+      this.loading = false;
+      this.step = 2;
+      this.jsonResponse = JSON.stringify(err);
+    });
+    this.urlEndpoint = this.extractionSrv.getEndpoints().textIndependentVoice;
   }
 
 }
