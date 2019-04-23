@@ -150,10 +150,13 @@
             <label>
                 Select image file
             </label>
-            <input type="file" value="" accept="image/*" (change)="fileChange()" #fileInput>
+            <input type="file" value="" accept=".wsq,image/*" (change)="fileChange()" #fileInput>
             <!-- [(ngModel)]="dto.image" -->
-            <img *ngIf="dto.image" [src]="'data:'+dataType+';base64,'+dto.image" class="imagefile"
+            <img *ngIf="dto.image && !wsqlFile" [src]="'data:'+dataType+';base64,'+dto.image" class="imagefile"
                 (click)="dto.image = undefined" />
+            <div class="extensionFile" *ngIf="dto.image && wsqlFile" (click)="dto.image = undefined">
+                .wsq
+            </div>
         </div>
     </section>
     <section>

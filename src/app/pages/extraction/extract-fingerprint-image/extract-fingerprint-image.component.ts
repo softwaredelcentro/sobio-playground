@@ -23,12 +23,14 @@ export class ExtractFingerprintImageComponent implements OnInit {
   response: FingerPrintImageResponse;
   error: boolean;
   urlEndpoint: string;
+  wsqlFile: boolean;
 
   @ViewChild('fileInput') fileInput: ElementRef;
 
   constructor(private extractionSrv: ExtractionService) {
     this.dto = new FingerPrintImage();
     this.dto.auditToken = UUID.create();
+    this.wsqlFile = false;
   }
 
   ngOnInit() {
@@ -50,6 +52,9 @@ export class ExtractFingerprintImageComponent implements OnInit {
       this.loading = false;
       this.fileInput.nativeElement.value = '';
     };
+    const extension = this.fileInput.nativeElement.files[0].name.split('.').pop().toLowerCase();
+    console.log('EXTENSION: ', extension);
+    this.wsqlFile = extension === 'wsq';
     if (this.fileInput.nativeElement.files[0]) {
       reader.readAsDataURL(this.fileInput.nativeElement.files[0]);
     }
