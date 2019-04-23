@@ -191,21 +191,23 @@
         </div>
       </div>
       <hr *ngIf="response.properties.gender"/>
-      <div class="dataBlock">
+      <div class="dataBlock" *ngIf="response.properties.gender">
         <label>Age:</label>
         <div class="dataContent">
           {{response.properties.age}}
         </div>
       </div>
-      <div class="dataBlock" *ngIf="response.properties.detectedActions">
-        <label>Detected Actions:</label>
+      <div class="dataBlock" *ngIf="response.detectedActions">
+        <label style="display: block;text-align: left;">Detected Actions:</label>
         <div class="dataContent">
-          <ul>
-            <li *ngFor="let action of response.properties.detectedActions">
+          <ol>
+            <li *ngFor="let action of response.detectedActions">
+              <img [src]="'data:image/png;base64,'+action.thumbnail" /><br />
               Frame: {{action.frameNum}}<br />
-              Type: {{action.type}}
+              Type: {{action.type}}<br />
+              <hr />
             </li>
-          </ul>
+          </ol>
         </div>
       </div>
     </div>
