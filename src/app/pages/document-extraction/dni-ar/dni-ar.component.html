@@ -214,6 +214,12 @@
     </div>
     <div class="inputRow">
       <label>
+        Extract Address
+      </label>
+      <input type="checkbox" name="extractAddress" checked="checked" [(ngModel)]="dto.params.extractAddress">
+    </div>
+    <div class="inputRow">
+      <label>
         Use cache (Cache input-output from succesive API calls)
       </label>
       <input type="checkbox" name="useCache" checked="checked" [(ngModel)]="dto.params.useCache">

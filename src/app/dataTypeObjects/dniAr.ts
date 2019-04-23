@@ -11,5 +11,6 @@ export class DniArParameters {
     public extractMRZ = true;
     public extractFace = true;
     public useCache = true;
+    public extractAddress = false;
 
 }
