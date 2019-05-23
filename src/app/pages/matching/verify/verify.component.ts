@@ -34,7 +34,7 @@ export class VerifyComponent implements OnInit {
 
   ngOnInit() {
     this.dto.auditToken = UUID.create();
-    this.farCalculated = this.dto.params.far;
+    // this.farCalculated = this.dto.params.far;
   }
 
   addCompositeFinger() {
@@ -128,7 +128,7 @@ export class VerifyComponent implements OnInit {
   send() {
     this.error = false;
     this.loading = true;
-    this.dto.params.far = this.farCalculated / 1000;
+    // this.dto.params.far = this.farCalculated / 1000;
     this.matching.verify(this.dto).subscribe(resp => {
       console.log(resp);
       this.loading = false;

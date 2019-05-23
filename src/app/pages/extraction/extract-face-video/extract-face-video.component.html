@@ -200,12 +200,17 @@
       <div class="dataBlock" *ngIf="response.detectedActions">
         <label style="display: block;text-align: left;">Detected Actions:</label>
         <div class="dataContent">
-          <ol>
+          <ol class="actions">
             <li *ngFor="let action of response.detectedActions">
-              <img [src]="'data:image/png;base64,'+action.thumbnail" /><br />
+              <div class="pointsBoard" style="position: relative;">
+                <img [src]="'data:image/png;base64,'+action.thumbnail" style="width: auto;"/><br />
+                <div class="point" *ngFor="let point of action.points" [style.top.px]="point.y"  [style.left.px]="point.x"><span class="label">{{point.num}} - {{point.confidence}}%</span></div>
+              </div>
               Frame: {{action.frameNum}}<br />
               Type: {{action.type}}<br />
-              <hr />
+              Roll: {{action.roll}}<br />
+              Pitch: {{action.pitch}}<br />
+              Yaw: {{action.yaw}}
             </li>
           </ol>
         </div>

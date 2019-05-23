@@ -8,7 +8,7 @@ export class Verify {
 
 export class VerifyParams {
     faceMatchingParams: any;
-    far = 1;
+    // far = 1;
     fingerPrintMatchingParams: FingerPrintMatchingParams = new FingerPrintMatchingParams();
     voiceMatchingParams: any;
 }

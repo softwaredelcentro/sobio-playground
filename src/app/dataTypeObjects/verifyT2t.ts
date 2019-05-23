@@ -5,7 +5,7 @@ export class FingerPrintMatchingParams {
 
 export class T2tParams {
     faceMatchingParams: any;
-    far = 1;
+    // far = 1;
     fingerPrintMatchingParams: FingerPrintMatchingParams = new FingerPrintMatchingParams();
     voiceMatchingParams: any;
 }
