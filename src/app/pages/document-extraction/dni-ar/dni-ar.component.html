@@ -175,19 +175,19 @@
     </header>
     <div class="inputRow">
       <label>
-        Select back image file
-      </label>
-      <input type="file" accept="image/*" (change)="fileBackChange()" #fileBackInput>
-      <img *ngIf="dto.backImage" [src]="'data:'+backDataType+';base64,'+dto.backImage" class="imagefile"
-        (click)="dto.backImage = undefined" />
-    </div>
-    <div class="inputRow">
-      <label>
         Select front image file
       </label>
       <input type="file" accept="image/*" (change)="fileFrontChange()" #fileFrontInput>
       <img *ngIf="dto.frontImage" [src]="'data:'+frontDataType+';base64,'+dto.frontImage" class="imagefile"
         (click)="dto.frontImage = undefined" />
+    </div>
+    <div class="inputRow">
+      <label>
+        Select back image file
+      </label>
+      <input type="file" accept="image/*" (change)="fileBackChange()" #fileBackInput>
+      <img *ngIf="dto.backImage" [src]="'data:'+backDataType+';base64,'+dto.backImage" class="imagefile"
+        (click)="dto.backImage = undefined" />
     </div>
   </section>
   <section>
