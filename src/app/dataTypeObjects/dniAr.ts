@@ -1,7 +1,10 @@
+import { MaxResolutionsDNIExtraction } from './MaxResolutionsDNIExtraction';
+
 export class DniAr {
     auditToken: string;
     backImage: string;
     frontImage: string;
+    maxImageResolution: MaxResolutionsDNIExtraction = MaxResolutionsDNIExtraction.UNLIMITED;
     params: DniArParameters = new DniArParameters();
 }
 
