@@ -7,6 +7,7 @@ export class FaceImageResponse {
 
 export class ExtractedFaces {
     public face: Face;
+    public properties: ExtractedFacesProperties;
     public status: string;
 }
 
@@ -15,3 +16,14 @@ export class Face {
     public template: string;
 }
 
+export class ExtractedFacesProperties {
+    position: any;
+    clahe: number;
+    thumbnail: string;
+    confidence: number;
+    traits: any;
+    expression: any;
+    emotion: any;
+    gender: any;
+    age: number;
+}

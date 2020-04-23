@@ -26,6 +26,10 @@
                 <label>Image:</label>
                 <img [src]="'data:image/png;base64,'+face.face.image">
             </div>
+            <div class="dataBlock" *ngIf="face.properties.thumbnail"> <!-- {{face.properties.thumbnail}} -->
+              <label>Thumbnail:</label>
+              <img [src]="'data:image/png;base64,'+face.properties.thumbnail">
+            </div>
             <div class="copy" (click)="copy(idx)"><img src="assets/copy.png" /></div>
             <div class="dataBlock">
                 <label>Template:</label>

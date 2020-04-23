@@ -2,13 +2,13 @@ import { IdentifyResponse } from './../dataTypeObjects/identifyResponse';
 import { Verify } from './../dataTypeObjects/verify';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { EndpointsMatchingService } from './endpointsMatchingService';
 import { environment } from 'src/environments/environment';
 import { VerifyT2t } from '../dataTypeObjects/verifyT2t';
 import { Observable } from 'rxjs';
 import { VerifyT2tResponse } from '../dataTypeObjects/verifyT2tResponse';
 import { Identify } from '../dataTypeObjects/identify';
 import { VerifyResponse } from '../dataTypeObjects/verifyResponse';
+import { EndpointsMatchingService } from './EndpointsMatchingService';
 
 @Injectable({
   providedIn: 'root'
