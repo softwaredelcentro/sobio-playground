@@ -1,7 +1,11 @@
 import { Face } from './faceImageResponse';
-export class DniArResponse {
-    additionalInfo: string;
-    documentInfo: DocumentInfo = new DocumentInfo();
+
+export interface FingerPrintModelVO {
+    formatoTemplate: string;
+    image: string;
+    imageSource: string;
+    position: string;
+    template: string;
 }
 
 export class DocumentInfo {
@@ -27,6 +31,12 @@ export class DocumentInfo {
     validDateOfBirth: boolean;
     validDocumentNumber: boolean;
     validExpirationDate: boolean;
+    fingerPrint?: FingerPrintModelVO;
+}
+
+export class DniArResponse {
+    additionalInfo: string;
+    documentInfo: DocumentInfo = new DocumentInfo();
 }
 
 export class DateSplitted {

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { DniAr } from 'src/app/dataTypeObjects/dniAr';
 import { ExtractionService } from 'src/app/providers/extraction.service';
-import { DniArResponse } from 'src/app/dataTypeObjects/dniArResponse';
+import { DniArResponse, FingerPrintModelVO } from 'src/app/dataTypeObjects/dniArResponse';
 import { UUID } from 'src/app/Utils/UUID';
 
 @Component({
@@ -21,6 +21,7 @@ export class DniArComponent implements OnInit {
   jsonResponse: string;
   error: boolean;
   response: DniArResponse;
+  public parsedFingerPrint: object;
 
   @ViewChild('fileBackInput') fileBackInput: ElementRef;
   @ViewChild('fileFrontInput') fileFrontInput: ElementRef;
@@ -80,6 +81,10 @@ export class DniArComponent implements OnInit {
       this.response = resp;
       this.jsonResponse = JSON.stringify(resp);
       this.step = 2;
+
+      if (this.response.documentInfo.fingerPrint !== undefined && this.response.documentInfo.fingerPrint.image.length > 0) {
+        this.getFingerPrintImage(this.response.documentInfo.fingerPrint);
+      }
     }, err => {
       console.log(err);
       this.error = true;
@@ -88,6 +93,15 @@ export class DniArComponent implements OnInit {
       this.loading = false;
     });
     this.urlEndpoint = this.extractionSrv.getEndpoints().dniAr;
+  }
+
+  getFingerPrintImage(finger: FingerPrintModelVO): void {
+    console.log('get finger');
+
+    this.extractionSrv.getFingerPrintImage(this.dto.auditToken, finger.image).subscribe(response => {
+      console.log(response);
+      this.parsedFingerPrint = response;
+    });
   }
 
   retry() {

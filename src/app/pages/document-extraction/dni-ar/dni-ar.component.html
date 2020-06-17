@@ -132,6 +132,13 @@
         </div>
       </div>
 
+      <div class='dataBlock'>
+        <label>Fingerprint</label>
+        <div class='dataContent' style='display: block'>
+          <img [src]="'data:image/png;base64,'+parsedFingerPrint.image">
+        </div>
+      </div>
+
       <div class="dataBlock">
         <label>Valids:</label>
         <div class="dataContent" style="display: block">
@@ -155,7 +162,6 @@
           <b *ngIf="!response.documentInfo.validExpirationDate">No</b>
         </div>
       </div>
-
     </div>
   </div>
   <button type="button" class="send" (click)="retry()">Retry</button>

@@ -12,7 +12,7 @@ import { FaceVideoResponse } from '../dataTypeObjects/faceVideoResponse';
 import { FaceImageResponse } from '../dataTypeObjects/faceImageResponse';
 import { FaceImageDTO } from '../dataTypeObjects/faceImage';
 import { EndpointsExtractionService } from './endpointsExtractionService';
-import { DniArResponse } from '../dataTypeObjects/dniArResponse';
+import { DniArResponse, FingerPrintModelVO } from '../dataTypeObjects/dniArResponse';
 import { TextDependentVoiceResponse } from '../dataTypeObjects/textDependentVoiceResponse';
 import { TextIndependentVoiceResponse } from '../dataTypeObjects/textIndependentVoiceResponse';
 
@@ -38,6 +38,7 @@ export class ExtractionService {
     this.endpoints.textDependentVoice = endpoint + '/' + environment.version + '/bio/extract-text-dependent-voice';
     this.endpoints.textIndependentVoice = endpoint + '/' + environment.version + '/bio/extract-text-independent-voice';
     this.endpoints.fingerPrintImage = endpoint + '/' + environment.version + '/bio/extract-fingerprint-image';
+    this.endpoints.convertFingerPrint = endpoint + '/' + environment.version + '/bio/convert-fingerprint-image-wsq-to-png';
   }
 
   public extractFaceVideo(data: FaceVideoDTO): Observable<FaceVideoResponse> {
@@ -76,4 +77,13 @@ export class ExtractionService {
     return this.httpClient.post<FingerPrintImageResponse>(this.endpoints.fingerPrintImage, dataSTR, options);
   }
 
+  getFingerPrintImage(token: string, fingerPrintImage: string): Observable<any> {
+    const options = { headers: {'Content-Type': 'application/json'} };
+    const dataSTR = JSON.stringify({
+      autidToken: token,
+      image: fingerPrintImage
+    });
+
+    return this.httpClient.post<any>(this.endpoints.convertFingerPrint, dataSTR, options);
+  }
 }

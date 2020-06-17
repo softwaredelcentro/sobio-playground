@@ -5,4 +5,5 @@ export class EndpointsExtractionService {
     textDependentVoice: string;
     textIndependentVoice: string;
     fingerPrintImage: string;
+    convertFingerPrint: string;
 }
