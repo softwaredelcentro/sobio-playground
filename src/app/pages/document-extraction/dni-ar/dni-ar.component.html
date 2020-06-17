@@ -124,7 +124,7 @@
         <label>Face:</label>
         <img [src]="'data:image/png;base64,'+response.documentInfo.face.image">
       </div>
-      <div class="copy" (click)="copy()"><img src="assets/copy.png" /></div>
+      <div class="copy" (click)="copy(false)"><img src="assets/copy.png" /></div>
       <div class="dataBlock">
         <label>Face template:</label>
         <div class="dataTemplate" id="templateResponse">
@@ -136,6 +136,13 @@
         <label>Fingerprint</label>
         <div class='dataContent' style='display: block'>
           <img [src]="'data:image/png;base64,' + parsedFingerPrint.image">
+        </div>
+      </div>
+      <div *ngIf="response.documentInfo.fingerPrint.template" class="copy" (click)="copy(true)"><img src="assets/copy.png" /></div>
+      <div *ngIf="response.documentInfo.fingerPrint.template" class="dataBlock">
+        <label>Fingerprint template:</label>
+        <div class="dataTemplate" id="templateFingerResponse">
+          {{response.documentInfo.fingerPrint.template}}
         </div>
       </div>
 

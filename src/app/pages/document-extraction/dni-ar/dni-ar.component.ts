@@ -108,9 +108,10 @@ export class DniArComponent implements OnInit {
     this.step = 1;
   }
 
-  copy() {
+  copy(isFinger: boolean = false): void {
     try {
-      (navigator as any).clipboard.writeText(this.response.documentInfo.face.template).then(() => {
+      const targetData = (isFinger === true) ? this.response.documentInfo.fingerPrint.template : this.response.documentInfo.face.template;
+      (navigator as any).clipboard.writeText(targetData).then(() => {
         // alert('Copied A');
       });
     } catch (e) {
@@ -118,7 +119,8 @@ export class DniArComponent implements OnInit {
         // $(this).find('.copyRealText').select();
         const selection = document.getSelection();
         const range = document.createRange();
-        range.selectNode(document.getElementById('templateResponse'));
+        const divId = (isFinger === true) ? 'templateFingerResponse' : 'templateResponse';
+        range.selectNode(document.getElementById(divId));
         selection.removeAllRanges();
         selection.addRange(range);
         const result = document.execCommand('copy');
