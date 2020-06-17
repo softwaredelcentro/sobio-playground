@@ -27,6 +27,7 @@ export class AppComponent implements OnInit {
     const onStorage: string = localStorage.getItem('apiUrl').toString();
     if (onStorage.length > 0) {
       this.apiEndpoint = onStorage;
+      this.apiChange();
     }
 
     this.route.fragment.subscribe((fragment: string) => {

@@ -132,10 +132,10 @@
         </div>
       </div>
 
-      <div class='dataBlock'>
+      <div *ngIf="parsedFingerPrint.image" class='dataBlock'>
         <label>Fingerprint</label>
         <div class='dataContent' style='display: block'>
-          <img [src]="'data:image/png;base64,'+parsedFingerPrint.image">
+          <img [src]="'data:image/png;base64,' + parsedFingerPrint.image">
         </div>
       </div>
 
