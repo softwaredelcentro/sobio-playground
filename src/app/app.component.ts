@@ -23,6 +23,12 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.apiEndpoint = environment.endpoint;
+
+    const onStorage: string = localStorage.getItem('apiUrl').toString();
+    if (onStorage.length > 0) {
+      this.apiEndpoint = onStorage;
+    }
+
     this.route.fragment.subscribe((fragment: string) => {
       const hash = fragment;
       if (hash) {
@@ -39,5 +45,6 @@ export class AppComponent implements OnInit {
     this.eSrv.reSetEndpoints(this.apiEndpoint);
     this.mSrv.reSetEndpoints(this.apiEndpoint);
     this.dbSrv.reSetEndpoints(this.apiEndpoint);
+    localStorage.setItem('apiUrl', this.apiEndpoint);
   }
 }
