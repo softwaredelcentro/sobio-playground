@@ -46,9 +46,14 @@ export class AppComponent implements OnInit {
     this.route.fragment.subscribe((fragment: string) => {
       const hash = fragment;
       if (hash) {
-        const params = /api=([^&]+)/gmi.exec(hash);
-        if (params) {
-          this.apiEndpoint = decodeURIComponent(params[1]);
+        const apiParam = /api=([^&]+)/gmi.exec(hash);
+        if (apiParam) {
+          this.apiEndpoint = decodeURIComponent(apiParam[1]);
+          this.apiChange();
+        }
+        const tokenParam = /token=([^&]+)/gmi.exec(hash);
+        if (tokenParam) {
+          this.apiEndpoint = decodeURIComponent(tokenParam[1]);
           this.apiChange();
         }
       }
