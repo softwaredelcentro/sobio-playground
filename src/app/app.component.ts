@@ -53,7 +53,7 @@ export class AppComponent implements OnInit {
         }
         const tokenParam = /token=([^&]+)/gmi.exec(hash);
         if (tokenParam) {
-          this.apiEndpoint = decodeURIComponent(tokenParam[1]);
+          this.apiToken = decodeURIComponent(tokenParam[1]);
           this.apiChange();
         }
       }
