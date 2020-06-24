@@ -14,6 +14,7 @@ This project works as example of client in Angular.
 
 [http://softwaredelcentro.github.io/sobio-playground/#/#api=http://xxxxx.yyyyy/zzzzz](http://softwaredelcentro.github.io/sobio-playground/#/#api=http://xxxxx.yyyyy/zzzzz)
 
+[http://softwaredelcentro.github.io/sobio-playground/#/#api=http://xxxxx.yyyyy/zzzzz&token=aaaaaaaa-aaaaa-aaaa](http://softwaredelcentro.github.io/sobio-playground/#/#api=http://xxxxx.yyyyy/zzzzz&token=aaaaaaaa-aaaaa-aaaa)
 
 ## Development server
 
