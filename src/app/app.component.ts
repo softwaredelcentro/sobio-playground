@@ -30,6 +30,13 @@ export class AppComponent implements OnInit {
     const onStorage: string = localStorage.getItem('apiUrl').toString();
     if (onStorage.length > 0) {
       this.apiEndpoint = onStorage;
+      const authEnabledOnStorage: boolean = localStorage.getItem('apiAuth').toString() === 'yes';
+      if (authEnabledOnStorage) {
+        this.authEnabled = authEnabledOnStorage;
+        this.apiUser = localStorage.getItem('apiUser').toString();
+        this.apiPassword = localStorage.getItem('apiPassword').toString();
+      }
+      
       this.apiChange();
     }
 
