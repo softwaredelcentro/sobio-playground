@@ -14,6 +14,9 @@ export class AppComponent implements OnInit {
   title = 'sobio-backoffice';
 
   apiEndpoint: string;
+  authEnabled: boolean = false;
+  apiUser: string;
+  apiPassword: string;
 
   constructor(
     private eSrv: ExtractionService,
@@ -43,9 +46,12 @@ export class AppComponent implements OnInit {
   }
 
   apiChange() {
-    this.eSrv.reSetEndpoints(this.apiEndpoint);
-    this.mSrv.reSetEndpoints(this.apiEndpoint);
-    this.dbSrv.reSetEndpoints(this.apiEndpoint);
+    this.eSrv.reSetEndpoints(this.apiEndpoint, this.authEnabled, this.apiUser, this.apiPassword);
+    this.mSrv.reSetEndpoints(this.apiEndpoint, this.authEnabled, this.apiUser, this.apiPassword);
+    this.dbSrv.reSetEndpoints(this.apiEndpoint, this.authEnabled, this.apiUser, this.apiPassword);
     localStorage.setItem('apiUrl', this.apiEndpoint);
+    localStorage.setItem('apiAuth', this.authEnabled ? 'yes' : 'no');
+    localStorage.setItem('apiUser', this.apiUser);
+    localStorage.setItem('apiPassword', this.apiUser);
   }
 }

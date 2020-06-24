@@ -26,10 +26,10 @@ export class DatabaseService {
   }
 
   constructor(private httpClient: HttpClient) {
-    this.reSetEndpoints(environment.endpoint);
+    this.reSetEndpoints(environment.endpoint, false);
   }
 
-  public reSetEndpoints(endpoint: string) {
+  public reSetEndpoints(endpoint: string, auth: boolean, user?: string, password?: string) {
     this.endpoints.list = endpoint + '/' + environment.version + '/bio/list';
     this.endpoints.delete = endpoint + '/' + environment.version + '/bio/delete';
     this.endpoints.zip = endpoint + '/' + environment.version + '/bio/download-zipped-biodata/';

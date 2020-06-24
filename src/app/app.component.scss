@@ -25,6 +25,35 @@ header {
                 content: 'Api Endpoint';
             }
         }
+        header {
+            width: 100%;
+            margin-top: 10px;
+            .formContainer {
+                height: 0px;
+                overflow: hidden;
+                transition: height 1s;
+                &.opened{
+                    height: 95px;
+                }
+            }
+            .divisor {
+                height: 1px;
+                background: #c3c3c3;
+                margin-top: 10px;
+                span {
+                    top: -10px;
+                    position: relative;
+                    display: inline-block;
+                    background: #f9fafc;
+                    padding: 0px 5px;
+                    color: gray;
+                    svg {
+                        width: 20px;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
     }
 }
 main {

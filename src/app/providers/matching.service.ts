@@ -22,10 +22,10 @@ export class MatchingService {
   }
 
   constructor(private httpClient: HttpClient) {
-    this.reSetEndpoints(environment.endpoint);
+    this.reSetEndpoints(environment.endpoint, false);
   }
 
-  public reSetEndpoints(endpoint: string) {
+  public reSetEndpoints(endpoint: string, auth: boolean, user?: string, password?: string) {
     this.endpoints.verifyT2t = endpoint + '/' + environment.version + '/bio/verify-t2t';
     this.endpoints.verify = endpoint + '/' + environment.version + '/bio/verify';
     this.endpoints.identify = endpoint + '/' + environment.version + '/bio/identify';

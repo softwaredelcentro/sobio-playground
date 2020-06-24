@@ -28,10 +28,10 @@ export class ExtractionService {
   }
 
   constructor(private httpClient: HttpClient) {
-    this.reSetEndpoints(environment.endpoint);
+    this.reSetEndpoints(environment.endpoint, false);
   }
 
-  public reSetEndpoints(endpoint: string) {
+  public reSetEndpoints(endpoint: string, auth: boolean, user?: string, password?: string) {
     this.endpoints.faceImage = endpoint + '/' + environment.version + '/bio/extract-face-image';
     this.endpoints.faceVideo = endpoint + '/' + environment.version + '/bio/extract-face-video';
     this.endpoints.dniAr = endpoint + '/' + environment.version + '/document-extraction/dni-ar';
