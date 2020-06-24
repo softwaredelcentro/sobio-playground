@@ -6,10 +6,12 @@
     <header>
       <label (click)="authEnabled = !authEnabled" style="cursor: pointer;">Authentication</label>
       <div class="formContainer" [class.opened]="authEnabled">
-        <label>User</label><br />
+        <!-- <label>User</label><br />
         <input type="text" placeholder="user" [(ngModel)]="apiUser" (change)="apiChange()"/>
         <label>Password</label>
-        <input type="password" placeholder="password" [(ngModel)]="apiPassword" (change)="apiChange()"/>
+        <input type="password" placeholder="password" [(ngModel)]="apiPassword" (change)="apiChange()"/> -->
+        <label>Token</label><br />
+        <input type="text" placeholder="token" [(ngModel)]="apiToken" (change)="apiChange()"/>
       </div>
       <div class="divisor">
         <span *ngIf="!authEnabled" (click)="authEnabled = true">

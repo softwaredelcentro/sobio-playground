@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
   authEnabled: boolean = false;
   apiUser: string;
   apiPassword: string;
+  apiToken: string;
 
   constructor(
     private eSrv: ExtractionService,
@@ -37,6 +38,7 @@ export class AppComponent implements OnInit {
         this.authEnabled = authEnabledOnStorage;
         this.apiUser = localStorage.getItem('apiUser').toString();
         this.apiPassword = localStorage.getItem('apiPassword').toString();
+        this.apiToken = localStorage.getItem('apiToken').toString();
       }
       this.apiChange();
     }
@@ -57,10 +59,11 @@ export class AppComponent implements OnInit {
     this.eSrv.reSetEndpoints(this.apiEndpoint);
     this.mSrv.reSetEndpoints(this.apiEndpoint);
     this.dbSrv.reSetEndpoints(this.apiEndpoint);
-    this.authSrv.setAuth(this.authEnabled, this.apiUser, this.apiUser);
+    this.authSrv.setAuth(this.authEnabled, this.apiUser, this.apiUser, this.apiToken);
     localStorage.setItem('apiUrl', this.apiEndpoint);
     localStorage.setItem('apiAuth', this.authEnabled ? 'yes' : 'no');
     localStorage.setItem('apiUser', this.apiUser);
     localStorage.setItem('apiPassword', this.apiUser);
+    localStorage.setItem('apiToken', this.apiToken);
   }
 }
