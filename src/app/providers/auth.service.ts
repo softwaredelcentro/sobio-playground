@@ -20,7 +20,7 @@ export class AuthService {
 
   setAuthOnOptions(options: any) {
     if(this.authEnabled) {
-      const hash = atob(this.authUser + '.' + this.authPassword);
+      const hash = btoa(this.authUser + '.' + this.authPassword);
       options.headers.Authorization = 'Basic <' + hash + '>';
     }
     return options;
