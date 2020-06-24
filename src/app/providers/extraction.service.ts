@@ -15,6 +15,7 @@ import { EndpointsExtractionService } from './endpointsExtractionService';
 import { DniArResponse, FingerPrintModelVO } from '../dataTypeObjects/dniArResponse';
 import { TextDependentVoiceResponse } from '../dataTypeObjects/textDependentVoiceResponse';
 import { TextIndependentVoiceResponse } from '../dataTypeObjects/textIndependentVoiceResponse';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -27,11 +28,11 @@ export class ExtractionService {
     return this.endpoints;
   }
 
-  constructor(private httpClient: HttpClient) {
-    this.reSetEndpoints(environment.endpoint, false);
+  constructor(private httpClient: HttpClient, private authSrv: AuthService) {
+    this.reSetEndpoints(environment.endpoint);
   }
 
-  public reSetEndpoints(endpoint: string, auth: boolean, user?: string, password?: string) {
+  public reSetEndpoints(endpoint: string) {
     this.endpoints.faceImage = endpoint + '/' + environment.version + '/bio/extract-face-image';
     this.endpoints.faceVideo = endpoint + '/' + environment.version + '/bio/extract-face-video';
     this.endpoints.dniAr = endpoint + '/' + environment.version + '/document-extraction/dni-ar';
@@ -42,43 +43,50 @@ export class ExtractionService {
   }
 
   public extractFaceVideo(data: FaceVideoDTO): Observable<FaceVideoResponse> {
-    const options = { headers: {'Content-Type': 'application/json'} };
+    let options = { headers: {'Content-Type': 'application/json'} };
+    options = this.authSrv.setAuthOnOptions(options);
     const dataSTR = JSON.stringify(data);
     return this.httpClient.post<FaceVideoResponse>(this.endpoints.faceVideo, dataSTR, options);
   }
 
   public extractFaceImage(data: FaceImageDTO): Observable<FaceImageResponse> {
-    const options = { headers: {'Content-Type': 'application/json'} };
+    let options = { headers: {'Content-Type': 'application/json'} };
+    options = this.authSrv.setAuthOnOptions(options);
     const dataSTR = JSON.stringify(data);
     return this.httpClient.post<FaceImageResponse>(this.endpoints.faceImage, dataSTR, options);
   }
 
   public extractDni(data: DniAr): Observable<DniArResponse> {
-    const options = { headers: {'Content-Type': 'application/json'} };
+    let options = { headers: {'Content-Type': 'application/json'} };
+    options = this.authSrv.setAuthOnOptions(options);
     const dataSTR = JSON.stringify(data);
     return this.httpClient.post<DniArResponse>(this.endpoints.dniAr, dataSTR, options);
   }
 
   public extractTextDependentVoice(data: TextDependentVoice): Observable<TextDependentVoiceResponse> {
-    const options = { headers: {'Content-Type': 'application/json'} };
+    let options = { headers: {'Content-Type': 'application/json'} };
+    options = this.authSrv.setAuthOnOptions(options);
     const dataSTR = JSON.stringify(data);
     return this.httpClient.post<TextDependentVoiceResponse>(this.endpoints.textDependentVoice, dataSTR, options);
   }
 
   public extractTextIndependentVoice(data: TextIndependentVoice): Observable<TextIndependentVoiceResponse> {
-    const options = { headers: {'Content-Type': 'application/json'} };
+    let options = { headers: {'Content-Type': 'application/json'} };
+    options = this.authSrv.setAuthOnOptions(options);
     const dataSTR = JSON.stringify(data);
     return this.httpClient.post<TextIndependentVoiceResponse>(this.endpoints.textIndependentVoice, dataSTR, options);
   }
 
   public extractFingerprint(data: FingerPrintImage): Observable<FingerPrintImageResponse> {
-    const options = { headers: {'Content-Type': 'application/json'} };
+    let options = { headers: {'Content-Type': 'application/json'} };
+    options = this.authSrv.setAuthOnOptions(options);
     const dataSTR = JSON.stringify(data);
     return this.httpClient.post<FingerPrintImageResponse>(this.endpoints.fingerPrintImage, dataSTR, options);
   }
 
   getFingerPrintImage(token: string, fingerPrintImage: string): Observable<any> {
-    const options = { headers: {'Content-Type': 'application/json'} };
+    let options = { headers: {'Content-Type': 'application/json'} };
+    options = this.authSrv.setAuthOnOptions(options);
     const dataSTR = JSON.stringify({
       autidToken: token,
       image: fingerPrintImage

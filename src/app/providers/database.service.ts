@@ -13,6 +13,7 @@ import { Enroll } from '../dataTypeObjects/enroll';
 import { EnrollResponse } from '../dataTypeObjects/enrollResponse';
 import { Update } from '../dataTypeObjects/update';
 import { UpdateResponse } from '../dataTypeObjects/updateResponse';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -25,11 +26,11 @@ export class DatabaseService {
     return this.endpoints;
   }
 
-  constructor(private httpClient: HttpClient) {
-    this.reSetEndpoints(environment.endpoint, false);
+  constructor(private httpClient: HttpClient, private authSrv: AuthService) {
+    this.reSetEndpoints(environment.endpoint);
   }
 
-  public reSetEndpoints(endpoint: string, auth: boolean, user?: string, password?: string) {
+  public reSetEndpoints(endpoint: string) {
     this.endpoints.list = endpoint + '/' + environment.version + '/bio/list';
     this.endpoints.delete = endpoint + '/' + environment.version + '/bio/delete';
     this.endpoints.zip = endpoint + '/' + environment.version + '/bio/download-zipped-biodata/';
@@ -40,13 +41,15 @@ export class DatabaseService {
   }
 
   public getList(dto: BioList): Observable<BioListResponse> {
-    const options = { headers: {'Content-Type': 'application/json'} };
+    let options = { headers: {'Content-Type': 'application/json'} };
+    options = this.authSrv.setAuthOnOptions(options);
     const dataSTR = JSON.stringify(dto);
     return this.httpClient.post<BioListResponse>(this.endpoints.list, dataSTR, options);
   }
 
   public delete(data: DBData): Observable<DeleteResponse> {
-    const options = { headers: {'Content-Type': 'application/json'} };
+    let options = { headers: {'Content-Type': 'application/json'} };
+    options = this.authSrv.setAuthOnOptions(options);
     const dataSTR = JSON.stringify(data);
     return this.httpClient.post<DeleteResponse>(this.endpoints.delete, dataSTR, options);
   }
@@ -64,25 +67,29 @@ export class DatabaseService {
   }
 
   public getData(data: DBData): Observable<SubjectDataResponse> {
-    const options = { headers: {'Content-Type': 'application/json'} };
+    let options = { headers: {'Content-Type': 'application/json'} };
+    options = this.authSrv.setAuthOnOptions(options);
     const dataSTR = JSON.stringify(data);
     return this.httpClient.post<SubjectDataResponse>(this.endpoints.data, dataSTR, options);
   }
 
   public getInfo(data: DBData): Observable<SubjectInfoResponse> {
-    const options = { headers: {'Content-Type': 'application/json'} };
+    let options = { headers: {'Content-Type': 'application/json'} };
+    options = this.authSrv.setAuthOnOptions(options);
     const dataSTR = JSON.stringify(data);
     return this.httpClient.post<SubjectInfoResponse>(this.endpoints.info, dataSTR, options);
   }
 
   public enroll(data: Enroll): Observable<EnrollResponse> {
-    const options = { headers: {'Content-Type': 'application/json'} };
+    let options = { headers: {'Content-Type': 'application/json'} };
+    options = this.authSrv.setAuthOnOptions(options);
     const dataSTR = JSON.stringify(data);
     return this.httpClient.post<EnrollResponse>(this.endpoints.enroll, dataSTR, options);
   }
 
   public update(data: Update): Observable<UpdateResponse> {
-    const options = { headers: {'Content-Type': 'application/json'} };
+    let options = { headers: {'Content-Type': 'application/json'} };
+    options = this.authSrv.setAuthOnOptions(options);
     const dataSTR = JSON.stringify(data);
     return this.httpClient.post<UpdateResponse>(this.endpoints.update, dataSTR, options);
   }

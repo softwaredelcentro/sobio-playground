@@ -9,6 +9,7 @@ import { VerifyT2tResponse } from '../dataTypeObjects/verifyT2tResponse';
 import { Identify } from '../dataTypeObjects/identify';
 import { VerifyResponse } from '../dataTypeObjects/verifyResponse';
 import { EndpointsMatchingService } from './EndpointsMatchingService';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -21,30 +22,33 @@ export class MatchingService {
     return this.endpoints;
   }
 
-  constructor(private httpClient: HttpClient) {
-    this.reSetEndpoints(environment.endpoint, false);
+  constructor(private httpClient: HttpClient, private authSrv: AuthService) {
+    this.reSetEndpoints(environment.endpoint);
   }
 
-  public reSetEndpoints(endpoint: string, auth: boolean, user?: string, password?: string) {
+  public reSetEndpoints(endpoint: string) {
     this.endpoints.verifyT2t = endpoint + '/' + environment.version + '/bio/verify-t2t';
     this.endpoints.verify = endpoint + '/' + environment.version + '/bio/verify';
     this.endpoints.identify = endpoint + '/' + environment.version + '/bio/identify';
   }
 
   public verifyT2T(dto: VerifyT2t): Observable<VerifyT2tResponse> {
-    const options = { headers: {'Content-Type': 'application/json'} };
+    let options = { headers: {'Content-Type': 'application/json'} };
+    options = this.authSrv.setAuthOnOptions(options);
     const dataSTR = JSON.stringify(dto);
     return this.httpClient.post<VerifyT2tResponse>(this.endpoints.verifyT2t, dataSTR, options);
   }
 
   public verify(dto: Verify): Observable<VerifyResponse> {
-    const options = { headers: {'Content-Type': 'application/json'} };
+    let options = { headers: {'Content-Type': 'application/json'} };
+    options = this.authSrv.setAuthOnOptions(options);
     const dataSTR = JSON.stringify(dto);
     return this.httpClient.post<VerifyResponse>(this.endpoints.verify, dataSTR, options);
   }
 
   public identify(dto: Identify): Observable<IdentifyResponse> {
-    const options = { headers: {'Content-Type': 'application/json'} };
+    let options = { headers: {'Content-Type': 'application/json'} };
+    options = this.authSrv.setAuthOnOptions(options);
     const dataSTR = JSON.stringify(dto);
     return this.httpClient.post<IdentifyResponse>(this.endpoints.identify, dataSTR, options);
   }

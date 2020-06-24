@@ -4,7 +4,7 @@
     <label>Api Endpoint</label>
     <input type="text" placeholder="API ENDPOINT" [(ngModel)]="apiEndpoint" (change)="apiChange()"/>
     <header>
-      <label>Authentication</label>
+      <label (click)="authEnabled = !authEnabled" style="cursor: pointer;">Authentication</label>
       <div class="formContainer" [class.opened]="authEnabled">
         <label>User</label><br />
         <input type="text" placeholder="user" [(ngModel)]="apiUser" (change)="apiChange()"/>

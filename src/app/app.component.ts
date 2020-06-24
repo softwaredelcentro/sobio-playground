@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
 import { ExtractionService } from './providers/extraction.service';
 import { MatchingService } from './providers/matching.service';
+import { AuthService } from './providers/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +23,8 @@ export class AppComponent implements OnInit {
     private eSrv: ExtractionService,
     private mSrv: MatchingService,
     private dbSrv: DatabaseService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private authSrv: AuthService) { }
 
   ngOnInit() {
     this.apiEndpoint = environment.endpoint;
@@ -36,7 +38,6 @@ export class AppComponent implements OnInit {
         this.apiUser = localStorage.getItem('apiUser').toString();
         this.apiPassword = localStorage.getItem('apiPassword').toString();
       }
-      
       this.apiChange();
     }
 
@@ -53,9 +54,10 @@ export class AppComponent implements OnInit {
   }
 
   apiChange() {
-    this.eSrv.reSetEndpoints(this.apiEndpoint, this.authEnabled, this.apiUser, this.apiPassword);
-    this.mSrv.reSetEndpoints(this.apiEndpoint, this.authEnabled, this.apiUser, this.apiPassword);
-    this.dbSrv.reSetEndpoints(this.apiEndpoint, this.authEnabled, this.apiUser, this.apiPassword);
+    this.eSrv.reSetEndpoints(this.apiEndpoint);
+    this.mSrv.reSetEndpoints(this.apiEndpoint);
+    this.dbSrv.reSetEndpoints(this.apiEndpoint);
+    this.authSrv.setAuth(this.authEnabled, this.apiUser, this.apiUser);
     localStorage.setItem('apiUrl', this.apiEndpoint);
     localStorage.setItem('apiAuth', this.authEnabled ? 'yes' : 'no');
     localStorage.setItem('apiUser', this.apiUser);
