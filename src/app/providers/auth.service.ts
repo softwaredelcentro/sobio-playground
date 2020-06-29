@@ -21,10 +21,10 @@ export class AuthService {
   }
 
   setAuthOnOptions(options: any) {
-    if(this.authEnabled) {
+    if (this.authEnabled) {
       // const hash = btoa(this.authUser + '.' + this.authPassword);
       // options.headers.Authorization = 'Basic <' + hash + '>';
-      options.headers.Authorization = 'Bearer <' + this.authToken + '>';
+      options.headers.Authorization = 'Bearer ' + this.authToken;
     }
     return options;
   }
